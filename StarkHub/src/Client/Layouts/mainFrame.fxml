@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Java.MainFrameController">
+   <children>
+      <AnchorPane fx:id="leftAnchorPane" layoutY="129.0" prefHeight="627.0" prefWidth="213.0" style="-fx-background-color: #F48FB1;" />
+      <AnchorPane fx:id="topAnchorPane" prefHeight="128.0" prefWidth="1233.0" style="-fx-background-color: #000000;">
+         <children>
+            <JFXButton fx:id="btn" buttonType="RAISED" layoutX="931.0" layoutY="64.0" onAction="#btnClicked" ripplerFill="#cd1818" style="-fx-background-color: #ff0000;" />
+            <ImageView fx:id="proPicImageView" fitHeight="73.0" fitWidth="93.0" layoutX="751.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="contentAnchorPane" layoutX="213.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1022.0" />
+   </children>
+</AnchorPane>
