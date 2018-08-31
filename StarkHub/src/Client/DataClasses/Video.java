@@ -1,5 +1,9 @@
 package Client.DataClasses;
 
+import javafx.scene.image.Image;
+
+import java.io.EOFException;
+import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,8 +15,9 @@ public class Video implements Serializable {
     protected int numberOfLikes = 0;
     protected int numberOfComments = 0;
     protected ArrayList<Comment> comments;
+    protected Image thumbnail;
 
-    Video(String _videoName, ArrayList<String> _tags, String _videoPath){
+    public Video(String _videoName, ArrayList<String> _tags, String _videoPath){
         this.tags = _tags;
         this.videoName = _videoName;
         this.videoPath = _videoPath;
@@ -34,5 +39,13 @@ public class Video implements Serializable {
     public void addComment(String userName, String content){
         Comment newComment = new Comment(userName, content);
         comments.add(newComment);
+    }
+
+    public void setThumbnail(String imagePath) throws Exception {
+        this.thumbnail = new Image(new FileInputStream(imagePath));
+    }
+
+    public Image getThumbnail(){
+        return this.thumbnail;
     }
 }

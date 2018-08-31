@@ -12,6 +12,9 @@ public class Main extends Application {
 
 
     public static String HUB_IP = "172.31.84.87";
+    public static int PORT = 1111;
+
+    public static String USERNAME="";
 
 
     @Override

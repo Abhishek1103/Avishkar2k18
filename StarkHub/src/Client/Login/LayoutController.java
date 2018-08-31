@@ -79,6 +79,7 @@ public class LayoutController implements Initializable {
                 String savedPassword = sc.nextLine();
 
                 if(savedUsername.equals(userName) && savedPassword==pass){
+                    Main.USERNAME = userName;
                     startMainPage();
                 }else{
                     System.out.println("AUTHENTICATION FAILED");
@@ -115,6 +116,7 @@ public class LayoutController implements Initializable {
                 System.out.println("Creating new User");
                 try {
                     createNewUser(userName, pass, name);
+                    Main.USERNAME = userName;
                     startMainPage();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -161,7 +163,7 @@ public class LayoutController implements Initializable {
     boolean authenticateSignUp(String username){
         boolean result = false;
         try {
-            Socket hubConn = new Socket(Main.HUB_IP, 1111);
+            Socket hubConn = new Socket(Main.HUB_IP, Main.PORT);
             DataInputStream din = new DataInputStream(hubConn.getInputStream());
             DataOutputStream dout = new DataOutputStream(hubConn.getOutputStream());
 

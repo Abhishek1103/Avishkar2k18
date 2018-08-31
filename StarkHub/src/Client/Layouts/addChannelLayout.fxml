@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="addChannelAnchorPane" prefHeight="656.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.UI.AddChannelController">
+   <children>
+      <Label layoutX="51.0" layoutY="126.0" prefHeight="74.0" prefWidth="171.0" text="Enter Channel Name:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="channelNameTxt" layoutX="234.0" layoutY="150.0" prefHeight="26.0" prefWidth="546.0" promptText="Channel Name" />
+      <JFXMasonryPane layoutX="5.0" layoutY="444.0" prefHeight="202.0" prefWidth="974.0" style="-fx-border-color: #ff0000;" />
+      <JFXButton fx:id="createChannelButton" buttonType="RAISED" layoutX="634.0" layoutY="383.0" onAction="#createChannel" prefHeight="26.0" prefWidth="160.0" ripplerFill="WHITE" text="Create Channel" />
+      <JFXButton fx:id="discardButton" buttonType="RAISED" layoutX="831.0" layoutY="383.0" onAction="#discard" prefHeight="26.0" prefWidth="123.0" ripplerFill="WHITE" text="Discard" />
+      <JFXButton fx:id="addVideosButton" buttonType="RAISED" layoutX="819.0" layoutY="163.0" onAction="#addVideos" prefHeight="26.0" prefWidth="123.0" text="Add Videos" />
+      <JFXTextArea fx:id="tagsTextArea" labelFloat="true" layoutX="51.0" layoutY="240.0" prefHeight="58.0" prefWidth="533.0" promptText="Enter Comma Delimited Tags for the most Recently selected video">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextArea>
+   </children>
+</AnchorPane>
