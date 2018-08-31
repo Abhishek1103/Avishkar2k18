@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Java.MainFrameController">
+<AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Java.MainPageController">
    <children>
       <AnchorPane fx:id="leftAnchorPane" layoutY="97.0" prefHeight="663.0" prefWidth="249.0" style="-fx-background-color: #111214;">
          <children>
@@ -87,7 +87,17 @@
                         <Image url="@../Resuorces/plus-24.png" />
                      </image>
                   </ImageView>
-                  <JFXButton buttonType="RAISED" layoutX="2.0" layoutY="2.0" prefHeight="26.0" prefWidth="26.0" ripplerFill="#d70d0d" text=" " />
+                  <JFXButton fx:id="addVideoButton" buttonType="RAISED" layoutX="2.0" layoutY="2.0" prefHeight="26.0" prefWidth="26.0" ripplerFill="#d70d0d" text=" " />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="filterAnchorPane" layoutX="761.0" layoutY="38.0" prefHeight="29.0" prefWidth="29.0">
+               <children>
+                  <ImageView fitHeight="29.0" fitWidth="26.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resuorces/filter1-24.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="filterButton" buttonType="RAISED" onAction="#openFilterMenu" prefHeight="29.0" prefWidth="29.0" ripplerFill="#c91010" text=" " />
                </children>
             </AnchorPane>
          </children>
