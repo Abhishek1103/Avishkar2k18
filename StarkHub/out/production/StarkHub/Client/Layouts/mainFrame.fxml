@@ -1,23 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Java.MainFrameController">
    <children>
-      <AnchorPane fx:id="leftAnchorPane" layoutY="129.0" prefHeight="627.0" prefWidth="213.0" style="-fx-background-color: #F48FB1;" />
-      <AnchorPane fx:id="topAnchorPane" prefHeight="128.0" prefWidth="1233.0" style="-fx-background-color: #000000;">
+      <AnchorPane fx:id="leftAnchorPane" layoutY="97.0" prefHeight="663.0" prefWidth="249.0" style="-fx-background-color: #111214;">
          <children>
-            <JFXButton fx:id="btn" buttonType="RAISED" layoutX="931.0" layoutY="64.0" onAction="#btnClicked" ripplerFill="#cd1818" style="-fx-background-color: #ff0000;" />
+            <AnchorPane layoutX="-4.0" layoutY="4.0" prefHeight="656.0" prefWidth="37.0" style="-fx-background-color: #000000;">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="29.0" layoutX="7.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resuorces/trending-24.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="9.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resuorces/history-24.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="8.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resuorces/subscriptions-24.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="143.0" prefHeight="45.0" prefWidth="249.0" ripplerFill="#e41010" text="Trending" textFill="#eeeaea">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="-1.0" layoutY="188.0" prefHeight="45.0" prefWidth="249.0" ripplerFill="#e41010" text="  History" textFill="#eeeaea">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutY="233.0" prefHeight="45.0" prefWidth="249.0" ripplerFill="#e41010" text="Subscriptions" textFill="#fcfcfc">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+         </children></AnchorPane>
+      <AnchorPane fx:id="topAnchorPane" prefHeight="82.0" prefWidth="1233.0" style="-fx-background-color: #1d2026;">
+         <children>
             <ImageView fx:id="proPicImageView" fitHeight="73.0" fitWidth="93.0" layoutX="751.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <Glow />
                </effect>
             </ImageView>
+            <JFXTextField focusColor="WHITE" layoutX="282.0" layoutY="38.0" prefHeight="26.0" prefWidth="456.0" promptText="Search" style="-fx-background-color: #ffffff;" unFocusColor="#f8f8f8" />
+            <AnchorPane fx:id="menuBtnAnchor" layoutX="1160.0" layoutY="22.0" prefHeight="45.0" prefWidth="57.0">
+               <children>
+                  <ImageView fx:id="menuButton" fitHeight="33.0" fitWidth="29.0" layoutX="15.0" layoutY="10.0" onMouseClicked="#openMenu" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resuorces/menu-vertical-24.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="contentAnchorPane" layoutX="213.0" layoutY="128.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1022.0" />
+      <AnchorPane fx:id="contentAnchorPane" layoutX="249.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="986.0" />
    </children>
 </AnchorPane>
