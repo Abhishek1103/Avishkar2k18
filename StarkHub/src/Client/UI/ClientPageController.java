@@ -1,5 +1,6 @@
 package Client.UI;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,28 +33,38 @@ public class ClientPageController implements Initializable {
         try {
                 Reflection reflection = new Reflection();
                 reflection.setFraction(0.75);
-                for (int i = 0; i < 20; i++) {
-                    Label l = new Label("UserIDs||Recommeded");
-                    l.setEffect(reflection);
-                    vbox.getChildren().add(l);
+
+                Label l = new Label("Recommeded");
+                l.setEffect(reflection);
+                vbox.getChildren().add(l);
+                vbox.getChildren().add(createSection());
+                vbox.getChildren().add(createSection());
+
+                l = new Label("Miscellanous");
+                l.setEffect(reflection);
+                vbox.getChildren().add(l);
+
+                for (int i = 2; i < 4; i++) {
+
                     vbox.getChildren().add(createSection());
+
                 }
         }catch(Exception e){
             e.printStackTrace();
         }
         StackPane pane = new StackPane(vbox);
-        pane.setPadding(new Insets(20));
+        pane.setPadding(new Insets(15));
         clientScrollPane.setContent(pane);
     }
 
 
     HBox createSection() throws Exception{
-        HBox hbox  = new HBox(25);
+        HBox hbox  = new HBox(15);
 
 
         for(int i=0;i<4;i++){
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../Layouts/testAnchorPane.fxml"));
-            ((JFXTextField)(anchorPane.getChildren().get(1))).setText("Vide Info "+i);
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../Layouts/thumbNailLayout.fxml"));
+            ((JFXButton)(anchorPane.getChildren().get(1))).setText("Vide Info "+i);
             hbox.getChildren().add(anchorPane);
         }
 

@@ -12,7 +12,7 @@
    </effect>
    <children>
       <ImageView fitHeight="105.0" fitWidth="200.0" layoutX="11.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXTextField alignment="CENTER" labelFloat="true" layoutX="11.0" layoutY="116.0" prefHeight="26.0" prefWidth="200.0" promptText="Hello">
+      <JFXTextField alignment="CENTER" editable="false" labelFloat="true" layoutX="11.0" layoutY="116.0" prefHeight="26.0" prefWidth="200.0" promptText="Hello">
          <effect>
             <Glow />
          </effect>
