@@ -42,6 +42,7 @@ public class ClientPageController implements Initializable {
                 ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
                 dout.writeUTF("#NEWUSER");
+                dout.writeUTF(Main.USERNAME);
                 if(dis.readUTF().equals( "#NOFILES")){
                     //TODO NOTHING
                 }else{

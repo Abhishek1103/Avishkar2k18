@@ -5,6 +5,8 @@ public class ThumbTest {
     public static void main(String[] args) throws Exception {
         generateThumbnail("/home/aks/Videos/Berklee.mp4");
         System.exit(0);
+
+
     }
 
     static void generateThumbnail(String path) throws Exception{

@@ -8,12 +8,16 @@ import com.jfoenix.controls.JFXTextField;
 import com.sun.deploy.util.SessionState;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -43,10 +47,17 @@ public class AddChannelController implements Initializable {
     @FXML
     JFXListView<Label> videoListView;
 
+    @FXML
+    ScrollPane scrollPane;
+
+    HBox hbox;
+
     ArrayList<Video> videoList;
     FileChooser fileChooser ;
 
     String userHome;
+
+    String outPath;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,6 +67,10 @@ public class AddChannelController implements Initializable {
         videoListView.setExpanded(true);
         videoListView.setPadding(new Insets(10));
         videoListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        hbox = new HBox(25);
+        hbox.setPadding(new Insets(10));
+        scrollPane.setContent(hbox);
+        outPath = userHome+"/out.png";
     }
 
 
@@ -67,7 +82,9 @@ public class AddChannelController implements Initializable {
             System.out.println("Error...Select another Channel name");
         }else{
             try{
+                channelFile.createNewFile();
                 PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(channelFile)));
+
                 for(Video v: videoList){
                     pw.println(v.getVideoName());
                 }
@@ -107,14 +124,14 @@ public class AddChannelController implements Initializable {
 
                     dout.writeUTF(v.getVideoPath());
                     oos.writeObject(v.getTags());
-                    String outPath = generateThumbnail(v.getVideoPath());
-                    v.setThumbnail(outPath);
+
+//                    String outPath = generateThumbnail(v.getVideoPath());
+//                    v.setThumbnail(outPath);
+
                     oos.writeObject(v.getThumbnail());
+
                     System.out.println("ThumbNail Sent");
-                    if(new File(outPath).delete()){
-                        System.out.println("ThumbNail deleted Successfully");
-                    }else System.out.println("Failed to delete Thumbnail");
-                }
+                    }
             }
 
             socket.close();
@@ -137,9 +154,26 @@ public class AddChannelController implements Initializable {
             videoList.add(v);
 
             videoListView.getItems().add(new Label(file.getName()));
+
+            File f = new File(outPath);
+            if(f.exists() && f.delete()){
+                System.out.println("ThumbNail deleted Successfully");
+            }else System.out.println("Failed to delete Thumbnail");
+
+            String outPath = generateThumbnail(v.getVideoPath());
+            v.setThumbnail(outPath);
+
+
+
+            AnchorPane thumbPane = FXMLLoader.load(getClass().getResource("../Layouts/videoThumbnailView.fxml"));
+            ((ImageView)thumbPane.getChildren().get(0)).setImage(v.getThumbnail());
+            ((JFXButton)thumbPane.getChildren().get(1)).setText(v.getVideoName());
+            hbox.getChildren().add(thumbPane);
+
+
         }catch(Exception e){
             System.out.println(e.getMessage());
-            System.out.println("No file Selected");
+            //System.out.println("No file Selected");
             e.printStackTrace();
         }
     }
@@ -154,12 +188,15 @@ public class AddChannelController implements Initializable {
     String generateThumbnail(String path) throws Exception{
 
             String time = "00:00:20";
-            String outPath = System.getProperty("user.home") + "/.starkhub/out.png";
+           // String outPath = System.getProperty("user.home") + "/Desktop/out.png";
             String command = "ffmpeg "+" -ss "+time+" -i "+path+" -vf scale=-1:120  -vcodec png "+outPath;
             System.out.println(command);
             Runtime run = Runtime.getRuntime();
             Process p = run.exec(command);
+            System.out.println(p.getInputStream().read());
+
             p.waitFor();
+        System.out.println("Thumbnail Created");
 
         return outPath;
     }

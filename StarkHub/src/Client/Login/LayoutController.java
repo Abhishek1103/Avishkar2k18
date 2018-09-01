@@ -74,11 +74,14 @@ public class LayoutController implements Initializable {
         File f = new File(userHome+"/.starkHub/credentials.cfg");
         if(f.exists() && f.isFile()){
             try {
-                Scanner sc = new Scanner(f);
-                String savedUsername = sc.nextLine();
-                String savedPassword = sc.nextLine();
+                BufferedReader br = new BufferedReader(new FileReader(f));
+                String savedUsername = br.readLine();
+                String savedPassword = br.readLine();
 
-                if(savedUsername.equals(userName) && savedPassword==pass){
+                System.out.println("userName from file: "+savedUsername);
+                System.out.println("password from file: "+savedPassword);
+
+                if(savedUsername.equals(userName) && savedPassword.equals(pass)){
                     Main.USERNAME = userName;
                     Main.isNewUser = false;
                     startMainPage();
@@ -109,7 +112,7 @@ public class LayoutController implements Initializable {
 
             if (f.exists() && f.isFile() && f.length() != 0) {
                 try {
-                    System.out.println("User Already Exists");
+                    System.out.println("A User Already Exists");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

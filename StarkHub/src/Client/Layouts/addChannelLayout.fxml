@@ -2,10 +2,11 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXMasonryPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -21,20 +22,39 @@
          </effect>
       </Label>
       <JFXTextField fx:id="channelNameTxt" layoutX="231.0" layoutY="98.0" prefHeight="26.0" prefWidth="546.0" promptText="Channel Name" />
-      <JFXMasonryPane layoutX="5.0" layoutY="444.0" prefHeight="202.0" prefWidth="974.0" style="-fx-border-color: #ff0000;" />
-      <JFXButton fx:id="createChannelButton" buttonType="RAISED" layoutX="54.0" layoutY="383.0" onAction="#createChannel" prefHeight="26.0" prefWidth="160.0" ripplerFill="WHITE" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Create Channel" />
-      <JFXButton fx:id="discardButton" buttonType="RAISED" layoutX="394.0" layoutY="383.0" onAction="#discard" prefHeight="26.0" prefWidth="123.0" ripplerFill="WHITE" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Discard" />
-      <JFXButton fx:id="addVideosButton" buttonType="RAISED" layoutX="819.0" layoutY="111.0" onAction="#addVideos" prefHeight="26.0" prefWidth="123.0" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Add Videos" />
+      <JFXButton fx:id="createChannelButton" buttonType="RAISED" layoutX="54.0" layoutY="383.0" onAction="#createChannel" prefHeight="26.0" prefWidth="160.0" ripplerFill="WHITE" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Create Channel">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="discardButton" buttonType="RAISED" layoutX="394.0" layoutY="383.0" onAction="#discard" prefHeight="26.0" prefWidth="123.0" ripplerFill="WHITE" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Discard">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></JFXButton>
+      <JFXButton fx:id="addVideosButton" buttonType="RAISED" layoutX="819.0" layoutY="111.0" onAction="#addVideos" prefHeight="26.0" prefWidth="123.0" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Add Videos">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></JFXButton>
       <JFXTextArea fx:id="tagsTextArea" labelFloat="true" layoutX="48.0" layoutY="178.0" prefHeight="58.0" prefWidth="533.0" promptText="Enter Comma Delimited Tags for the selected video">
          <font>
             <Font size="15.0" />
          </font>
       </JFXTextArea>
-      <JFXButton fx:id="addTagsToVideoButton" buttonType="RAISED" layoutX="219.0" layoutY="278.0" onAction="#addTagsToVideo" prefHeight="26.0" prefWidth="143.0" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Add Tags" />
+      <JFXButton fx:id="addTagsToVideoButton" buttonType="RAISED" layoutX="219.0" layoutY="278.0" onAction="#addTagsToVideo" prefHeight="26.0" prefWidth="143.0" style="-fx-border-radius: 5; -fx-background-color: b2b2b2;" text="Add Tags">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></JFXButton>
       <JFXListView fx:id="videoListView" depth="1" layoutX="743.0" layoutY="168.0" prefHeight="260.0" prefWidth="209.0" showTooltip="true" style="-fx-border-radius: 7;" verticalGap="10.0">
          <effect>
             <Glow />
          </effect>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
       </JFXListView>
+      <ScrollPane fx:id="scrollPane" layoutX="19.0" layoutY="458.0" prefHeight="184.0" prefWidth="949.0">
+         <effect>
+            <Glow />
+         </effect>
+      </ScrollPane>
    </children>
 </AnchorPane>
