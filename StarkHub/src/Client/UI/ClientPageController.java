@@ -1,5 +1,6 @@
 package Client.UI;
 
+import Client.Login.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -14,6 +15,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,6 +32,28 @@ public class ClientPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
 
+        if(Client.Login.Main.isNewUser){
+            try {
+                Socket sock = new Socket(Main.HUB_IP, Main.PORT);
+                DataInputStream dis = new DataInputStream(sock.getInputStream());
+                DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+
+                ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
+                ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
+
+                dout.writeUTF("#NEWUSER");
+                if(dis.readUTF().equals( "#NOFILES")){
+                    //TODO NOTHING
+                }else{
+                    //TODO: Some Operation
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else{
+
+            // TODO: if not NEWUSER
+        }
 
         VBox vbox = new VBox(50);
         vbox.setFillWidth(true);

@@ -61,6 +61,17 @@
          </children></AnchorPane>
       <AnchorPane fx:id="topAnchorPane" prefHeight="82.0" prefWidth="1233.0" style="-fx-background-color: #1d2026;">
          <children>
+            <AnchorPane layoutX="1005.0" layoutY="30.0" prefHeight="29.0" prefWidth="29.0">
+               <children>
+                  <Circle fill="#e42424" layoutX="22.0" layoutY="3.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resuorces/notification-30.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="4.0" layoutY="4.0" prefHeight="29.0" prefWidth="29.0" text=" " />
+               </children>
+            </AnchorPane>
             <ImageView fx:id="proPicImageView" fitHeight="73.0" fitWidth="93.0" layoutX="751.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <Glow />
@@ -103,20 +114,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="contentAnchorPane" layoutX="249.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="986.0">
-         <children>
-            <AnchorPane layoutX="758.0" layoutY="-68.0" prefHeight="29.0" prefWidth="29.0">
-               <children>
-                  <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Resuorces/notification-30.png" />
-                     </image>
-                  </ImageView>
-                  <JFXButton layoutX="4.0" layoutY="4.0" prefHeight="29.0" prefWidth="29.0" text=" " />
-                  <Circle fill="#e42424" layoutX="22.0" layoutY="3.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-               </children>
-            </AnchorPane>
-         </children></AnchorPane>
+      <AnchorPane fx:id="contentAnchorPane" layoutX="249.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="986.0" />
       <AnchorPane layoutX="1058.0" layoutY="35.0" prefHeight="29.0" prefWidth="29.0">
          <children>
             <ImageView fitHeight="36.0" fitWidth="29.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">

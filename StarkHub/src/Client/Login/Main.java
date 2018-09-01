@@ -16,6 +16,8 @@ public class Main extends Application {
 
     public static String USERNAME="";
 
+    public static boolean isNewUser = true;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{

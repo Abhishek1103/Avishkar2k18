@@ -235,6 +235,18 @@ public class MainPageController implements Initializable {
     }
 
 
+    public void addChannel(){
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/addChannelLayout.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addVideo(){
+
+    }
 
 
     void logOutButtonClicked(){

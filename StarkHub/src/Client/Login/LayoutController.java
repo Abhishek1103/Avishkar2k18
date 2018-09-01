@@ -80,6 +80,7 @@ public class LayoutController implements Initializable {
 
                 if(savedUsername.equals(userName) && savedPassword==pass){
                     Main.USERNAME = userName;
+                    Main.isNewUser = false;
                     startMainPage();
                 }else{
                     System.out.println("AUTHENTICATION FAILED");
@@ -117,6 +118,7 @@ public class LayoutController implements Initializable {
                 try {
                     createNewUser(userName, pass, name);
                     Main.USERNAME = userName;
+                    Main.isNewUser = true;
                     startMainPage();
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -36,6 +36,10 @@ public class Video implements Serializable {
         return this.tags;
     }
 
+    public void setTags(ArrayList<String > _tags){
+        this.tags = _tags;
+    }
+
     public void addComment(String userName, String content){
         Comment newComment = new Comment(userName, content);
         comments.add(newComment);

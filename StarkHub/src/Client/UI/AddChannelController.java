@@ -2,10 +2,17 @@ package Client.UI;
 
 import Client.DataClasses.Video;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.deploy.util.SessionState;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -15,6 +22,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 import static Client.Login.Main.*;
 
@@ -29,6 +37,12 @@ public class AddChannelController implements Initializable {
     @FXML
     AnchorPane addChannelAnchorPane;
 
+    @FXML
+    JFXTextArea tagsTextArea;
+
+    @FXML
+    JFXListView<Label> videoListView;
+
     ArrayList<Video> videoList;
     FileChooser fileChooser ;
 
@@ -39,6 +53,9 @@ public class AddChannelController implements Initializable {
         videoList = new ArrayList<>();
         fileChooser = new FileChooser();
         userHome = System.getProperty("user.home");
+        videoListView.setExpanded(true);
+        videoListView.setPadding(new Insets(10));
+        videoListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
 
@@ -50,7 +67,7 @@ public class AddChannelController implements Initializable {
             System.out.println("Error...Select another Channel name");
         }else{
             try{
-                PrintWriter pw = new PrintWriter(channelFile);
+                PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(channelFile)));
                 for(Video v: videoList){
                     pw.println(v.getVideoName());
                 }
@@ -89,13 +106,18 @@ public class AddChannelController implements Initializable {
                     dout.writeUTF(channelName);
 
                     dout.writeUTF(v.getVideoPath());
+                    oos.writeObject(v.getTags());
                     String outPath = generateThumbnail(v.getVideoPath());
                     v.setThumbnail(outPath);
                     oos.writeObject(v.getThumbnail());
+                    System.out.println("ThumbNail Sent");
+                    if(new File(outPath).delete()){
+                        System.out.println("ThumbNail deleted Successfully");
+                    }else System.out.println("Failed to delete Thumbnail");
                 }
             }
 
-
+            socket.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -104,13 +126,28 @@ public class AddChannelController implements Initializable {
 
     public void addVideos(){
 
-        File file = fileChooser.showOpenDialog((Stage)(addChannelAnchorPane.getScene().getWindow()));
-        Video v = new Video(file.getName(),null, file.getAbsolutePath());
-        videoList.add(v);
+        try {
+            fileChooser.setInitialDirectory(new File(userHome));
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Videos", "*.mp4","*.mkv","*.avi","*.webm"),
+                    new FileChooser.ExtensionFilter("All","*.*")
+            );
+            File file = fileChooser.showOpenDialog((Stage) (addChannelAnchorPane.getScene().getWindow()));
+            Video v = new Video(file.getName(), null, file.getAbsolutePath());
+            videoList.add(v);
+
+            videoListView.getItems().add(new Label(file.getName()));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("No file Selected");
+            e.printStackTrace();
+        }
     }
 
     public void discard(){
-
+        /*
+            Load back the main UI
+         */
     }
 
     // Generate Thumbnails from videos
@@ -125,6 +162,58 @@ public class AddChannelController implements Initializable {
             p.waitFor();
 
         return outPath;
+    }
+
+    // Adding tags to selected Videos
+    public void addTagsToVideo(){
+
+        System.out.println("Add Tags Clicked");
+
+        ArrayList<String > videoNames = new ArrayList<>();
+
+        ObservableList<Label> selectedLabels =  videoListView.getSelectionModel().getSelectedItems();
+        if(selectedLabels.isEmpty()) {
+            System.out.println("No Videos Selected..!!");
+            return;
+        }
+
+        for(Label l: selectedLabels){
+            videoNames.add(l.getText());
+        }
+
+        System.out.println("VideoNames: "+videoNames);
+
+        ArrayList<String> tags = getTagsFromTextArea();
+
+        if(tags.isEmpty()) {
+            System.out.println("No tags specified");
+            return;
+        }
+
+        for(String videoName: videoNames) {
+            for (Video v : videoList) {
+                if (videoName.equals(v.getVideoName())) {
+                    v.setTags(tags);
+                }
+            }
+        }
+
+        System.out.println("Tags Added");
+
+        videoListView.getSelectionModel().clearSelection();
+    }
+
+
+    ArrayList<String> getTagsFromTextArea(){
+        String rawString = tagsTextArea.getText();
+        StringTokenizer tokenizer = new StringTokenizer(rawString, ",");
+        ArrayList<String> extractedTags = new ArrayList<>();
+
+        while(tokenizer.hasMoreTokens()){
+            extractedTags.add((tokenizer.nextToken()).trim());
+        }
+
+        return extractedTags;
     }
 
 }
