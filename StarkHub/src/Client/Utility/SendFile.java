@@ -20,7 +20,7 @@ public class SendFile {
             Integer bytesRead = 0;
             while ((bytesRead = fis.read(buffer)) > 0)
             {
-                System.out.println("bytesRead = "+bytesRead);
+                //System.out.println("bytesRead = "+bytesRead);
                 oos.writeObject(bytesRead);
                 oos.writeObject(Arrays.copyOf(buffer, buffer.length));
                 oos.flush();

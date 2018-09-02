@@ -10,9 +10,9 @@ import java.io.ObjectOutputStream;
 public class AddToWatchLater implements Runnable {
 
 
-    private Client.HubServices.Video video;
+    private hubFramework.Video video;
 
-    public AddToWatchLater(Client.HubServices.Video video){
+    public AddToWatchLater(hubFramework.Video video){
         this.video = video;
     }
 

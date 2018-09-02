@@ -143,6 +143,7 @@ public class LayoutController implements Initializable {
         new File(userHome+"/starkhub/mychannels").mkdirs();
         new File(userHome+"/starkhub/temp").mkdirs();
         new File(userHome+"/starkhub/watchLater").mkdirs();
+        new File(userHome+"/starkhub/history").mkdirs();
         PrintWriter pw = new PrintWriter(f);
         pw.println(userName);
         pw.println(passWord);

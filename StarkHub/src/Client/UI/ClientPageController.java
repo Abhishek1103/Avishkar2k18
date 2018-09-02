@@ -1,13 +1,12 @@
 package Client.UI;
 
 
-import Client.HubServices.Video;
+import Client.Utility.ThumnailReceiverThread;
+import hubFramework.Video;
 import Client.Login.Main;
 import Client.Utility.AddToWatchLater;
 import Client.Utility.ThumbnailReceiverService;
-import Client.Utility.ThumnailReceiverThread;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +34,7 @@ public class ClientPageController implements Initializable {
     ScrollPane clientScrollPane;
 
     //ArrayList<Client.HubServices.Video> receivedVideos, receivedVideosRecommended;
-    HashMap<String, Client.HubServices.Video> receivedVideos, receivedVideosRecommended;
+    HashMap<String, hubFramework.Video> receivedVideos, receivedVideosRecommended;
 
     public HashMap<String, ImageView > nameImageViewMap;
 
@@ -49,6 +48,7 @@ public class ClientPageController implements Initializable {
 
         if(Client.Login.Main.isNewUser){
             try {
+                Client.Login.Main.isNewUser = false;
                 Socket sock = new Socket(Main.HUB_IP, Main.PORT);
                 DataInputStream dis = new DataInputStream(sock.getInputStream());
                 DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
@@ -74,9 +74,11 @@ public class ClientPageController implements Initializable {
                     service.start();
                     service.setOnSucceeded(e -> putOnThumbnails());
 
-                    receivedVideosRecommended = (HashMap<String, Client.HubServices.Video>) ois.readObject();
-                     receivedVideos = (HashMap<String, Client.HubServices.Video>) ois.readObject();
+                    receivedVideosRecommended = (HashMap<String, hubFramework.Video>) ois.readObject();
+                     receivedVideos = (HashMap<String, hubFramework.Video>) ois.readObject();
 
+                    System.out.println("Size of 1st Map: "+receivedVideosRecommended.size());
+                    System.out.println("Size of 2nd Map: "+receivedVideos);
                      makeUpUI(receivedVideos, receivedVideosRecommended);
 
 
@@ -88,13 +90,55 @@ public class ClientPageController implements Initializable {
         }else{
 
             // TODO: if not NEWUSER
+            try {
+                Socket sock = new Socket(Main.HUB_IP, Main.PORT);
+                DataInputStream dis = new DataInputStream(sock.getInputStream());
+                DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+
+                ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
+                ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
+
+                dout.writeUTF("#EXISTINGUSER");
+                System.out.println("#EXISTINGUSER flag sent");
+                dout.writeUTF(Main.USERNAME);
+                System.out.println("Sent username: "+ Main.USERNAME);
+                String msg;
+                if((msg = dis.readUTF()).equals( "#NOFILES")){
+                    System.out.println("Received #NOFILES");
+                    makeUpUI(receivedVideos, receivedVideosRecommended);
+                    //TODO NOTHING
+                }else if(msg.equals("#SENDING")){
+                    //TODO: Some Operation
+                    System.out.println("Received #SENDING");
+
+
+                    //new Thread(new ThumnailReceiverThread()).start();
+
+                    ThumbnailReceiverService service = new ThumbnailReceiverService();
+                    service.start();
+                    service.setOnSucceeded(e -> putOnThumbnails());
+
+                    receivedVideosRecommended = (HashMap<String, hubFramework.Video>) ois.readObject();
+                    receivedVideos = (HashMap<String, hubFramework.Video>) ois.readObject();
+
+                    System.out.println("Size of 1st Map: "+receivedVideosRecommended.size()+" : "+receivedVideosRecommended);
+                    System.out.println("Size of 2nd Map: "+receivedVideos.size()+" : "+receivedVideos);
+
+                    makeUpUI(receivedVideos, receivedVideosRecommended);
+
+
+                }
+            }catch(Exception e){
+                makeUpUI(receivedVideos, receivedVideosRecommended);
+                e.printStackTrace();
+            }
         }
 
 
     }
 
 
-    public void makeUpUI(HashMap<String, Client.HubServices.Video> receivedVideos, HashMap<String, Client.HubServices.Video> receivedVideosRecommended){
+    public void makeUpUI(HashMap<String, hubFramework.Video> receivedVideos, HashMap<String, hubFramework.Video> receivedVideosRecommended){
         VBox vbox = new VBox(50);
         vbox.setFillWidth(true);
 
@@ -123,7 +167,8 @@ public class ClientPageController implements Initializable {
             }
 
             if(receivedVideos!=null){
-                Iterator it = receivedVideosRecommended.entrySet().iterator();
+                System.out.println("Creating More Videos Section");
+                Iterator it = receivedVideos.entrySet().iterator();
                 Label l = new Label("More Videos");
                 l.setFont(Font.font(18));
                 l.setEffect(reflection);
@@ -178,11 +223,13 @@ public class ClientPageController implements Initializable {
                 Video v = receivedVideosRecommended.get(vidName);
 
                 // TODO: open player and contact server
+                // TODO: Add video to history
             }
             else if(receivedVideos.containsKey(vidName)){
                 Video v = receivedVideos.get(vidName);
 
                 // TODO: open player and contact server
+                // TODO: Add video to  history
             }
 
         });
@@ -216,19 +263,25 @@ public class ClientPageController implements Initializable {
 
 
     void putOnThumbnails(){
+        System.out.println("Put on Thumbnails Triggered");
         String path = System.getProperty("user.home")+"/starkhub/temp";
         File f = new File(path);
         File[] list = f.listFiles();
 
+        System.out.println("FilesList: "+list);
+        System.out.println("nameImageViewMap: "+nameImageViewMap);
         for(File thumb: list){
             if(thumb.isFile()){
+                System.out.println(thumb.getName());
                 String vidName = thumb.getName().substring(0, thumb.getName().lastIndexOf('.'));
+                System.out.println("Vidname from thumb: "+vidName);
+                System.out.println(nameImageViewMap.containsKey(vidName));
                 if(nameImageViewMap.containsKey(vidName)){
                     ImageView i = nameImageViewMap.get(vidName);
 
                     Platform.runLater(() -> {
                         try{
-                            i.setImage(new Image(new FileInputStream(f)));
+                            i.setImage(new Image(new FileInputStream(thumb)));
                         }catch(Exception e){
                             System.out.println(e.getMessage());
                             e.printStackTrace();

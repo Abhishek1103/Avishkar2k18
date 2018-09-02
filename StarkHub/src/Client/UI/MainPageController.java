@@ -18,7 +18,8 @@ public class MainPageController implements Initializable {
 
 
     public static int SEARCH_CRITERIA = 0;
-
+    public static boolean IS_HISTORY = false;
+    public static boolean IS_TRENDING = false;
 
     @FXML
     JFXButton btn;
@@ -250,14 +251,36 @@ public class MainPageController implements Initializable {
 
     public void homeButtonClicked(){
 
+        try {
+            AnchorPane pane  = FXMLLoader.load(getClass().getResource("../Layouts/clientPage.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void trendingButtonClicked(){
-
+        IS_HISTORY = false;
+        IS_TRENDING = true;
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/showHistoryPage.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void historyButtonClicked(){
-
+        IS_HISTORY = true;
+        IS_TRENDING = false;
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/showHistoryPage.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void subscriptionsButtonClicked(){

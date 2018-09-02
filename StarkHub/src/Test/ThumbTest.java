@@ -14,13 +14,13 @@ public class ThumbTest {
         generateThumbnail("/home/aks/Videos/Berklee.mp4");
         System.exit(0);
 
-        HashMap<String,Client.HubServices.Video> map = new HashMap<>();
+        HashMap<String, hubFramework.Video> map = new HashMap<>();
         Iterator it = map.entrySet().iterator();
         while(it.hasNext()){
             Map.Entry keyVal = (Map.Entry) it.next();
 
         }
-        for(Map.Entry<String, Client.HubServices.Video> entry: map.entrySet()){
+        for(Map.Entry<String, hubFramework.Video> entry: map.entrySet()){
             System.out.println(entry.getKey()+" "+entry.getValue());
         }
 
