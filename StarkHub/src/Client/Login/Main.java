@@ -23,7 +23,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../Layouts/loginLayout.fxml"));
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Stark Hubs");
         Scene scene = new Scene(root);
 
 

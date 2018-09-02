@@ -71,7 +71,7 @@ public class LayoutController implements Initializable {
 
 
 
-        File f = new File(userHome+"/.starkHub/credentials.cfg");
+        File f = new File(userHome+"/starkhub/credentials.cfg");
         if(f.exists() && f.isFile()){
             try {
                 BufferedReader br = new BufferedReader(new FileReader(f));
@@ -108,7 +108,7 @@ public class LayoutController implements Initializable {
         boolean res;
         if(res = authenticateSignUp(userName)) {
             System.out.println("Auth: "+res);
-            File f = new File(userHome + "/.starkHub/credentials.cfg");
+            File f = new File(userHome + "/starkhub/credentials.cfg");
 
             if (f.exists() && f.isFile() && f.length() != 0) {
                 try {
@@ -136,8 +136,13 @@ public class LayoutController implements Initializable {
     }
 
     public void createNewUser(String userName, String passWord, String name) throws Exception{
-        File f = new File(userHome+"/.starkHub/credentials.cfg");
-        new File(userHome+"/.starkHub").mkdir();
+        File f = new File(userHome+"/starkhub/credentials.cfg");
+        new File(userHome+"/starkhub").mkdir();
+        new File(userHome+"/starkhub/thumbnails").mkdirs();
+        new File(userHome+"/starkhub/playlists").mkdirs();
+        new File(userHome+"/starkhub/mychannels").mkdirs();
+        new File(userHome+"/starkhub/temp").mkdirs();
+        new File(userHome+"/starkhub/watchLater").mkdirs();
         PrintWriter pw = new PrintWriter(f);
         pw.println(userName);
         pw.println(passWord);

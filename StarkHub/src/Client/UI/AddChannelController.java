@@ -1,6 +1,8 @@
 package Client.UI;
 
+import Client.DataClasses.Channel;
 import Client.DataClasses.Video;
+import Client.Utility.SendFile;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
@@ -57,7 +59,7 @@ public class AddChannelController implements Initializable {
 
     String userHome;
 
-    String outPath;
+    //String outPath;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,26 +72,33 @@ public class AddChannelController implements Initializable {
         hbox = new HBox(25);
         hbox.setPadding(new Insets(10));
         scrollPane.setContent(hbox);
-        outPath = userHome+"/out.png";
+        //outPath = userHome+"/starkhub/thumbnails/out.png";
     }
 
 
     public  void createChannel(){
         String channelName = channelNameTxt.getText();
-        File channelFile = new File(userHome+"/.starkhub/"+channelName);
-
+        File channelFile = new File(userHome+"/starkhub/"+channelName);
+        System.out.println("Channel File path: "+channelFile.getAbsolutePath());
         if(channelFile.exists()){
             System.out.println("Error...Select another Channel name");
         }else{
             try{
-                channelFile.createNewFile();
-                PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(channelFile)));
-
-                for(Video v: videoList){
-                    pw.println(v.getVideoName());
-                }
-                pw.close();
+                //channelFile.createNewFile();
+                Channel channel = new Channel(channelName, USERNAME);
+                channel.setVideoList(videoList);
+                channel.setNumberOfVideos(videoList.size());
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(channelFile));
+                oos.writeObject(channel);
+                oos.close();
+//                PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(channelFile)));
+//
+//                for(Video v: videoList){
+//                    pw.println(v.getVideoName());
+//                }
+//                pw.close();
             }catch (Exception e){
+                System.out.println(e.getMessage());
                 e.printStackTrace();
             }
 
@@ -100,6 +109,7 @@ public class AddChannelController implements Initializable {
             }
         }
 
+        //Todo: Redirect to home page or my channels page after creating the channel
     }
 
     // Notifying Hub
@@ -114,27 +124,42 @@ public class AddChannelController implements Initializable {
             dout.writeUTF("#MAKECHANNEL");
             dout.writeUTF(USERNAME);
             dout.writeUTF(channelName);
+            socket.close();
 
             if(!(videoList.isEmpty())){
 
-                for(Video v: videoList){
-                    dout.writeUTF("#ADDVIDEOINCHANNEL");
-                    dout.writeUTF(USERNAME);
-                    dout.writeUTF(channelName);
+                Socket sock = new Socket(HUB_IP, PORT);
+                DataInputStream diss = new DataInputStream(sock.getInputStream());
+                DataOutputStream douts = new DataOutputStream(sock.getOutputStream());
+                ObjectInputStream oiss = new ObjectInputStream(sock.getInputStream());
+                ObjectOutputStream ooss = new ObjectOutputStream(sock.getOutputStream());
 
-                    dout.writeUTF(v.getVideoPath());
-                    oos.writeObject(v.getTags());
+
+                douts.writeUTF("#ADDVIDEOINCHANNEL");
+                douts.writeUTF(USERNAME);
+                douts.writeUTF(channelName);
+                douts.writeInt(videoList.size());
+
+                for(Video v: videoList){
+
+
+                    douts.writeUTF(v.getVideoPath());
+                    ooss.writeObject(v.getTags());
 
 //                    String outPath = generateThumbnail(v.getVideoPath());
 //                    v.setThumbnail(outPath);
 
-                    oos.writeObject(v.getThumbnail());
+                    //ooss.writeObject(v.getThumbnail());
+                    // Sending Thumbnail to hub
+                    SendFile sendFileObj = new SendFile();
+                    sendFileObj.sendFile(sock, v.getThumbnailPath(), ooss);
 
                     System.out.println("ThumbNail Sent");
-                    }
+                }
+                sock.close();
             }
 
-            socket.close();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -155,13 +180,14 @@ public class AddChannelController implements Initializable {
 
             videoListView.getItems().add(new Label(file.getName()));
 
-            File f = new File(outPath);
-            if(f.exists() && f.delete()){
-                System.out.println("ThumbNail deleted Successfully");
-            }else System.out.println("Failed to delete Thumbnail");
+//            File f = new File(outPath);
+//            if(f.exists() && f.delete()){
+//                System.out.println("ThumbNail deleted Successfully");
+//            }else System.out.println("Failed to delete Thumbnail");
 
             String outPath = generateThumbnail(v.getVideoPath());
-            v.setThumbnail(outPath);
+            //v.setThumbnail(outPath);
+            v.setThumbnailPath(outPath);
 
 
 
@@ -184,22 +210,52 @@ public class AddChannelController implements Initializable {
          */
     }
 
+
+
     // Generate Thumbnails from videos
     String generateThumbnail(String path) throws Exception{
-
-            String time = "00:00:20";
+        String outPath = userHome+"/starkhub/thumbnails/out.png";
+        String time = "00:00:20";
            // String outPath = System.getProperty("user.home") + "/Desktop/out.png";
-            String command = "ffmpeg "+" -ss "+time+" -i "+path+" -vf scale=-1:120  -vcodec png "+outPath;
-            System.out.println(command);
-            Runtime run = Runtime.getRuntime();
-            Process p = run.exec(command);
-            System.out.println(p.getInputStream().read());
+        String vidName = path.substring(path.lastIndexOf("/")+1);
+        String firstPath = path.substring(0, path.lastIndexOf("/")+1);
+        System.out.println(vidName+"\n"+firstPath);
 
-            p.waitFor();
+        vidName = vidName.replaceAll(" ","");
+        outPath = outPath.replaceAll("out", vidName.substring(0,vidName.indexOf('.')));
+
+        System.out.println("OutPath: "+outPath);
+
+        File f = new File(outPath);
+        if(f.exists() && f.delete()){
+            System.out.println("ThumbNail deleted Successfully");
+        }else System.out.println("Failed to delete Thumbnail");
+
+        if((new File(path)).renameTo(new File(firstPath+vidName))){
+            System.out.println("File successfully renamed");
+        }else System.out.println("Renaming failed");
+
+        String command = "ffmpeg "+" -ss "+time+" -i "+firstPath+"'"+vidName+"'"+" -vf scale=-1:120  -vcodec png "+outPath;
+        //System.out.println(command);
+
+        String command2 = "ffmpeg -ss 00:00:20 -i "+firstPath+""+vidName+"" +" -vf scale=-1:120 -vframes 1 " + outPath;
+        System.out.println(command2);
+
+        Runtime run = Runtime.getRuntime();
+        Process p = run.exec(command2);
+        p.waitFor();
+
+
         System.out.println("Thumbnail Created");
+
+        if((new File(firstPath+vidName)).renameTo(new File(path))){
+            System.out.println("Name of file reverted back");
+        }else System.out.println("Reverting failed");
 
         return outPath;
     }
+
+
 
     // Adding tags to selected Videos
     public void addTagsToVideo(){
@@ -238,6 +294,9 @@ public class AddChannelController implements Initializable {
         System.out.println("Tags Added");
 
         videoListView.getSelectionModel().clearSelection();
+        tagsTextArea.clear();
+
+
     }
 
 

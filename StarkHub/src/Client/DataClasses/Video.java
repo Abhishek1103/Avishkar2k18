@@ -15,7 +15,8 @@ public class Video implements Serializable {
     protected int numberOfLikes = 0;
     protected int numberOfComments = 0;
     protected ArrayList<Comment> comments;
-    protected Image thumbnail;
+    //protected Image thumbnail;
+    protected String thumbnailPath;
 
     public Video(String _videoName, ArrayList<String> _tags, String _videoPath){
         this.tags = _tags;
@@ -45,11 +46,19 @@ public class Video implements Serializable {
         comments.add(newComment);
     }
 
-    public void setThumbnail(String imagePath) throws Exception {
-        this.thumbnail = new Image(new FileInputStream(imagePath));
+//    public void setThumbnail(String imagePath) throws Exception {
+//        this.thumbnail = new Image(new FileInputStream(imagePath));
+//    }
+
+    public Image getThumbnail() throws Exception{
+        return new Image(new FileInputStream(thumbnailPath));
     }
 
-    public Image getThumbnail(){
-        return this.thumbnail;
+    public String getThumbnailPath(){
+        return this.thumbnailPath;
+    }
+
+    public void setThumbnailPath(String path){
+        this.thumbnailPath = path;
     }
 }

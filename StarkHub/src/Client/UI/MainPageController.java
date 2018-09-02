@@ -248,6 +248,29 @@ public class MainPageController implements Initializable {
 
     }
 
+    public void homeButtonClicked(){
+
+    }
+
+    public void trendingButtonClicked(){
+
+    }
+
+    public void historyButtonClicked(){
+
+    }
+
+    public void subscriptionsButtonClicked(){
+
+    }
+
+    public void playlistButtonClicked(){
+
+    }
+
+    public void watchLaterButtonClicked(){
+
+    }
 
     void logOutButtonClicked(){
         System.out.println("Logout Clicked");
