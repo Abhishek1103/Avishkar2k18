@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
@@ -29,6 +30,30 @@
       </AnchorPane>
       <AnchorPane layoutX="607.0" layoutY="67.0" prefHeight="404.0" prefWidth="420.0" style="-fx-background-color: #ffffff;">
          <children>
+            <AnchorPane fx:id="pane1" prefHeight="404.0" prefWidth="420.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Label layoutX="156.0" layoutY="30.0" prefHeight="38.0" prefWidth="109.0" text="Sign Up" textFill="#0864a3">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <effect>
+                        <Bloom />
+                     </effect>
+                  </Label>
+                  <JFXTextField fx:id="signUpName" labelFloat="true" layoutX="49.0" layoutY="104.0" prefHeight="26.0" prefWidth="324.0" promptText="Name" />
+                  <JFXTextField fx:id="signUpUsername" labelFloat="true" layoutX="49.0" layoutY="184.0" prefHeight="26.0" prefWidth="324.0" promptText="User Id" />
+                  <ImageView fx:id="signUpImg" layoutX="178.0" layoutY="326.0" onMouseClicked="#signUpSubmit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resuorces/forward-64.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Label fx:id="exit1" layoutX="397.0" layoutY="22.0" onMouseClicked="#exitClicked" text="X" textFill="#3b48ae" />
+                  <JFXPasswordField fx:id="signUpPass" labelFloat="true" layoutX="49.0" layoutY="265.0" prefHeight="26.0" prefWidth="324.0" promptText="Password" />
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="pane2" layoutY="2.0" prefHeight="404.0" prefWidth="420.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Label layoutX="167.0" layoutY="45.0" prefHeight="38.0" prefWidth="94.0" text="Sign In" textFill="#0864a3">
@@ -45,29 +70,11 @@
                      <image>
                         <Image url="@../Resuorces/forward-64.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
                   </ImageView>
                   <Label fx:id="exit2" layoutX="397.0" layoutY="16.0" onMouseClicked="#exitClicked" text="X" textFill="#3b48ae" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="pane1" prefHeight="404.0" prefWidth="420.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <Label layoutX="156.0" layoutY="30.0" prefHeight="38.0" prefWidth="109.0" text="Sign Up" textFill="#0864a3">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                     <effect>
-                        <Bloom />
-                     </effect>
-                  </Label>
-                  <JFXTextField fx:id="signUpName" labelFloat="true" layoutX="49.0" layoutY="104.0" prefHeight="26.0" prefWidth="324.0" promptText="Name" />
-                  <JFXTextField fx:id="signUpUsername" labelFloat="true" layoutX="49.0" layoutY="189.0" prefHeight="26.0" prefWidth="324.0" promptText="User Id" />
-                  <ImageView fx:id="signUpImg" layoutX="178.0" layoutY="326.0" onMouseClicked="#signUpSubmit" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Resuorces/forward-64.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="exit1" layoutX="397.0" layoutY="22.0" onMouseClicked="#exitClicked" text="X" textFill="#3b48ae" />
-                  <JFXPasswordField fx:id="signUpPass" labelFloat="true" layoutX="49.0" layoutY="265.0" prefHeight="26.0" prefWidth="324.0" promptText="Password" />
                </children>
             </AnchorPane>
          </children>

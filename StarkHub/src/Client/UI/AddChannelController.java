@@ -2,12 +2,14 @@ package Client.UI;
 
 import Client.DataClasses.Channel;
 import Client.DataClasses.Video;
+import Client.Utility.NotifyNewChannelService;
 import Client.Utility.SendFile;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.deploy.util.SessionState;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +43,7 @@ public class AddChannelController implements Initializable {
     JFXTextField channelNameTxt;
 
     @FXML
-    AnchorPane addChannelAnchorPane;
+    AnchorPane addChannelAnchorPane, loadingAnchorPane, holderAnchorPane;
 
     @FXML
     JFXTextArea tagsTextArea;
@@ -73,6 +75,8 @@ public class AddChannelController implements Initializable {
         hbox.setPadding(new Insets(10));
         scrollPane.setContent(hbox);
         //outPath = userHome+"/starkhub/thumbnails/out.png";
+        loadingAnchorPane.setVisible(false);
+        holderAnchorPane.setVisible(true);
     }
 
 
@@ -91,19 +95,22 @@ public class AddChannelController implements Initializable {
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(channelFile));
                 oos.writeObject(channel);
                 oos.close();
-//                PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(channelFile)));
-//
-//                for(Video v: videoList){
-//                    pw.println(v.getVideoName());
-//                }
-//                pw.close();
+
             }catch (Exception e){
                 System.out.println(e.getMessage());
                 e.printStackTrace();
             }
 
             try{
-                notifyNewChannel(channelName);
+
+                showLoading();
+
+                NotifyNewChannelService nns = new NotifyNewChannelService(videoList, channelName);
+                nns.start();
+                nns.setOnSucceeded(e -> {
+                    Platform.runLater(() ->showLoading());
+                });
+
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -112,59 +119,6 @@ public class AddChannelController implements Initializable {
         //Todo: Redirect to home page or my channels page after creating the channel
     }
 
-    // Notifying Hub
-    void notifyNewChannel(String channelName){
-        try{
-            Socket socket = new Socket(HUB_IP, PORT);
-            DataInputStream dis = new DataInputStream(socket.getInputStream());
-            DataOutputStream dout = new DataOutputStream(socket.getOutputStream());
-            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-
-            dout.writeUTF("#MAKECHANNEL");
-            dout.writeUTF(USERNAME);
-            dout.writeUTF(channelName);
-            socket.close();
-
-            if(!(videoList.isEmpty())){
-
-                Socket sock = new Socket(HUB_IP, PORT);
-                DataInputStream diss = new DataInputStream(sock.getInputStream());
-                DataOutputStream douts = new DataOutputStream(sock.getOutputStream());
-                ObjectInputStream oiss = new ObjectInputStream(sock.getInputStream());
-                ObjectOutputStream ooss = new ObjectOutputStream(sock.getOutputStream());
-
-
-                douts.writeUTF("#ADDVIDEOINCHANNEL");
-                douts.writeUTF(USERNAME);
-                douts.writeUTF(channelName);
-                douts.writeInt(videoList.size());
-
-                for(Video v: videoList){
-
-
-                    douts.writeUTF(v.getVideoPath());
-                    ooss.writeObject(v.getTags());
-
-//                    String outPath = generateThumbnail(v.getVideoPath());
-//                    v.setThumbnail(outPath);
-
-                    //ooss.writeObject(v.getThumbnail());
-                    // Sending Thumbnail to hub
-                    SendFile sendFileObj = new SendFile();
-                    sendFileObj.sendFile(sock, v.getThumbnailPath(), ooss);
-
-                    System.out.println("ThumbNail Sent");
-                }
-                sock.close();
-            }
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     public void addVideos(){
 
@@ -207,9 +161,27 @@ public class AddChannelController implements Initializable {
     public void discard(){
         /*
             Load back the main UI
+
          */
+        showLoading();
+
     }
 
+    void showLoading(){
+        if(!loadingAnchorPane.isVisible()) {
+            loadingAnchorPane.setVisible(true);
+            addVideosButton.setDisable(true);
+            addVideosButton.setDisable(true);
+            createChannelButton.setDisable(true);
+        }
+        else {
+            loadingAnchorPane.setVisible(false);
+            loadingAnchorPane.setVisible(true);
+            addVideosButton.setDisable(true);
+            addVideosButton.setDisable(true);
+            createChannelButton.setDisable(true);
+        }
+    }
 
 
     // Generate Thumbnails from videos

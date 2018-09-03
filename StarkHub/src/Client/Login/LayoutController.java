@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -39,14 +40,15 @@ public class LayoutController implements Initializable {
 
     String userHome;
 
-    JFXPopup invalidUsernamePopup;
+    JFXPopup invalidUsernamePopup, emptyPopup;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userHome = System.getProperty("user.home");
 
         invalidUsernamePopup = initInvalidUsernamePopup();
-
+        emptyPopup = initEmptyPopup();
+        signUpPass.setTooltip(new Tooltip("-> Password should be alphanumeric and 8 chars in length.\n-> Should have a special char .*_@#\n"));
         pane1.setVisible(false);
     }
 
@@ -69,7 +71,15 @@ public class LayoutController implements Initializable {
         String userName = signInUsernameTxt.getText();
         String pass = signInPass.getText();
 
+        if(userName==null || userName.isEmpty()){
+            emptyPopup.show(signInUsernameTxt, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT);
+            return;
+        }
 
+        if(pass == null || pass.isEmpty()){
+            emptyPopup.show(signInPass, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT);
+            return;
+        }
 
         File f = new File(userHome+"/starkhub/credentials.cfg");
         if(f.exists() && f.isFile()){
@@ -105,6 +115,9 @@ public class LayoutController implements Initializable {
         String name = signUpName.getText();
         String userName = signUpUsername.getText();
         String pass = signUpPass.getText();
+        if(!preValidation(name, userName,pass)){
+            return;
+        }
         boolean res;
         if(res = authenticateSignUp(userName)) {
             System.out.println("Auth: "+res);
@@ -205,5 +218,49 @@ public class LayoutController implements Initializable {
         JFXPopup p = new JFXPopup(vbox);
         return p;
     }
+
+    JFXPopup initEmptyPopup(){
+        Label l = new Label("This is a required Feild\nand Cannot be empty");
+        l.setWrapText(true);
+        VBox vbox = new VBox(l);
+        vbox.setPadding(new Insets(10));
+        JFXPopup p = new JFXPopup(vbox);
+        return p;
+    }
+
+    boolean preValidation(String name, String userName, String pass){
+        if(name == null || name.isEmpty()){
+            emptyPopup.show(signUpName, JFXPopup.PopupVPosition.TOP ,JFXPopup.PopupHPosition.LEFT);
+           return false;
+        }if(userName == null || userName.isEmpty()){
+            emptyPopup.show(signUpUsername, JFXPopup.PopupVPosition.TOP ,JFXPopup.PopupHPosition.LEFT);
+            return false;
+        }if(pass == null || pass.isEmpty()){
+            emptyPopup.show(signUpPass, JFXPopup.PopupVPosition.TOP ,JFXPopup.PopupHPosition.LEFT);
+            return false;
+        }
+        if(pass.length()<8){
+            Label l = new Label("Password too short.\nMust be 8 chars");
+            l.setWrapText(true);
+            VBox vbox = new VBox(l);
+            vbox.setPadding(new Insets(10));
+            JFXPopup p = new JFXPopup(vbox);
+            p.show(signUpPass, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT);
+            signUpPass.clear();
+            return false;
+        }
+        if(!name.matches("[a-zA-Z ]+")){
+            Label l = new Label("Name cannot contain digits or special chars");
+            l.setWrapText(true);
+            VBox vbox = new VBox(l);
+            vbox.setPadding(new Insets(10));
+            JFXPopup p = new JFXPopup(vbox);
+            p.show(signUpName, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT);
+            return false;
+        }
+
+        return true;
+    }
+
 
 }
