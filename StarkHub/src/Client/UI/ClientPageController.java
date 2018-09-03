@@ -1,6 +1,7 @@
 package Client.UI;
 
 
+import Client.Utility.GetIpService;
 import Client.Utility.ThumnailReceiverThread;
 import hubFramework.Video;
 import Client.Login.Main;
@@ -12,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.Reflection;
@@ -21,7 +24,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.*;
 import java.net.Socket;
@@ -227,9 +234,32 @@ public class ClientPageController implements Initializable {
             }
             else if(receivedVideos.containsKey(vidName)){
                 Video v = receivedVideos.get(vidName);
-
-                // TODO: open player and contact server
                 // TODO: Add video to  history
+
+                String userName = v.getOwnerName();
+                MediaPlayerAndControlsController.videoPath = v.getPathOfVideo();
+
+                // TODO: show loading
+                GetIpService gis = new GetIpService(userName);
+                gis.start();
+
+                gis.setOnSucceeded(event -> {
+                    // TODO: Remove Loading
+                    Stage playWindow = new Stage();
+                    playWindow.initModality(Modality.APPLICATION_MODAL);
+                    //settingsWindow.initStyle(StageStyle.TRANSPARENT);
+                    try {
+                        Parent settingsRoot = FXMLLoader.load(getClass().getResource("../Layouts/mediaPlayerAndControls.fxml"));
+                        Scene sc = new Scene(settingsRoot);
+                        //sc.setFill(Color.TRANSPARENT);
+                        playWindow.setScene(sc);
+                        playWindow.showAndWait();
+                    }catch (Exception ex){
+                        ex.printStackTrace();
+                    }
+                });
+
+
             }
 
         });

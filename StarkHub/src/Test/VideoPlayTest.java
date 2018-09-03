@@ -24,7 +24,7 @@ public class VideoPlayTest extends Application {
         stage.show();
 
         // Create the media source.
-        String source = "http://localhost:8000/Videos/avengers.mp4";
+        String source = "http://localhost:8000/Videos/Screencast_Friday%2030%20March%202018_08:01:27%20%20IST.webm";
          //source = getParameters().getRaw().get(0);
         System.out.println(source);
         Media media = new Media(source);
