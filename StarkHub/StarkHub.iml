@@ -12,5 +12,7 @@
     <orderEntry type="library" name="vlcj-3.10.1" level="project" />
     <orderEntry type="library" name="jna-4.1.0" level="project" />
     <orderEntry type="library" name="jna-platform-4.1.0" level="project" />
+    <orderEntry type="library" name="guava" level="project" />
+    <orderEntry type="library" name="com.google.guava:guava:26.0-jre" level="project" />
   </component>
 </module>

@@ -87,12 +87,7 @@ public class VideoPlayTest extends Application {
             );
         });
 
-        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-            @Override
-            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-                slider.setValue(newValue.toSeconds());
-            }
-        });
+        mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> slider.setValue(newValue.toSeconds()));
 
         slider.setOnMousePressed(e -> {
             mediaPlayer.seek(Duration.seconds(slider.getValue()));
