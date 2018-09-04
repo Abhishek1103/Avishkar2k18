@@ -34,7 +34,7 @@ public class MediaPlayerAndControlsController implements Initializable {
             likeButton.setGraphic(new ImageView(new Image("Client/Resuorces/like-24.png")));
             dislikeButton.setGraphic(new ImageView(new Image("Client/Resuorces/dislike-24.png")));
 
-            
+
 
         }catch(Exception e){
             e.printStackTrace();
@@ -56,8 +56,11 @@ public class MediaPlayerAndControlsController implements Initializable {
 
             DoubleProperty mvw = mediaView.fitWidthProperty();
             DoubleProperty mvh = mediaView.fitHeightProperty();
-            mvw.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
-            mvh.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
+//            mvw.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
+//            mvh.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
+
+            mvw.bind(mediaViewAnchorPane.widthProperty());
+            mvh.bind(mediaViewAnchorPane.heightProperty());
 
             mediaView.setPreserveRatio(false);
         }catch(Exception e){
