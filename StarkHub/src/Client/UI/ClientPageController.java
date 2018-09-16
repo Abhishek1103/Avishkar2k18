@@ -237,7 +237,12 @@ public class ClientPageController implements Initializable {
                 // TODO: Add video to  history
 
                 String userName = v.getOwnerName();
+                String channel = v.getChannelName();
+
+                MediaPlayerAndControlsController.ownerName = userName;
+                MediaPlayerAndControlsController.channelName = channel;
                 MediaPlayerAndControlsController.videoPath = v.getPathOfVideo();
+                VideoPlayerController.videoName = v.getVideoName();
 
                 // TODO: show loading
                 GetIpService gis = new GetIpService(userName);

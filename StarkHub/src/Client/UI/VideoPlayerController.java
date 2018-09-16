@@ -1,5 +1,7 @@
 package Client.UI;
 
+import Client.Utility.CommentRecceiverService;
+import Client.Utility.SetCommentsOnUIService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class VideoPlayerController implements Initializable {
@@ -18,6 +21,9 @@ public class VideoPlayerController implements Initializable {
     ScrollPane scrollPane;
 
     VBox vbox;
+
+    public static HashMap<String, String> commentsMap;
+    public static String peerIP, videoName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,6 +36,14 @@ public class VideoPlayerController implements Initializable {
         }
 
         // TODO: Service to receive Comments
+        CommentRecceiverService commentRecceiverService = new CommentRecceiverService(peerIP, videoName );
+        commentRecceiverService.start();
+
+        commentRecceiverService.setOnSucceeded(e -> {
+            SetCommentsOnUIService scui = new SetCommentsOnUIService(vbox);
+            scui.start();
+        });
+
     }
 
 

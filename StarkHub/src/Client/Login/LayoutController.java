@@ -40,6 +40,9 @@ public class LayoutController implements Initializable {
 
     String userHome;
 
+    public static String USERNAME = "";
+
+
     JFXPopup invalidUsernamePopup, emptyPopup;
 
     @Override
@@ -81,7 +84,7 @@ public class LayoutController implements Initializable {
             return;
         }
 
-        File f = new File(userHome+"/starkhub/credentials.cfg");
+        File f = new File(userHome+"/starkhub/"+USERNAME+"/credentials.cfg");
         if(f.exists() && f.isFile()){
             try {
                 BufferedReader br = new BufferedReader(new FileReader(f));
@@ -94,6 +97,7 @@ public class LayoutController implements Initializable {
                 if(savedUsername.equals(userName) && savedPassword.equals(pass)){
                     Main.USERNAME = userName;
                     Main.isNewUser = false;
+                    USERNAME = userName;
                     startMainPage();
                 }else{
                     System.out.println("AUTHENTICATION FAILED");
@@ -121,7 +125,7 @@ public class LayoutController implements Initializable {
         boolean res;
         if(res = authenticateSignUp(userName)) {
             System.out.println("Auth: "+res);
-            File f = new File(userHome + "/starkhub/credentials.cfg");
+            File f = new File(userHome + "/starkhub/"+userName+"/credentials.cfg");
 
             if (f.exists() && f.isFile() && f.length() != 0) {
                 try {
@@ -134,12 +138,16 @@ public class LayoutController implements Initializable {
                 try {
                     createNewUser(userName, pass, name);
                     Main.USERNAME = userName;
+                    USERNAME = userName;
                     Main.isNewUser = true;
                     startMainPage();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+
+
+
         }else{
             System.out.println("Auth: "+res);
             signUpUsername.setText("");
@@ -149,14 +157,15 @@ public class LayoutController implements Initializable {
     }
 
     public void createNewUser(String userName, String passWord, String name) throws Exception{
-        File f = new File(userHome+"/starkhub/credentials.cfg");
+        File f = new File(userHome+"/starkhub/"+userName+"/credentials.cfg");
         new File(userHome+"/starkhub").mkdir();
-        new File(userHome+"/starkhub/thumbnails").mkdirs();
-        new File(userHome+"/starkhub/playlists").mkdirs();
-        new File(userHome+"/starkhub/mychannels").mkdirs();
-        new File(userHome+"/starkhub/temp").mkdirs();
-        new File(userHome+"/starkhub/watchLater").mkdirs();
-        new File(userHome+"/starkhub/history").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/thumbnails").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/playlists").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/mychannels").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/temp").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/watchLater").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/history").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/comments").mkdirs();
         PrintWriter pw = new PrintWriter(f);
         pw.println(userName);
         pw.println(passWord);

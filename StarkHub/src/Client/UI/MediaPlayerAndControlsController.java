@@ -1,5 +1,7 @@
 package Client.UI;
 
+import Client.Utility.DecreaseLikeService;
+import Client.Utility.IncreaseLikeService;
 import com.google.common.net.UrlEscapers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -33,12 +35,17 @@ public class MediaPlayerAndControlsController implements Initializable {
     @FXML
     JFXSlider videoSlider, volumeSlider;
     @FXML
-    Label videoNameLabel, channelNameLabel;
+    Label videoNameLabel, channelNameLabel, likesLabel;
 
 
     public static String videoPeerIP = "";
     public static String VIDEO_URL = "";
     public static String videoPath = "";
+    public static String ownerName = "";
+    public static String channelName = "";
+
+    public static boolean hasLiked = false;
+    public static boolean hasDisLiked = false;
 
     protected MediaPlayer mediaPlayer;
 
@@ -199,15 +206,40 @@ public class MediaPlayerAndControlsController implements Initializable {
     }
 
     public void increaseLikes(){
+        if(!hasLiked){
+            IncreaseLikeService increaseLikeService = new IncreaseLikeService(ownerName, channelName, videoPath.substring(videoPath.lastIndexOf('/')+1));
+            increaseLikeService.start();
 
+            int likes = Integer.parseInt(likesLabel.getText());
+            likes++;
+            likesLabel.setText(likes+"");
+
+            hasLiked = true;
+            hasDisLiked = false;
+        }
     }
 
-    public void decreaseLikes(){
 
+    public void decreaseLikes(){
+        if(!hasDisLiked){
+            DecreaseLikeService decreaseLikeService = new DecreaseLikeService(ownerName, channelName, videoPath.substring(videoPath.lastIndexOf('/')+1));
+            decreaseLikeService.start();
+
+            int likes = Integer.parseInt(likesLabel.getText());
+            likes--;
+            likesLabel.setText(likes+"");
+
+            hasLiked = false;
+            hasDisLiked = true;
+        }
     }
 
     public void subscribe(){
+        // TODO: Contact Server
 
+
+
+        // TODO: Save locally
     }
 
     public void previousButtonClicked(){

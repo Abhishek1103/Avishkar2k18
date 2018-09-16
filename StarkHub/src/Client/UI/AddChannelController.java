@@ -82,7 +82,7 @@ public class AddChannelController implements Initializable {
 
     public  void createChannel(){
         String channelName = channelNameTxt.getText();
-        File channelFile = new File(userHome+"/starkhub/"+channelName);
+        File channelFile = new File(userHome+"/starkhub/"+USERNAME+"/"+channelName);
         System.out.println("Channel File path: "+channelFile.getAbsolutePath());
         if(channelFile.exists()){
             System.out.println("Error...Select another Channel name");
@@ -186,7 +186,7 @@ public class AddChannelController implements Initializable {
 
     // Generate Thumbnails from videos
     String generateThumbnail(String path) throws Exception{
-        String outPath = userHome+"/starkhub/thumbnails/out.png";
+        String outPath = userHome+"/starkhub/"+USERNAME+"/thumbnails/out.png";
         String time = "00:00:20";
            // String outPath = System.getProperty("user.home") + "/Desktop/out.png";
         String vidName = path.substring(path.lastIndexOf("/")+1);

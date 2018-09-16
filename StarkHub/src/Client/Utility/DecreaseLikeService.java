@@ -1,8 +1,5 @@
 package Client.Utility;
 
-import Client.DataClasses.Video;
-import Client.UI.MediaPlayerAndControlsController;
-import Client.UI.VideoPlayerController;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
@@ -11,18 +8,22 @@ import java.io.DataOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
 import static Client.Login.Main.HUB_IP;
 
-public class GetIpService extends Service {
+public class DecreaseLikeService extends Service {
 
-    String userName;
 
-    public GetIpService(String userName){
-        this.userName = userName;
+    String ownerName, channelName, videoName;
+
+    public DecreaseLikeService(String ownerName, String channelName, String videoName){
+        this.ownerName = ownerName;
+        this.channelName = channelName;
+        this.videoName = videoName;
     }
 
     @Override
-    protected Task<Void> createTask()  {
+    protected Task createTask() {
         return new Task<Void>() {
 
             @Override
@@ -35,11 +36,16 @@ public class GetIpService extends Service {
                     ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
-                    dout.writeUTF("#GETIP");
-                    dout.writeUTF(userName);
+                    dout.writeUTF("#SETLIKES");
+                    dout.writeUTF(ownerName);
+                    System.out.println("Sent OwnerName: "+ownerName);
+                    dout.writeUTF(channelName);
+                    System.out.println("Sent ChannelName: "+channelName);
+                    dout.writeUTF(videoName);
+                    System.out.println("Sent VideoName: "+videoName);
 
-                    MediaPlayerAndControlsController.videoPeerIP = dis.readUTF();
-                    VideoPlayerController.peerIP = MediaPlayerAndControlsController.videoPeerIP;
+                    dout.writeUTF("#SUB");
+
 
                 }catch (Exception e){
                     e.printStackTrace();

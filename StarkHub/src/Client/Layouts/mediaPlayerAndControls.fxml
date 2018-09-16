@@ -70,6 +70,6 @@
       </Label>
       <JFXButton fx:id="likeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="875.0" layoutY="614.0" onAction="#increaseLikes" prefHeight="40.0" prefWidth="49.0" ripplerFill="#c90a34" style="-fx-border-color: #c90a34; -fx-background-radius: 30; -fx-border-radius: 30;" text=" " />
       <JFXButton fx:id="dislikeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="942.0" layoutY="614.0" onAction="#decreaseLikes" prefHeight="40.0" prefWidth="49.0" ripplerFill="#c90a34" style="-fx-border-color: #c90a34; -fx-background-radius: 30; -fx-border-radius: 30;" text=" " />
-      <Label layoutX="875.0" layoutY="661.0" prefHeight="16.0" prefWidth="119.0" text="Likes: 3128" />
+      <Label fx:id="likesLabel" layoutX="875.0" layoutY="661.0" prefHeight="16.0" prefWidth="119.0" text="Likes: 3128" />
    </children>
 </AnchorPane>
