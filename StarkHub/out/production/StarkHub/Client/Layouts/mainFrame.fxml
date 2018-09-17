@@ -94,7 +94,7 @@
                         <Image url="@../Resuorces/notification-30.png" />
                      </image>
                   </ImageView>
-                  <JFXButton layoutX="4.0" layoutY="4.0" prefHeight="29.0" prefWidth="29.0" text=" " />
+                  <JFXButton fx:id="notificationButton" layoutX="4.0" layoutY="4.0" onAction="#notificationButtonPressed" prefHeight="29.0" prefWidth="29.0" text=" " />
                </children>
             </AnchorPane>
             <ImageView fx:id="proPicImageView" fitHeight="73.0" fitWidth="93.0" layoutX="751.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">

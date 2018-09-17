@@ -225,16 +225,18 @@ public class ClientPageController implements Initializable {
         mainButton.setOnAction(e -> {
             System.out.println("Video button clicked");
             String vidName = l.getText();
-
+            Video v=null;
             if(receivedVideosRecommended.containsKey(vidName)){
-                Video v = receivedVideosRecommended.get(vidName);
+                v = receivedVideosRecommended.get(vidName);
 
                 // TODO: open player and contact server
-                // TODO: Add video to history
             }
-            else if(receivedVideos.containsKey(vidName)){
-                Video v = receivedVideos.get(vidName);
-                // TODO: Add video to  history
+            else if(receivedVideos.containsKey(vidName)) {
+                v = receivedVideos.get(vidName);
+            }
+            if(v!=null){
+
+                MainPageController.historyList.add(v);
 
                 String userName = v.getOwnerName();
                 String channel = v.getChannelName();
@@ -254,11 +256,17 @@ public class ClientPageController implements Initializable {
                     playWindow.initModality(Modality.APPLICATION_MODAL);
                     //settingsWindow.initStyle(StageStyle.TRANSPARENT);
                     try {
-                        Parent settingsRoot = FXMLLoader.load(getClass().getResource("../Layouts/mediaPlayerAndControls.fxml"));
+                        //Parent settingsRoot = FXMLLoader.load(getClass().getResource("../Layouts/mediaPlayerAndControls.fxml"));
+                        Parent settingsRoot = FXMLLoader.load(getClass().getResource("../Layouts/videoPlayer.fxml"));
                         Scene sc = new Scene(settingsRoot);
                         //sc.setFill(Color.TRANSPARENT);
                         playWindow.setScene(sc);
                         playWindow.showAndWait();
+
+                        playWindow.setOnCloseRequest(evt -> {
+
+                        });
+
                     }catch (Exception ex){
                         ex.printStackTrace();
                     }
@@ -281,9 +289,7 @@ public class ClientPageController implements Initializable {
                 v = receivedVideos.get(vidName);
             }
             if(v!=null) {
-                AddToWatchLater addToWatchLater = new AddToWatchLater(v);
-                new Thread(addToWatchLater).run();
-                System.out.println("Thread started");
+                MainPageController.watchLaterList.add(v);
             }else{
                 System.out.println("Video object is null");
 
@@ -299,7 +305,7 @@ public class ClientPageController implements Initializable {
 
     void putOnThumbnails(){
         System.out.println("Put on Thumbnails Triggered");
-        String path = System.getProperty("user.home")+"/starkhub/temp";
+        String path = System.getProperty("user.home")+"/starkhub/"+Main.USERNAME +"/temp";
         File f = new File(path);
         File[] list = f.listFiles();
 

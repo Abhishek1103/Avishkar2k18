@@ -1,5 +1,6 @@
 package Client.UI;
 
+import Client.Login.Main;
 import Client.Utility.DecreaseLikeService;
 import Client.Utility.IncreaseLikeService;
 import com.google.common.net.UrlEscapers;
@@ -21,6 +22,11 @@ import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -47,7 +53,7 @@ public class MediaPlayerAndControlsController implements Initializable {
     public static boolean hasLiked = false;
     public static boolean hasDisLiked = false;
 
-    protected MediaPlayer mediaPlayer;
+    public MediaPlayer mediaPlayer;
 
     Timeline slideIn, slideOut;
     double previousVol = 50.0;
@@ -72,8 +78,8 @@ public class MediaPlayerAndControlsController implements Initializable {
         try{
             System.out.println(videoPath);
             VIDEO_URL = "http://"+videoPeerIP+"/Videos/"+ UrlEscapers.urlFragmentEscaper().escape(videoPath.substring(videoPath.lastIndexOf('/')+1));
-
-            VIDEO_URL = "http://"+"172.31.85.85"+"/Videos/"+"Berklee.mp4";
+            System.out.println("Video_URL Generated: "+VIDEO_URL);
+            //VIDEO_URL = "http://"+"172.31.85.85"+"/Videos/"+"Berklee.mp4";
 
             System.out.println("Video URL: "+VIDEO_URL);
             Media media = new Media(VIDEO_URL);
@@ -110,11 +116,31 @@ public class MediaPlayerAndControlsController implements Initializable {
             initControlAnchorPane();
             playPauseButton.setGraphic(new ImageView(new Image("Client/Resuorces/pause-24.png")));
 
-
         }catch(Exception e){
             e.printStackTrace();
         }
 
+
+        mainMediaAnchorPane.getScene().getWindow().setOnCloseRequest(e -> {
+            mediaPlayer.stop();
+            try {
+                Socket sock = new Socket(videoPeerIP, 15001);
+                DataInputStream dis = new DataInputStream(sock.getInputStream());
+                DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+
+                dout.writeUTF(Main.USERNAME);
+                dis.readBoolean();
+                dout.writeUTF("#DISCONNECT");
+
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+
+        });
+
+        channelNameLabel.setText(channelName);
+        String videoName = videoPath.substring(videoPath.lastIndexOf('/')+1, videoPath.lastIndexOf('.')-1).trim();
+        videoNameLabel.setText(videoName);
 
     }
 
@@ -206,11 +232,12 @@ public class MediaPlayerAndControlsController implements Initializable {
     }
 
     public void increaseLikes(){
+        System.out.println("Likes Button Clicked");
         if(!hasLiked){
             IncreaseLikeService increaseLikeService = new IncreaseLikeService(ownerName, channelName, videoPath.substring(videoPath.lastIndexOf('/')+1));
             increaseLikeService.start();
 
-            int likes = Integer.parseInt(likesLabel.getText());
+            int likes = Integer.parseInt(likesLabel.getText().substring(6).trim());
             likes++;
             likesLabel.setText(likes+"");
 
@@ -236,7 +263,27 @@ public class MediaPlayerAndControlsController implements Initializable {
 
     public void subscribe(){
         // TODO: Contact Server
+        try {
+            Socket sock = new Socket(Client.Login.Main.HUB_IP, 1111);
+            DataInputStream dis = new DataInputStream(sock.getInputStream());
+            DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+            ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
+            ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
+            dout.writeUTF("#ADDSUBSCRIBER");
+            dout.writeUTF(ownerName);
+            dout.writeUTF(Main.USERNAME);
+            dout.writeUTF(channelName);
+
+            dis.close();
+            dout.close();
+            oos.close();
+            ois.close();
+            sock.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         // TODO: Save locally
@@ -251,5 +298,8 @@ public class MediaPlayerAndControlsController implements Initializable {
         System.out.println("forward button clicked");
         mediaPlayer.seek(Duration.seconds(mediaPlayer.getCurrentTime().toSeconds()+30.0));
     }
+
+
+
 
 }

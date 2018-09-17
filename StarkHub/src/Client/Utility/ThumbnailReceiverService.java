@@ -1,5 +1,6 @@
 package Client.Utility;
 
+import Client.Login.Main;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
@@ -27,10 +28,10 @@ public class ThumbnailReceiverService extends Service<Void> {
                     System.out.println("number of thumbs: "+numberOfThumbs );
                     for(int i=0;i<numberOfThumbs;i++){
                         String thumbName = ois.readUTF();
-                        String savePath = System.getProperty("user.home")+"/starkhub/temp/"+thumbName;
+                        String savePath = System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME +"/temp/"+thumbName;
                         (new SaveFile()).saveFile(savePath,ois);
                     }
-                    //serverSocket.close();
+                    serverSocket.close();
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                     e.printStackTrace();

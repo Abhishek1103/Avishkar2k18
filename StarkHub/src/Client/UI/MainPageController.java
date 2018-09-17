@@ -1,17 +1,28 @@
 package Client.UI;
 
+import Client.Login.Main;
+import Client.Utility.NotificationServiceAtLogin;
+import Client.Utility.NotificationServiceRealTime;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
+import hubFramework.Video;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class MainPageController implements Initializable {
@@ -22,17 +33,36 @@ public class MainPageController implements Initializable {
     public static boolean IS_TRENDING = false;
 
     @FXML
-    JFXButton btn;
+    JFXButton btn, notificationButton;
     @FXML
-    AnchorPane contentAnchorPane, menuBtnAnchor, filterAnchorPane;
+    AnchorPane contentAnchorPane, menuBtnAnchor, filterAnchorPane, rootAnchorPane;
     @FXML
     ImageView menuButton;
+    @FXML
+    public static Circle notificationCircle;
 
     JFXPopup popup;
     JFXPopup filterPopup;
 
+    public static JFXPopup notificationPopup;
+    public static HashMap<String, Video> notificationMap;
+    public static VBox notificationVbox;
+    public static ArrayList<Video> watchLaterList, historyList;
+    public static HashMap<String, String> subscribedChannelMap;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        watchLaterList = new ArrayList<>();
+        subscribedChannelMap = new HashMap<>();
+        notificationPopup = initNotificationPopup();
+        // TODO: Start the notification Services
+        NotificationServiceAtLogin notificationServiceAtLogin = new NotificationServiceAtLogin();
+        notificationServiceAtLogin.start();
+
+        NotificationServiceRealTime notificationServiceRealTime = new NotificationServiceRealTime();
+        notificationServiceRealTime.start();
+
         try {
             AnchorPane pane  = FXMLLoader.load(getClass().getResource("../Layouts/clientPage.fxml"));
             contentAnchorPane.getChildren().setAll(pane);
@@ -40,9 +70,35 @@ public class MainPageController implements Initializable {
             e.printStackTrace();
         }
 
+        notificationMap = new HashMap<>();
 
         popup = initPopup();
         filterPopup = initFilterPopup();
+        notificationPopup = initNotificationPopup();
+
+
+        rootAnchorPane.getScene().getWindow().setOnCloseRequest(e -> {
+            try {
+
+                File f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/watchlater/list");
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+                oos.writeObject(MainPageController.watchLaterList);
+                oos.close();
+                System.out.println("Object written");
+                System.out.println("Add to watch later ArrayList Written");
+
+                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/history/list");
+                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
+                os.writeObject(MainPageController.historyList);
+                os.close();
+                System.out.println("Object written");
+                System.out.println("History  ArrayList Written");
+
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+                ex.printStackTrace();
+            }
+        });
 
     }
 
@@ -86,6 +142,15 @@ public class MainPageController implements Initializable {
         return popup;
     }
 
+
+    // Initialize NotificationPopup
+    protected JFXPopup initNotificationPopup(){
+        notificationVbox = new VBox(2);
+        Label l = new Label("Notifications");
+        notificationVbox.getChildren().add(l);
+        JFXPopup popup = new JFXPopup(notificationVbox);
+        return popup;
+    }
 
 
     // Show Popup
@@ -293,6 +358,11 @@ public class MainPageController implements Initializable {
 
     public void watchLaterButtonClicked(){
 
+    }
+
+    public void notificationButtonPressed(){
+        notificationCircle.setOpacity(0.0);
+        notificationPopup.show(notificationButton,JFXPopup.PopupVPosition.TOP,JFXPopup.PopupHPosition.LEFT);
     }
 
     void logOutButtonClicked(){

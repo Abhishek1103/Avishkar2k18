@@ -77,6 +77,7 @@ public class NotifyNewChannelService extends Service {
                     }
 
 
+                    System.out.println("Notify New Channel Exiting...!!");
 
                 }catch (Exception e){
                     e.printStackTrace();

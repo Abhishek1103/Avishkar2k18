@@ -33,19 +33,22 @@ public class SetCommentsOnUIService extends Service {
                     // TODO: Program Logic
                     HashMap<String, String> commentsMap = VideoPlayerController.commentsMap;
 
-                    for(Map.Entry<String, String> e: commentsMap.entrySet()){
-                        String name = e.getKey();
-                        String comment = e.getValue();
+                    if(commentsMap!=null && !commentsMap.isEmpty()) {
 
-                        AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/commentItem.fxml"));
-                        JFXTextArea ta = (JFXTextArea) pane.getChildren().get(0);
-                        ta.setPromptText(name);
-                        ta.setText(comment);
-                        ta.setEditable(false);
+                        for (Map.Entry<String, String> e : commentsMap.entrySet()) {
+                            String name = e.getKey();
+                            String comment = e.getValue();
 
-                        Platform.runLater(() ->{
-                            vbox.getChildren().add(pane);
-                        });
+                            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/commentItem.fxml"));
+                            JFXTextArea ta = (JFXTextArea) pane.getChildren().get(0);
+                            ta.setPromptText(name);
+                            ta.setText(comment);
+                            ta.setEditable(false);
+
+                            Platform.runLater(() -> {
+                                vbox.getChildren().add(pane);
+                            });
+                        }
                     }
 
                 }catch(Exception e){

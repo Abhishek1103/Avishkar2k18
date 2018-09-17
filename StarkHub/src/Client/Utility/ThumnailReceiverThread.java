@@ -1,5 +1,7 @@
 package Client.Utility;
 
+import Client.Login.Main;
+
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -18,7 +20,7 @@ public class ThumnailReceiverThread implements Runnable{
             int numberOfThumbs = ois.readInt();
             for(int i=0;i<numberOfThumbs;i++){
                 String thumbName = ois.readUTF();
-                String savePath = System.getProperty("user.home")+"/starkhub/temp/"+thumbName;
+                String savePath = System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME +"/temp/"+thumbName;
                 (new SaveFile()).saveFile(savePath,ois);
             }
         }catch(Exception e){

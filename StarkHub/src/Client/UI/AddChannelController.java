@@ -108,7 +108,10 @@ public class AddChannelController implements Initializable {
                 NotifyNewChannelService nns = new NotifyNewChannelService(videoList, channelName);
                 nns.start();
                 nns.setOnSucceeded(e -> {
-                    Platform.runLater(() ->showLoading());
+                    System.out.println("nns Succeded");
+                    showLoading();
+
+                    //Platform.runLater(() ->showLoading());
                 });
 
             }catch(Exception e){
@@ -169,13 +172,17 @@ public class AddChannelController implements Initializable {
 
     void showLoading(){
         if(!loadingAnchorPane.isVisible()) {
+            System.out.println("Showing loading gif");
+            loadingAnchorPane.setOpacity(1.0);
             loadingAnchorPane.setVisible(true);
             addVideosButton.setDisable(true);
             addVideosButton.setDisable(true);
             createChannelButton.setDisable(true);
         }
         else {
+            System.out.println("Removing loading gif");
             loadingAnchorPane.setVisible(false);
+            loadingAnchorPane.setOpacity(0.0);
             loadingAnchorPane.setVisible(true);
             addVideosButton.setDisable(true);
             addVideosButton.setDisable(true);

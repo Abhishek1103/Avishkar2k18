@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="69.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.UI.NotificationItemController">
+   <children>
+      <JFXButton fx:id="notificationItemButton" layoutY="1.0" onAction="#notificationClicked" prefHeight="69.0" prefWidth="450.0" text=" " />
+   </children>
+</AnchorPane>

@@ -56,13 +56,19 @@ public class VideoPlayerController implements Initializable {
         AnchorPane mediaControlPane = FXMLLoader.load(getClass().getResource("../Layouts/mediaPlayerAndControls.fxml"));
         vbox.getChildren().add(mediaControlPane);
 
+        System.out.println("Loaded mediaPlayerandControls");
+
         Separator separator = new Separator();
         separator.setPrefWidth(1270);
         separator.setHalignment(HPos.CENTER);
         vbox.getChildren().add(separator);
 
-        AnchorPane commentsSectionPane = FXMLLoader.load(getClass().getResource("../Layouts/commentsSectionLayout.fxml"));
+        AnchorPane commentsSectionPane = FXMLLoader.load(getClass().getResource("../Layouts/commentSectionLayout.fxml"));
         vbox.getChildren().add(commentsSectionPane);
+
+        System.out.println("Loaded Comments Section");
+
+        scrollPane.setContent(vbox);
     }
 
 }

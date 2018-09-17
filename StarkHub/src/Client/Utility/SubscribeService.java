@@ -27,7 +27,7 @@ public class SubscribeService extends Service {
                     if(flag == 0){
 
                     }else if(flag == 1){
-                        
+
                     }
 
                 }catch (Exception e){

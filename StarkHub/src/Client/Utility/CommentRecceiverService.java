@@ -1,5 +1,6 @@
 package Client.Utility;
 
+import Client.Login.Main;
 import Client.UI.VideoPlayerController;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -32,12 +33,14 @@ public class CommentRecceiverService extends Service {
                 try{
                     // TODO: Program Logic
 
-                    Socket sock = new Socket(peerIP,150001);
+                    Socket sock = new Socket(peerIP,15001);
                     DataInputStream dis = new DataInputStream(sock.getInputStream());
                     DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
                     ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
                     ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
+                    dout.writeUTF(Main.USERNAME);
+                    dis.readBoolean();
                     dout.writeUTF("#GETCOMMENTS");
                     dout.writeUTF(videoName);
 

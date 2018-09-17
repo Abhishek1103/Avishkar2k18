@@ -1,5 +1,6 @@
 package Client.Login;
 
+import Server.Server;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
@@ -84,7 +85,7 @@ public class LayoutController implements Initializable {
             return;
         }
 
-        File f = new File(userHome+"/starkhub/"+USERNAME+"/credentials.cfg");
+        File f = new File(userHome+"/starkhub/"+userName+"/credentials.cfg");
         if(f.exists() && f.isFile()){
             try {
                 BufferedReader br = new BufferedReader(new FileReader(f));
@@ -98,6 +99,8 @@ public class LayoutController implements Initializable {
                     Main.USERNAME = userName;
                     Main.isNewUser = false;
                     USERNAME = userName;
+                    Server.starkHubUsername = userName;
+                    new Thread(new Server()).start();
                     startMainPage();
                 }else{
                     System.out.println("AUTHENTICATION FAILED");
@@ -139,6 +142,8 @@ public class LayoutController implements Initializable {
                     createNewUser(userName, pass, name);
                     Main.USERNAME = userName;
                     USERNAME = userName;
+                    Server.starkHubUsername = userName;
+                    new Thread(new Server()).start();
                     Main.isNewUser = true;
                     startMainPage();
                 } catch (Exception e) {
