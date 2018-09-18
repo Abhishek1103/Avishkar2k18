@@ -27,6 +27,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
@@ -80,7 +81,7 @@ public class AddChannelController implements Initializable {
 
     public  void createChannel(){
         String channelName = channelNameTxt.getText();
-        File channelFile = new File(userHome+"/starkhub/"+USERNAME+"/mychnnels/channelList");
+        File channelFile = new File(userHome+"/starkhub/"+USERNAME+"/mychannels/list");
         System.out.println("Channel File path: "+channelFile.getAbsolutePath());
         if(MainPageController.myChannelMap.containsKey(channelName)){
             System.out.println("Error...Select another Channel name");
@@ -96,9 +97,9 @@ public class AddChannelController implements Initializable {
                 channel.setNumberOfVideos(videoList.size());
 
                 MainPageController.myChannelMap.put(channel.getChannelName(), channel);
-
+                HashMap<String, Channel> map = MainPageController.myChannelMap;
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(channelFile));
-                oos.writeObject(channel);
+                oos.writeObject(map);
                 oos.close();
 
             }catch (Exception e){

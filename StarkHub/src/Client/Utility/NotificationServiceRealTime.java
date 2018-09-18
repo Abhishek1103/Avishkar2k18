@@ -5,6 +5,7 @@ import hubFramework.Video;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.shape.Circle;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -15,8 +16,10 @@ import java.net.Socket;
 
 public class NotificationServiceRealTime extends Service {
 
-    public NotificationServiceRealTime(){
+    Circle notifCircle;
 
+    public NotificationServiceRealTime(Circle notifCircle){
+        this.notifCircle = notifCircle;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class NotificationServiceRealTime extends Service {
                             // TODO: Listen continously for notifications
 
                             sock = ssock.accept();
+                            System.out.println("Notification Received");
                             dis = new DataInputStream(sock.getInputStream());
                             dout = new DataOutputStream(sock.getOutputStream());
                             ois = new ObjectInputStream(sock.getInputStream());
@@ -48,6 +52,7 @@ public class NotificationServiceRealTime extends Service {
                             try{
 
                                 int num = dis.readInt();
+                                System.out.println("Number of notifs: "+num);
                                 String notification;
                                 Video v;
                                 for(int i=0;i<num;i++){
@@ -63,7 +68,7 @@ public class NotificationServiceRealTime extends Service {
                                 e.printStackTrace();
                             }
 
-                            SetUpNotificationPopupService service = new SetUpNotificationPopupService();
+                            SetUpNotificationPopupService service = new SetUpNotificationPopupService(notifCircle);
                             service.start();
 
                         }

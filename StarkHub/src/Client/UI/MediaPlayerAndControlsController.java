@@ -3,6 +3,7 @@ package Client.UI;
 import Client.Login.Main;
 import Client.Utility.DecreaseLikeService;
 import Client.Utility.IncreaseLikeService;
+import Client.Utility.SubscribeChannelService;
 import com.google.common.net.UrlEscapers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -53,7 +54,7 @@ public class MediaPlayerAndControlsController implements Initializable {
     public static boolean hasLiked = false;
     public static boolean hasDisLiked = false;
 
-    public MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
 
     Timeline slideIn, slideOut;
     double previousVol = 50.0;
@@ -121,25 +122,25 @@ public class MediaPlayerAndControlsController implements Initializable {
         }
 
 
-        mainMediaAnchorPane.getScene().getWindow().setOnCloseRequest(e -> {
-            mediaPlayer.stop();
-            try {
-                Socket sock = new Socket(videoPeerIP, 15001);
-                DataInputStream dis = new DataInputStream(sock.getInputStream());
-                DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
-
-                dout.writeUTF(Main.USERNAME);
-                dis.readBoolean();
-                dout.writeUTF("#DISCONNECT");
-
-            }catch (Exception ex){
-                ex.printStackTrace();
-            }
-
-        });
+//        mainMediaAnchorPane.getScene().getWindow().setOnCloseRequest(e -> {
+//            mediaPlayer.stop();
+//            try {
+//                Socket sock = new Socket(videoPeerIP, 15001);
+//                DataInputStream dis = new DataInputStream(sock.getInputStream());
+//                DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+//
+//                dout.writeUTF(Main.USERNAME);
+//                dis.readBoolean();
+//                dout.writeUTF("#DISCONNECT");
+//
+//            }catch (Exception ex){
+//                ex.printStackTrace();
+//            }
+//
+//        });
 
         channelNameLabel.setText(channelName);
-        String videoName = videoPath.substring(videoPath.lastIndexOf('/')+1, videoPath.lastIndexOf('.')-1).trim();
+        String videoName = videoPath.substring(videoPath.lastIndexOf('/')+1, videoPath.lastIndexOf('.')).trim();
         videoNameLabel.setText(videoName);
 
     }
@@ -287,6 +288,9 @@ public class MediaPlayerAndControlsController implements Initializable {
 
 
         // TODO: Save locally
+        MainPageController.subscribedChannelMap.put(channelName, ownerName);
+        SubscribeChannelService service = new SubscribeChannelService();
+        service.start();
     }
 
     public void previousButtonClicked(){

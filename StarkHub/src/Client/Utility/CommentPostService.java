@@ -39,13 +39,23 @@ public class CommentPostService extends Service {
                     ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
                     ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
+                    System.out.println("CommentPostService: Socket "+sock);
+
                     dout.writeUTF(Main.USERNAME);
-                    dis.readBoolean();
+                    boolean bool = dis.readBoolean();
+                    System.out.println("CommentPostService: Read boolean "+bool);
+
 
                     dout.writeUTF("#ADDCOMMENT");
+                    System.out.println("CommentPostService: VideoName"+ videoName);
                     dout.writeUTF(videoName);
+                    System.out.println("VideoName Sent");
+                    System.out.println("CommentPostService: CommentorName: "+commentorName);
                     dout.writeUTF(commentorName);
+                    System.out.println("CommentorName sent");
+                    System.out.println("CommentPostService: Comment "+comment);
                     dout.writeUTF(comment);
+                    System.out.println("Comment Sent");
                     
                 }catch(Exception e){
                     e.printStackTrace();

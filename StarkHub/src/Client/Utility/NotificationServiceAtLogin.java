@@ -1,9 +1,11 @@
 package Client.Utility;
 
+import Client.Login.LayoutController;
 import Client.UI.MainPageController;
 import hubFramework.Video;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.shape.Circle;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -14,8 +16,9 @@ import java.net.Socket;
 
 public class NotificationServiceAtLogin extends Service {
 
-    public NotificationServiceAtLogin(){
-
+    Circle notifCircle;
+    public NotificationServiceAtLogin(Circle notifCircle){
+        this.notifCircle = notifCircle;
     }
 
     @Override
@@ -45,6 +48,10 @@ public class NotificationServiceAtLogin extends Service {
                                 notification = dis.readUTF();
                                 v = (Video)(ois.readObject());
 
+                                while(!LayoutController.isNotifReady){
+                                    Thread.sleep(100);
+                                }
+
                                 synchronized (this) {
                                     MainPageController.notificationMap.put(notification, v);
                                 }
@@ -61,7 +68,7 @@ public class NotificationServiceAtLogin extends Service {
                     dis.close();
                     sock.close();
 
-                    SetUpNotificationPopupService service = new SetUpNotificationPopupService();
+                    SetUpNotificationPopupService service = new SetUpNotificationPopupService(notifCircle);
                     service.start();
 
                 }catch (Exception e){

@@ -1,6 +1,7 @@
 package Client.UI;
 
 import Client.DataClasses.Channel;
+import Client.Login.LayoutController;
 import Client.Login.Main;
 import Client.Utility.InitializeListsAndMapsService;
 import Client.Utility.NotificationServiceAtLogin;
@@ -42,7 +43,7 @@ public class MainPageController implements Initializable {
     @FXML
     ImageView menuButton;
     @FXML
-    public static Circle notificationCircle;
+    Circle notificationCircle;
 
     JFXPopup popup;
     JFXPopup filterPopup;
@@ -67,10 +68,10 @@ public class MainPageController implements Initializable {
         myChannelMap = new HashMap<>();
         notificationPopup = initNotificationPopup();
         // TODO: Start the notification Services
-        NotificationServiceAtLogin notificationServiceAtLogin = new NotificationServiceAtLogin();
+        NotificationServiceAtLogin notificationServiceAtLogin = new NotificationServiceAtLogin(notificationCircle);
         notificationServiceAtLogin.start();
 
-        NotificationServiceRealTime notificationServiceRealTime = new NotificationServiceRealTime();
+        NotificationServiceRealTime notificationServiceRealTime = new NotificationServiceRealTime(notificationCircle);
         notificationServiceRealTime.start();
 
         try {
@@ -85,44 +86,8 @@ public class MainPageController implements Initializable {
         popup = initPopup();
         filterPopup = initFilterPopup();
         notificationPopup = initNotificationPopup();
-
-
-        rootAnchorPane.getScene().getWindow().setOnCloseRequest(e -> {
-            try {
-
-                File f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/watchlater/list");
-                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
-                oos.writeObject(MainPageController.watchLaterList);
-                oos.close();
-                System.out.println("Object written");
-                System.out.println("Add to watch later ArrayList Written");
-
-                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/history/list");
-                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
-                os.writeObject(MainPageController.historyList);
-                os.close();
-                System.out.println("Object written");
-                System.out.println("History  ArrayList Written");
-
-                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/mychannels/list");
-                os = new ObjectOutputStream(new FileOutputStream(f));
-                os.writeObject(MainPageController.myChannelMap);
-                os.close();
-                System.out.println("Object written");
-                System.out.println("MyChannelMap Written");
-
-                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/subscriptions/list");
-                os = new ObjectOutputStream(new FileOutputStream(f));
-                os.writeObject(MainPageController.subscribedChannelMap);
-                os.close();
-                System.out.println("Object written");
-                System.out.println("SubscribedChannelsMap Written");
-            }catch(Exception ex){
-                System.out.println(ex.getMessage());
-                ex.printStackTrace();
-            }
-        });
-
+        
+        LayoutController.isNotifReady = true;
     }
 
 
@@ -334,7 +299,12 @@ public class MainPageController implements Initializable {
     }
 
     public void addVideo(){
-
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/addVideoLayout.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void homeButtonClicked(){
@@ -372,6 +342,13 @@ public class MainPageController implements Initializable {
     }
 
     public void subscriptionsButtonClicked(){
+        System.out.println("Subscriptions Button Clicked");
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/showSubscriptionsPage.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
@@ -380,10 +357,16 @@ public class MainPageController implements Initializable {
     }
 
     public void watchLaterButtonClicked(){
-
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/showWatchLaterPage.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void notificationButtonPressed(){
+        //TODO: The line below throws Error
         notificationCircle.setOpacity(0.0);
         notificationPopup.show(notificationButton,JFXPopup.PopupVPosition.TOP,JFXPopup.PopupHPosition.LEFT);
     }
@@ -409,13 +392,20 @@ public class MainPageController implements Initializable {
 
         Tooltip tt = new Tooltip();
         tt.setText("Create a new Channel");
-        tt.setStyle("-fx-font: normal bold 4 Langdon; "
+        tt.setStyle("-fx-font: normal bold 11 Langdon; "
                 + "-fx-base: #AE3522; "
                 + "-fx-text-fill: orange;");
 
         addChannelButton.setTooltip(tt);
 
-        tt.setText("Add Video to a Channel");
-        addVideoButton.setTooltip(tt);
+        Tooltip t = new Tooltip();
+        t.setStyle("-fx-font: normal bold 11 Langdon; "
+                + "-fx-base: #AE3522; "
+                + "-fx-text-fill: orange;");
+        t.setText("Add Video to a Channel");
+        addVideoButton.setTooltip(t);
     }
+
+
+
 }

@@ -88,7 +88,7 @@
          <children>
             <AnchorPane layoutX="1005.0" layoutY="30.0" prefHeight="29.0" prefWidth="29.0">
                <children>
-                  <Circle fx:id="notificationCircle" fill="#e42424" layoutX="22.0" layoutY="3.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="notificationCircle" fill="#e42424" layoutX="22.0" layoutY="3.0" opacity="0.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
                   <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resuorces/notification-30.png" />

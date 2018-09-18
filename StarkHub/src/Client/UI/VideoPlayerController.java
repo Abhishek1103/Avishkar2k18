@@ -20,6 +20,9 @@ public class VideoPlayerController implements Initializable {
     @FXML
     ScrollPane scrollPane;
 
+    @FXML
+    public static AnchorPane rootAnchorPane;
+
     VBox vbox;
 
     public static HashMap<String, String> commentsMap;

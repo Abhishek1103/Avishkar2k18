@@ -65,36 +65,36 @@
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.40" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.open.time.40" value="2" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="43" />
-          <entry key="java" value="152" />
+          <entry key="fxml" value="56" />
+          <entry key="java" value="201" />
           <entry key="png" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="152" />
-          <entry key="XML" value="43" />
+          <entry key="JAVA" value="201" />
+          <entry key="XML" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="25" />
-          <entry key="fxml" value="149" />
-          <entry key="java" value="34568" />
+          <entry key="fxml" value="211" />
+          <entry key="java" value="39438" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="34568" />
+          <entry key="JAVA" value="39438" />
           <entry key="PLAIN_TEXT" value="25" />
-          <entry key="XML" value="149" />
+          <entry key="XML" value="211" />
         </counts>
       </usages-collector>
     </session>
@@ -103,71 +103,14 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.42279163">
+    <splitter split-orientation="horizontal" split-proportion="0.4989858">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoPlayerController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="666">
-                  <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Client/UI/MainPageController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="327">
-                  <caret line="113" column="94" lean-forward="true" selection-start-line="113" selection-start-column="94" selection-end-line="113" selection-end-column="107" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Login/LayoutController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
-                  <caret line="173" column="63" selection-start-line="173" selection-start-column="63" selection-end-line="173" selection-end-column="63" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Client/UI/AddChannelController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="575">
-                  <caret line="116" column="34" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewVideoService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="755">
-                  <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewChannelService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="108">
-                  <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="76" selection-end-column="21" />
+                <state relative-caret-position="227">
+                  <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -185,10 +128,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/CommentPostService.java">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewVideoService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="381">
-                  <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+                <state relative-caret-position="-466">
+                  <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -197,24 +140,70 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/CommentRecceiverService.java">
+            <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/Comment.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="42" column="38" lean-forward="true" selection-start-line="41" selection-start-column="20" selection-end-line="42" selection-end-column="38" />
+                <state relative-caret-position="72">
+                  <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/User.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="72">
+                  <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/Video.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-211">
+                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/UI/AddVideoController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="91" column="73" selection-start-line="91" selection-start-column="73" selection-end-line="91" selection-end-column="73" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#215#525#0" expanded="true" />
-                    <element signature="e#524#525#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/AddToWatchLater.java">
+            <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_172/src.zip!/java/lang/Thread.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="468">
-                  <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+                <state relative-caret-position="217">
+                  <caret line="747" selection-start-line="747" selection-end-line="747" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/InitializeListsAndMapsService.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="309">
+                  <caret line="58" column="95" selection-start-line="58" selection-start-column="95" selection-end-line="58" selection-end-column="95" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Client/UI/MainPageController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="54">
+                  <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -227,10 +216,49 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/UI/ShowHistoryController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="412">
+                  <caret line="126" column="27" selection-start-line="126" selection-start-column="27" selection-end-line="126" selection-end-column="27" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/Login/LayoutController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="49" column="47" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/SaveFile.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendFile.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="72">
+                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Client/UI/ClientPageController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="106">
-                  <caret line="231" column="55" selection-start-line="231" selection-start-column="55" selection-end-line="231" selection-end-column="55" />
+                <state relative-caret-position="127">
+                  <caret line="97" selection-start-line="97" selection-end-line="97" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -239,100 +267,42 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/GetIpService.java">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceRealTime.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
-                  <caret line="48" column="10" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="48" selection-end-column="10" />
+                <state relative-caret-position="143">
+                  <caret line="48" selection-start-line="48" selection-end-line="48" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#634#1601#0" expanded="true" />
-                    <element signature="e#1600#1601#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoItemController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="594">
-                  <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#442#443#0" expanded="true" />
-                    <element signature="e#473#474#0" expanded="true" />
-                    <element signature="e#528#529#0" expanded="true" />
-                    <element signature="e#570#571#0" expanded="true" />
-                    <element signature="e#614#615#0" expanded="true" />
-                    <element signature="e#647#648#0" expanded="true" />
-                    <element signature="e#706#707#0" expanded="true" />
-                    <element signature="e#752#753#0" expanded="true" />
-                    <element signature="e#3660#3668#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Layouts/addChannelLayout.fxml">
-              <provider editor-type-id="JavaFX-Scene-Builder" />
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="486">
-                  <caret line="27" column="20" lean-forward="true" selection-end-line="88" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Layouts/addVideoLayout.fxml">
-              <provider editor-type-id="JavaFX-Scene-Builder" />
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="324">
-                  <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/UI/AddVideoController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3">
-                  <caret line="75" column="46" lean-forward="true" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
+                    <element signature="e#561#562#0" expanded="true" />
+                    <element signature="e#606#607#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/InitializeListsAndMapsService.java">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="615">
-                  <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
+                <state relative-caret-position="282">
+                  <caret line="53" selection-start-line="53" selection-end-line="53" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#221#1188#0" expanded="true" />
-                    <element signature="e#1187#1188#0" expanded="true" />
+                    <element signature="e#500#501#0" expanded="true" />
+                    <element signature="e#545#546#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/UI/MyChannelsController.java">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/SetUpNotificationPopupService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="72">
-                  <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+                <state relative-caret-position="139">
+                  <caret line="34" selection-start-line="34" selection-end-line="34" />
+                  <folding>
+                    <element signature="e#657#1597#0" expanded="true" />
+                    <element signature="e#1596#1597#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -340,10 +310,24 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1925">
-                  <caret line="132" column="45" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="45" />
+                <state relative-caret-position="864">
+                  <caret line="292" column="24" lean-forward="true" selection-start-line="292" selection-start-column="24" selection-end-line="292" selection-end-column="24" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/SubscribeChannelService.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="504">
+                  <caret line="29" column="73" selection-start-line="29" selection-start-column="73" selection-end-line="29" selection-end-column="73" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#215#1182#0" expanded="true" />
+                    <element signature="e#1181#1182#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -369,23 +353,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Client/Login/Main.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/showHistoryController.java" />
-        <option value="$PROJECT_DIR$/src/Client/Layouts/videoItemLayout.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/SaveFile.java" />
-        <option value="$PROJECT_DIR$/src/Client/HubServices/Video.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/VideoItemController.java" />
-        <option value="$PROJECT_DIR$/src/Test/ThumbTest.java" />
-        <option value="$PROJECT_DIR$/src/Client/Layouts/showHistoryPage.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/UI/ShowHistoryController.java" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/SendFile.java" />
-        <option value="$PROJECT_DIR$/src/Client/Layouts/loadingLayout.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/Layouts/videoPlayCanvasLayout.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/UI/RenderingClass.java" />
-        <option value="$PROJECT_DIR$/src/Test/VideoPlayTestVLCJ.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/VideoPlayCanvasController.java" />
-        <option value="$PROJECT_DIR$/src/Client/Layouts/mediaPlayerAndControls.fxml" />
-        <option value="$PROJECT_DIR$/src/Test/LayoutTest.java" />
         <option value="$PROJECT_DIR$/src/Test/VideoPlayTest.java" />
         <option value="$PROJECT_DIR$/src/Test/autoCompleteTextFeild/RegExDemo.java" />
         <option value="$PROJECT_DIR$/src/Test/MediaPlayerAndControlsTest.java" />
@@ -396,30 +363,47 @@
         <option value="$PROJECT_DIR$/src/Client/Layouts/commetItem.fxml" />
         <option value="$PROJECT_DIR$/src/Client/Utility/SubscribeService.java" />
         <option value="$PROJECT_DIR$/src/Client/Layouts/notificationItem.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/NotificationServiceRealTime.java" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/SetUpNotificationPopupService.java" />
         <option value="$PROJECT_DIR$/src/Client/UI/NotificationItemController.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/NotifyNewChannelService.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/ThumnailReceiverThread.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/SetCommentsOnUIService.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/CommentSectionController.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/VideoPlayerController.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/ThumbnailReceiverService.java" />
         <option value="$PROJECT_DIR$/src/Server/HandlePeer.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/AddToWatchLater.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/ClientPageController.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/CommentRecceiverService.java" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/CommentPostService.java" />
-        <option value="$PROJECT_DIR$/src/Server/Server.java" />
         <option value="$PROJECT_DIR$/src/Client/Layouts/addVideoLayout.fxml" />
         <option value="$PROJECT_DIR$/src/Client/Utility/NotifyNewVideoService.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/HistoryItemController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Layouts/historyItemLayout.fxml" />
+        <option value="$PROJECT_DIR$/src/Client/Layouts/watchLaterItem.fxml" />
+        <option value="$PROJECT_DIR$/src/Client/Layouts/showWatchLaterPage.fxml" />
+        <option value="$PROJECT_DIR$/src/Client/UI/WatchLaterItemController.java" />
+        <option value="$PROJECT_DIR$/src/hubFramework/Video.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/CommentPostService.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/CommentSectionController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Layouts/commentItem.fxml" />
+        <option value="$PROJECT_DIR$/src/Client/UI/VideoPlayerController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/ResetThumbnailPathService.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/ClientPageController.java" />
+        <option value="$PROJECT_DIR$/src/Server/Server.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/SendData.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/SubscribeChannelService.java" />
+        <option value="$PROJECT_DIR$/src/Client/Layouts/showSubscriptionsPage.fxml" />
+        <option value="$PROJECT_DIR$/src/Client/UI/SubscriptionItemController.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/ShowHistoryController.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/ShowWatchLaterController.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/ShowSubscriptionsController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Layouts/subscriptionItem.fxml" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/SaveFile.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/InitializeListsAndMapsService.java" />
         <option value="$PROJECT_DIR$/src/Client/UI/AddChannelController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/SetUpNotificationPopupService.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/NotificationServiceRealTime.java" />
         <option value="$PROJECT_DIR$/src/Client/UI/AddVideoController.java" />
         <option value="$PROJECT_DIR$/src/Client/Login/LayoutController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java" />
         <option value="$PROJECT_DIR$/src/Client/UI/MainPageController.java" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/InitializeListsAndMapsService.java" />
       </list>
     </option>
   </component>
@@ -438,6 +422,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -495,6 +482,12 @@
               <item name="StarkHub" type="b2602c69:ProjectViewProjectNode" />
               <item name="StarkHub" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="hubFramework" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StarkHub" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StarkHub" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -505,9 +498,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -522,7 +512,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537260215561" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537301893518" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Jars/guava.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -741,7 +731,7 @@
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.20864461" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21077909" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -750,7 +740,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.37864077" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.14886731" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26537216" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.1639698" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -787,121 +777,87 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/mediaPlayerAndControls.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="179" selection-start-line="11" selection-start-column="179" selection-end-line="11" selection-end-column="179" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/VideoPlayTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="89" column="25" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/videoPlayer.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/IncreaseLikeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/CreatorDashboardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/CreatorPageController.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/MyChannelsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/DashboardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/clientPage.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/HistoryItemController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="144">
+          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/RenderingClass.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/historyItem.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+        <state relative-caret-position="432">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/ShowHistoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoPlayCanvasController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Login/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/LayoutTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="59" lean-forward="true" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test/ThumbTest.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/watchLaterItem.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <caret line="26" column="13" lean-forward="true" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/showWatchLaterPage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/WatchLaterItemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hubFramework/Video.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="38" column="5" lean-forward="true" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding>
+            <element signature="e#344#345#0" expanded="true" />
+            <element signature="e#387#388#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/mainFrame.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_172/javafx-src.zip!/javafx/concurrent/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="1422" selection-start-line="1422" selection-end-line="1422" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/CommentSectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="35" column="96" selection-start-line="35" selection-start-column="96" selection-end-line="35" selection-end-column="96" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -911,230 +867,66 @@
     <entry file="file://$PROJECT_DIR$/src/Client/Layouts/commentItem.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SubscribeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/DecreaseLikeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="54" column="10" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/notificationItem.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SetUpNotificationPopupService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="43" column="76" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
-            <element signature="e#379#380#0" expanded="true" />
-            <element signature="e#464#642#0" expanded="true" />
-            <element signature="e#641#642#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/NotificationItemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceRealTime.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#564#2641#0" expanded="true" />
-            <element signature="e#2640#2641#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/commentSectionLayout.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <caret line="6" column="152" lean-forward="true" selection-start-line="6" selection-start-column="152" selection-end-line="6" selection-end-column="173" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SetCommentsOnUIService.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/CommentItemController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
-            <element signature="e#581#1788#0" expanded="true" />
-            <element signature="e#1787#1788#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_172/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="3147" selection-start-line="3147" selection-end-line="3147" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/CommentSectionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#414#415#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="36">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/Peer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="126">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SetCommentsOnUIService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="18" />
+        <state relative-caret-position="141">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#521#2248#0" expanded="true" />
-            <element signature="e#2247#2248#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoPlayerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="63" column="46" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/Utility/ThumbnailReceiverService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
+        <state relative-caret-position="414">
           <caret line="33" column="20" lean-forward="true" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
-          <folding>
-            <element signature="e#346#1530#0" expanded="true" />
-            <element signature="e#1529#1530#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SaveFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/ThumnailReceiverThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="93" selection-start-line="22" selection-start-column="93" selection-end-line="22" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoPlayerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/HandlePeer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoItemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/AddToWatchLater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/ClientPageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="231" column="55" selection-start-line="231" selection-start-column="55" selection-end-line="231" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/Utility/CommentRecceiverService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="42" column="38" lean-forward="true" selection-start-line="41" selection-start-column="20" selection-end-line="42" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#215#525#0" expanded="true" />
-            <element signature="e#524#525#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/CommentPostService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+        <state relative-caret-position="493">
+          <caret line="55" column="10" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="55" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/ResetThumbnailPathService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1925">
-          <caret line="132" column="45" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="45" />
+        <state relative-caret-position="241">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1143,94 +935,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#442#443#0" expanded="true" />
-            <element signature="e#473#474#0" expanded="true" />
-            <element signature="e#528#529#0" expanded="true" />
-            <element signature="e#570#571#0" expanded="true" />
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#647#648#0" expanded="true" />
-            <element signature="e#706#707#0" expanded="true" />
-            <element signature="e#752#753#0" expanded="true" />
-            <element signature="e#3660#3668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/addChannelLayout.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="20" lean-forward="true" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/addVideoLayout.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/Channel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewChannelService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="76" selection-end-column="21" />
+        <state relative-caret-position="516">
+          <caret line="178" column="46" selection-start-line="178" selection-start-column="46" selection-end-line="178" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewVideoService.java">
+    <entry file="file://$PROJECT_DIR$/src/Server/ReceiveData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="755">
-          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+        <state relative-caret-position="36">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/MyChannelsController.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/CommentPostService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/AddChannelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="116" column="34" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Login/LayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="173" column="63" selection-start-line="173" selection-start-column="63" selection-end-line="173" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/AddVideoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
-          <caret line="75" column="46" lean-forward="true" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
+        <state relative-caret-position="257">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1239,7 +972,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/Utility/GetIpService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
+        <state relative-caret-position="630">
           <caret line="48" column="10" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="48" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1249,24 +982,249 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/MainPageController.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SubscribeChannelService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="113" column="94" lean-forward="true" selection-start-line="113" selection-start-column="94" selection-end-line="113" selection-end-column="107" />
+        <state relative-caret-position="504">
+          <caret line="29" column="73" selection-start-line="29" selection-start-column="73" selection-end-line="29" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#215#1182#0" expanded="true" />
+            <element signature="e#1181#1182#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/showHistoryPage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" lean-forward="true" selection-end-line="10" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/showSubscriptionsPage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="203" lean-forward="true" selection-start-line="5" selection-start-column="203" selection-end-line="5" selection-end-column="203" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/SubscriptionItemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/InitializeListsAndMapsService.java">
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
+        <state relative-caret-position="864">
+          <caret line="292" column="24" lean-forward="true" selection-start-line="292" selection-start-column="24" selection-end-line="292" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#221#1188#0" expanded="true" />
-            <element signature="e#1187#1188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/ShowHistoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="126" column="27" selection-start-line="126" selection-start-column="27" selection-end-line="126" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/ShowWatchLaterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="73" column="54" selection-start-line="73" selection-start-column="54" selection-end-line="73" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewChannelService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-125">
+          <caret line="43" column="35" lean-forward="true" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/ShowSubscriptionsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="38" column="72" selection-start-line="38" selection-start-column="72" selection-end-line="38" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Layouts/subscriptionItem.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="176" selection-start-line="8" selection-start-column="176" selection-end-line="8" selection-end-column="176" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/Channel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/Comment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/Video.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-211">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SaveFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/ClientPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewVideoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-466">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/jdk1.8.0_172/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="747" selection-start-line="747" selection-end-line="747" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/AddVideoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="91" column="73" selection-start-line="91" selection-start-column="73" selection-end-line="91" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/AddChannelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceRealTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/InitializeListsAndMapsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="58" column="95" selection-start-line="58" selection-start-column="95" selection-end-line="58" selection-end-column="95" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SetUpNotificationPopupService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#657#1597#0" expanded="true" />
+            <element signature="e#1596#1597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Login/LayoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="49" column="47" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#545#546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/MainPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

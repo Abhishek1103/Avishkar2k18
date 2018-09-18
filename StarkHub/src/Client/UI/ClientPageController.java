@@ -1,12 +1,9 @@
 package Client.UI;
 
 
-import Client.Utility.GetIpService;
-import Client.Utility.ThumnailReceiverThread;
+import Client.Utility.*;
 import hubFramework.Video;
 import Client.Login.Main;
-import Client.Utility.AddToWatchLater;
-import Client.Utility.ThumbnailReceiverService;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -35,15 +32,21 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.*;
 
+import static Client.UI.MediaPlayerAndControlsController.videoPeerIP;
+
 public class ClientPageController implements Initializable {
 
     @FXML
     ScrollPane clientScrollPane;
 
     //ArrayList<Client.HubServices.Video> receivedVideos, receivedVideosRecommended;
-    HashMap<String, hubFramework.Video> receivedVideos, receivedVideosRecommended;
+    public static HashMap<String, hubFramework.Video> receivedVideos, receivedVideosRecommended;
 
     public HashMap<String, ImageView > nameImageViewMap;
+
+    public static boolean startResetingThumbNail=false;
+
+    //public static Stage playWindow;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
@@ -79,10 +82,18 @@ public class ClientPageController implements Initializable {
 
                     ThumbnailReceiverService service = new ThumbnailReceiverService();
                     service.start();
-                    service.setOnSucceeded(e -> putOnThumbnails());
+                    service.setOnSucceeded(e -> {
+                        putOnThumbnails();
+                        // TODO: Correct ThumbnailPath
+                        System.out.println("Put on Thumbnails Ended");
+                       ResetThumbnailPathService r =  new ResetThumbnailPathService();
+                       r.start();
+                    });
 
                     receivedVideosRecommended = (HashMap<String, hubFramework.Video>) ois.readObject();
                      receivedVideos = (HashMap<String, hubFramework.Video>) ois.readObject();
+
+                    startResetingThumbNail = true;
 
                     System.out.println("Size of 1st Map: "+receivedVideosRecommended.size());
                     System.out.println("Size of 2nd Map: "+receivedVideos);
@@ -123,10 +134,17 @@ public class ClientPageController implements Initializable {
 
                     ThumbnailReceiverService service = new ThumbnailReceiverService();
                     service.start();
-                    service.setOnSucceeded(e -> putOnThumbnails());
+                    service.setOnSucceeded(e -> {
+                        putOnThumbnails();
+                        System.out.println("Put on Thumbnails Ended");
+                        ResetThumbnailPathService r =  new ResetThumbnailPathService();
+                        r.start();
+                    });
 
                     receivedVideosRecommended = (HashMap<String, hubFramework.Video>) ois.readObject();
                     receivedVideos = (HashMap<String, hubFramework.Video>) ois.readObject();
+
+                    startResetingThumbNail = true;
 
                     System.out.println("Size of 1st Map: "+receivedVideosRecommended.size()+" : "+receivedVideosRecommended);
                     System.out.println("Size of 2nd Map: "+receivedVideos.size()+" : "+receivedVideos);
@@ -261,10 +279,28 @@ public class ClientPageController implements Initializable {
                         Scene sc = new Scene(settingsRoot);
                         //sc.setFill(Color.TRANSPARENT);
                         playWindow.setScene(sc);
-                        playWindow.showAndWait();
+                        //playWindow.showAndWait();
+                        playWindow.show();
 
                         playWindow.setOnCloseRequest(evt -> {
+                            System.out.println("Video Player SetonClose calles");
+                            MediaPlayerAndControlsController.mediaPlayer.stop();
+                            try {
+                                Socket sock = new Socket(videoPeerIP, 15001);
+                                DataInputStream dis = new DataInputStream(sock.getInputStream());
+                                DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+                                ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
+                                ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
+                                dout.writeUTF(Main.USERNAME);
+                                dis.readBoolean();
+                                dout.writeUTF("#DISCONNECT");
+
+                                System.out.println("VideoPlayer Set on Close request exiting");
+
+                            }catch (Exception ex){
+                                ex.printStackTrace();
+                            }
                         });
 
                     }catch (Exception ex){
@@ -331,7 +367,7 @@ public class ClientPageController implements Initializable {
                 }
             }
         }
-
+        System.out.println("Put on thumbnails Ending");
     }
 
 }

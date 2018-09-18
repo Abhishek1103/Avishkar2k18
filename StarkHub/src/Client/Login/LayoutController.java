@@ -1,9 +1,12 @@
 package Client.Login;
 
+import Client.DataClasses.Channel;
+import Client.UI.MainPageController;
 import Server.Server;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
+import hubFramework.Video;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +26,8 @@ import sun.security.util.Password;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -42,7 +47,7 @@ public class LayoutController implements Initializable {
     String userHome;
 
     public static String USERNAME = "";
-
+    public static boolean isNotifReady = false;
 
     JFXPopup invalidUsernamePopup, emptyPopup;
 
@@ -196,6 +201,65 @@ public class LayoutController implements Initializable {
 
         //curStage.initStyle(StageStyle.DECORATED);
         curStage.setScene(new Scene(root));
+
+        curStage.setOnCloseRequest(e -> {
+            try {
+
+
+                ArrayList<Video> watchLater, history;
+                watchLater = MainPageController.watchLaterList;
+                history = MainPageController.historyList;
+
+                HashMap<String, String> subscribedChannelMap = MainPageController.subscribedChannelMap;
+                HashMap<String, Channel> myChannelMap = MainPageController.myChannelMap;
+
+                System.out.println("WatchLater: "+watchLater);
+                System.out.println("Histroy: "+history);
+                System.out.println("My channels: "+myChannelMap);
+                System.out.println("Subscriptions: "+subscribedChannelMap );
+
+
+                File f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/watchLater/list");
+                if(!f.exists())
+                    f.createNewFile();
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+                oos.writeObject(watchLater);
+                oos.close();
+                System.out.println("Object written");
+                System.out.println("Add to watch later ArrayList Written");
+
+                if(!f.exists())
+                    f.createNewFile();
+                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/history/list");
+                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
+                os.writeObject(history);
+                os.close();
+                System.out.println("Object written");
+                System.out.println("History  ArrayList Written");
+
+                if(!f.exists())
+                    f.createNewFile();
+                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/mychannels/list");
+                os = new ObjectOutputStream(new FileOutputStream(f));
+                os.writeObject(myChannelMap);
+                os.close();
+                System.out.println("Object written");
+                System.out.println("MyChannelMap Written");
+
+                if(!f.exists())
+                    f.createNewFile();
+                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/subscriptions/list");
+                os = new ObjectOutputStream(new FileOutputStream(f));
+                os.writeObject(subscribedChannelMap);
+                os.close();
+                System.out.println("Object written");
+                System.out.println("SubscribedChannelsMap Written");
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+                ex.printStackTrace();
+            }
+        });
+
     }
 
 

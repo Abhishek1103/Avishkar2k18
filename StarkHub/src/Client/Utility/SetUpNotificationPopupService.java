@@ -9,6 +9,7 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,9 +17,11 @@ import java.util.Map;
 public class SetUpNotificationPopupService extends Service {
 
     HashMap<String, Video> notificationMap;
+    Circle notifCircle;
 
-    SetUpNotificationPopupService(){
+    SetUpNotificationPopupService(Circle notifCircle){
         notificationMap = MainPageController.notificationMap;
+        this.notifCircle = notifCircle;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class SetUpNotificationPopupService extends Service {
                     }
 
                     Platform.runLater(() -> {
-                        MainPageController.notificationCircle.setOpacity(1.0);
+                        notifCircle.setOpacity(1.0);
                     });
 
                 }catch (Exception e){

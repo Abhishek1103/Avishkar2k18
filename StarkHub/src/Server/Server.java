@@ -93,16 +93,23 @@ public class Server implements Runnable
             }
 
             System.out.println(getUsername() + "\n" + getRootPasswd());
-            System.exit(0);
+            //System.exit(0);
             //TODO: get starkhub wala username
             starkHubUsername = "aks";
             HashSet<String> people = new HashSet<String>();
             ServerSocket incomingConnection = new ServerSocket(15001);
             while (true) {
                 Socket socket = incomingConnection.accept();
-                Peer peer = new Peer(socket);
-                String username = peer.dis.readUTF();
-                if (people.size() < 5 || people.contains(username)) {
+                String username = "";
+                Peer peer=null;
+                try{
+                    peer = new Peer(socket);
+                    username = peer.dis.readUTF();
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
+
+                if (people.size() < 5 || people.contains(username) || socket.getInetAddress().getHostName().equals("172.31.84.87")) {
                     peer.dos.writeBoolean(true);
                     if (people.size() < 5)
                         people.add(username);
@@ -110,7 +117,13 @@ public class Server implements Runnable
                         String flag = peer.dis.readUTF();
                         switch (flag) {
                             case "#DISCONNECT": {
+                                System.out.println("#DISCONNECT received");
                                 people.remove(username);
+                                peer.dis.close();
+                                peer.dos.close();
+                                peer.oos.close();
+                                peer.ois.close();
+                                peer.peerSocket.close();
                                 break;
                             }
                             case "#GETCOMMENTS": {
@@ -161,6 +174,12 @@ public class Server implements Runnable
                                 }
                                 break;
                             }
+
+                            case "#RECEIVEDATA" : {
+                                // TODO: Logic
+                                break;
+                            }
+
                             default: {
                                 System.out.println("Ye kya flag hai be " + flag);
                             }

@@ -30,15 +30,15 @@ public class SaveFile {
         int c=0;
         do
         {
-            System.out.println("File recieve iteration = "+c++);
+            //System.out.println("File recieve iteration = "+c++);
             o = ois.readObject();
             if (!(o instanceof Integer))
             {
                 throwException("Something is wrong");
             }
-            System.out.println("o = ois.readObject(); THIS LINE WORKS");
+            //System.out.println("o = ois.readObject(); THIS LINE WORKS");
             bytesRead = (Integer)o;
-            System.out.println("bytesRead = "+bytesRead);
+            //System.out.println("bytesRead = "+bytesRead);
             o = ois.readObject();
 
             if (!(o instanceof byte[]))
@@ -47,9 +47,9 @@ public class SaveFile {
             }
             buffer = (byte[])o;
             // 3. Write data to output file.
-            System.out.println("Ready to write file");
+            //System.out.println("Ready to write file");
             fos.write(buffer, 0, bytesRead);
-            System.out.println("Writing file");
+            //System.out.println("Writing file");
         } while (bytesRead == BUFFER_SIZE);
         System.out.println("File transfer success");
         fos.close();

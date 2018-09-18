@@ -72,12 +72,14 @@ public class AddVideoController implements Initializable {
 
 
         try {
-            ObservableList<String> listLeagues = FXCollections.observableArrayList();
+            ObservableList<String> list = FXCollections.observableArrayList();
             for (Map.Entry<String, Channel> entry : MainPageController.myChannelMap.entrySet()) {
-                listLeagues.add(entry.getKey());
+                list.add(entry.getKey());
             }
 
-            channelSelectComboBox.setItems(listLeagues);
+            System.out.println("observable List :"+list);
+
+            channelSelectComboBox.setItems(list);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -86,6 +88,8 @@ public class AddVideoController implements Initializable {
 
     public void addVideoToChannel(){
         String channelName = channelSelectComboBox.getSelectionModel().getSelectedItem();
+        System.out.println(channelName);
+        System.out.println("ChannelMap: "+MainPageController.myChannelMap);
         Channel channel = MainPageController.myChannelMap.get(channelName);
         ArrayList<Video> list = channel.getVideoList();
         list.addAll(videoList);
@@ -278,4 +282,12 @@ public class AddVideoController implements Initializable {
         return p;
     }
 
+    public void discard(){
+        /*
+            Load back the main UI
+
+         */
+        showLoading();
+
+    }
 }
