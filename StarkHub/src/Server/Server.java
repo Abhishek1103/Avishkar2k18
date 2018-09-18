@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Server implements Runnable
 {
     protected static int numberOfConnections = 0;
-    protected static String starkHubUsername;
+    public static String starkHubUsername;
     private static String username;
     private static String rootPasswd;
 

@@ -1,6 +1,8 @@
 package Client.UI;
 
+import Client.DataClasses.Channel;
 import Client.Login.Main;
+import Client.Utility.InitializeListsAndMapsService;
 import Client.Utility.NotificationServiceAtLogin;
 import Client.Utility.NotificationServiceRealTime;
 import com.jfoenix.controls.JFXButton;
@@ -11,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -33,7 +36,7 @@ public class MainPageController implements Initializable {
     public static boolean IS_TRENDING = false;
 
     @FXML
-    JFXButton btn, notificationButton;
+    JFXButton btn, notificationButton, addChannelButton, addVideoButton;
     @FXML
     AnchorPane contentAnchorPane, menuBtnAnchor, filterAnchorPane, rootAnchorPane;
     @FXML
@@ -49,12 +52,19 @@ public class MainPageController implements Initializable {
     public static VBox notificationVbox;
     public static ArrayList<Video> watchLaterList, historyList;
     public static HashMap<String, String> subscribedChannelMap;
+    public static HashMap<String,Channel> myChannelMap;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        setToolTipTexts();
+
+        InitializeListsAndMapsService initializeListsAndMapsService = new InitializeListsAndMapsService();
+        initializeListsAndMapsService.start();
+
         watchLaterList = new ArrayList<>();
         subscribedChannelMap = new HashMap<>();
+        myChannelMap = new HashMap<>();
         notificationPopup = initNotificationPopup();
         // TODO: Start the notification Services
         NotificationServiceAtLogin notificationServiceAtLogin = new NotificationServiceAtLogin();
@@ -94,6 +104,19 @@ public class MainPageController implements Initializable {
                 System.out.println("Object written");
                 System.out.println("History  ArrayList Written");
 
+                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/mychannels/list");
+                os = new ObjectOutputStream(new FileOutputStream(f));
+                os.writeObject(MainPageController.myChannelMap);
+                os.close();
+                System.out.println("Object written");
+                System.out.println("MyChannelMap Written");
+
+                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/subscriptions/list");
+                os = new ObjectOutputStream(new FileOutputStream(f));
+                os.writeObject(MainPageController.subscribedChannelMap);
+                os.close();
+                System.out.println("Object written");
+                System.out.println("SubscribedChannelsMap Written");
             }catch(Exception ex){
                 System.out.println(ex.getMessage());
                 ex.printStackTrace();
@@ -381,4 +404,18 @@ public class MainPageController implements Initializable {
         System.out.println("Creator Dashboard clicked");
     }
 
+
+    public void setToolTipTexts(){
+
+        Tooltip tt = new Tooltip();
+        tt.setText("Create a new Channel");
+        tt.setStyle("-fx-font: normal bold 4 Langdon; "
+                + "-fx-base: #AE3522; "
+                + "-fx-text-fill: orange;");
+
+        addChannelButton.setTooltip(tt);
+
+        tt.setText("Add Video to a Channel");
+        addVideoButton.setTooltip(tt);
+    }
 }

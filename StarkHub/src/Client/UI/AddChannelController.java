@@ -4,10 +4,7 @@ import Client.DataClasses.Channel;
 import Client.DataClasses.Video;
 import Client.Utility.NotifyNewChannelService;
 import Client.Utility.SendFile;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.sun.deploy.util.SessionState;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -22,6 +19,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -82,16 +80,23 @@ public class AddChannelController implements Initializable {
 
     public  void createChannel(){
         String channelName = channelNameTxt.getText();
-        File channelFile = new File(userHome+"/starkhub/"+USERNAME+"/"+channelName);
+        File channelFile = new File(userHome+"/starkhub/"+USERNAME+"/mychnnels/channelList");
         System.out.println("Channel File path: "+channelFile.getAbsolutePath());
-        if(channelFile.exists()){
+        if(MainPageController.myChannelMap.containsKey(channelName)){
             System.out.println("Error...Select another Channel name");
+            // TODO: Show popup -> Choose another channel name
+            JFXPopup popup = initAnotherChannelName();
+            popup.show(channelNameTxt,JFXPopup.PopupVPosition.TOP ,JFXPopup.PopupHPosition.LEFT);
+
         }else{
             try{
                 //channelFile.createNewFile();
                 Channel channel = new Channel(channelName, USERNAME);
                 channel.setVideoList(videoList);
                 channel.setNumberOfVideos(videoList.size());
+
+                MainPageController.myChannelMap.put(channel.getChannelName(), channel);
+
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(channelFile));
                 oos.writeObject(channel);
                 oos.close();
@@ -110,8 +115,8 @@ public class AddChannelController implements Initializable {
                 nns.setOnSucceeded(e -> {
                     System.out.println("nns Succeded");
                     showLoading();
-
-                    //Platform.runLater(() ->showLoading());
+                    videoListView.getItems().clear();
+                    hbox.getChildren().clear();
                 });
 
             }catch(Exception e){
@@ -184,9 +189,9 @@ public class AddChannelController implements Initializable {
             loadingAnchorPane.setVisible(false);
             loadingAnchorPane.setOpacity(0.0);
             loadingAnchorPane.setVisible(true);
-            addVideosButton.setDisable(true);
-            addVideosButton.setDisable(true);
-            createChannelButton.setDisable(true);
+            addVideosButton.setDisable(false);
+            addVideosButton.setDisable(false);
+            createChannelButton.setDisable(false);
         }
     }
 
@@ -246,6 +251,8 @@ public class AddChannelController implements Initializable {
         ObservableList<Label> selectedLabels =  videoListView.getSelectionModel().getSelectedItems();
         if(selectedLabels.isEmpty()) {
             System.out.println("No Videos Selected..!!");
+            JFXPopup popup = initNoVideosPopup();
+            popup.show(videoListView,JFXPopup.PopupVPosition.TOP ,JFXPopup.PopupHPosition.LEFT);
             return;
         }
 
@@ -289,6 +296,24 @@ public class AddChannelController implements Initializable {
         }
 
         return extractedTags;
+    }
+
+    JFXPopup initNoVideosPopup(){
+        Label l = new Label("No Videos Selected");
+        l.setWrapText(true);
+        VBox vbox = new VBox(l);
+        vbox.setPadding(new Insets(10));
+        JFXPopup p = new JFXPopup(vbox);
+        return p;
+    }
+
+    JFXPopup initAnotherChannelName(){
+        Label l = new Label("Select another Channel Name");
+        l.setWrapText(true);
+        VBox vbox = new VBox(l);
+        vbox.setPadding(new Insets(10));
+        JFXPopup p = new JFXPopup(vbox);
+        return p;
     }
 
 }
