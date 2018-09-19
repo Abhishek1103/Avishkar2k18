@@ -86,7 +86,7 @@ public class MainPageController implements Initializable {
         popup = initPopup();
         filterPopup = initFilterPopup();
         notificationPopup = initNotificationPopup();
-        
+
         LayoutController.isNotifReady = true;
     }
 

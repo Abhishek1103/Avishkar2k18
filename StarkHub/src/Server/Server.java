@@ -155,14 +155,14 @@ public class Server implements Runnable
                                 if (!file.exists()) {
                                     ObjectOutputStream writeSerializedObject = new ObjectOutputStream(new FileOutputStream(file));
                                     commentMap = new HashMap<String, String>();
-                                    commentMap.put(commenter, commentText);
+                                    commentMap.put(commentText, commenter);
                                     writeSerializedObject.writeObject(commentMap);
                                     writeSerializedObject.close();
                                 } else {
                                     try {
                                         ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
                                         commentMap = (HashMap<String, String>) readSerializedObject.readObject();
-                                        commentMap.put(commenter, commentText);
+                                        commentMap.put(commentText, commenter);
                                         System.out.println("Writting back");
                                         ObjectOutputStream writeSerializedObject = new ObjectOutputStream(new FileOutputStream(file));
                                         writeSerializedObject.writeObject(commentMap);

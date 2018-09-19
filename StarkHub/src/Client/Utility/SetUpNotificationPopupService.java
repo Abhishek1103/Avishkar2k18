@@ -38,6 +38,11 @@ public class SetUpNotificationPopupService extends Service {
                         JFXButton bt = (JFXButton)(pane.getChildren().get(0));
                         bt.setText(e.getKey());
 
+                        bt.setOnAction(evt -> {
+                            // TODO: Remove from the popup and map
+                            // TODO: Open video if possible
+                        });
+
                         Platform.runLater(() -> {
                             MainPageController.notificationVbox.getChildren().add(pane);
                         });

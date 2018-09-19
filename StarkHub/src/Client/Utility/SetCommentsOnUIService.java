@@ -36,8 +36,8 @@ public class SetCommentsOnUIService extends Service {
                     if(commentsMap!=null && !commentsMap.isEmpty()) {
 
                         for (Map.Entry<String, String> e : commentsMap.entrySet()) {
-                            String name = e.getKey();
-                            String comment = e.getValue();
+                            String name = e.getValue();
+                            String comment = e.getKey();
 
                             AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/commentItem.fxml"));
                             JFXTextArea ta = (JFXTextArea) pane.getChildren().get(0);

@@ -112,7 +112,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Text fill="#d7cfcf" fontSmoothingType="LCD" layoutX="40.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abhishek" textAlignment="CENTER" wrappingWidth="203.7294921875">
+            <Text fill="#d7cfcf" fontSmoothingType="LCD" layoutX="40.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="StarkHub" textAlignment="CENTER" wrappingWidth="203.7294921875">
                <font>
                   <Font name="Ubuntu" size="32.0" />
                </font>

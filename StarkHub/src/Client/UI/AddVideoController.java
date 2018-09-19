@@ -91,12 +91,15 @@ public class AddVideoController implements Initializable {
         System.out.println(channelName);
         System.out.println("ChannelMap: "+MainPageController.myChannelMap);
         Channel channel = MainPageController.myChannelMap.get(channelName);
+        System.out.println("Channel obj: "+ channel);
+        System.out.println("Channel list of: "+channel.getChannelName()+" : "+channel.getVideoList());
         ArrayList<Video> list = channel.getVideoList();
         list.addAll(videoList);
         channel.setVideoList(list);
 
         try {
             showLoading();
+            System.out.println("Sending videoList:"+ videoList);
             NotifyNewVideoService nnvs = new NotifyNewVideoService(videoList, channelName);
             nnvs.start();
 
@@ -104,7 +107,9 @@ public class AddVideoController implements Initializable {
                 System.out.println("nnvs succeded");
                 showLoading();
                 videoListView.getItems().clear();
+                videoList.clear();
                 hbox.getChildren().clear();
+                channelSelectComboBox.getSelectionModel().clearSelection();
             });
 
         }catch (Exception e){

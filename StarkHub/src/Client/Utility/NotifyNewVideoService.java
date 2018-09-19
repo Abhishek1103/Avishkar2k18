@@ -48,7 +48,7 @@ public class NotifyNewVideoService extends Service {
                         douts.writeInt(videoList.size());
 
                         for(Video v: videoList){
-
+                            System.out.println("Sending: "+v.getVideoName()+" to hub");
 
                             douts.writeUTF(v.getVideoPath());
                             ooss.writeObject(v.getTags());
