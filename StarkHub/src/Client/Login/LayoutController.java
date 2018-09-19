@@ -3,6 +3,7 @@ package Client.Login;
 import Client.DataClasses.Channel;
 import Client.UI.MainPageController;
 import Server.Server;
+import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
@@ -26,6 +27,7 @@ import sun.security.util.Password;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -48,6 +50,7 @@ public class LayoutController implements Initializable {
 
     public static String USERNAME = "";
     public static boolean isNotifReady = false;
+    public static boolean isPremium = false;
 
     JFXPopup invalidUsernamePopup, emptyPopup;
 
@@ -96,11 +99,19 @@ public class LayoutController implements Initializable {
                 BufferedReader br = new BufferedReader(new FileReader(f));
                 String savedUsername = br.readLine();
                 String savedPassword = br.readLine();
+                String name = br.readLine();
+                String prem = br.readLine();
+
+                if(prem.equalsIgnoreCase("true")){
+                    isPremium = true;
+                }
 
                 System.out.println("userName from file: "+savedUsername);
                 System.out.println("password from file: "+savedPassword);
 
-                if(savedUsername.equals(userName) && savedPassword.equals(pass)){
+                String hashedPass = Hashing.sha256().hashString(pass, StandardCharsets.UTF_8).toString();
+
+                if(savedUsername.equals(userName) && savedPassword.equals(hashedPass)){
                     Main.USERNAME = userName;
                     Main.isNewUser = false;
                     USERNAME = userName;
@@ -179,8 +190,10 @@ public class LayoutController implements Initializable {
         new File(userHome+"/starkhub/"+userName+"/subscriptions").mkdirs();
         PrintWriter pw = new PrintWriter(f);
         pw.println(userName);
-        pw.println(passWord);
+        String hashedPassword = Hashing.sha256().hashString(passWord, StandardCharsets.UTF_8).toString();
+        pw.println(hashedPassword);
         pw.println(name);
+        pw.println("false");
         pw.close();
     }
 

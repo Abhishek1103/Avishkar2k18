@@ -1,9 +1,12 @@
 package Server;
 
+import Client.Login.Main;
+
 import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -177,6 +180,13 @@ public class Server implements Runnable
 
                             case "#RECEIVEDATA" : {
                                 // TODO: Logic
+                                int n = peer.dis.readInt();
+                                ArrayList<String> list = new ArrayList<>();
+                                list = (ArrayList<String>) peer.ois.readObject();
+                                peer.dos.writeUTF(System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME+"/premium/");
+                                ReceiveData receive = new ReceiveData(n, list);
+                                receive.start();
+                                peer.dos.writeBoolean(true);
                                 break;
                             }
 

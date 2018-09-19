@@ -16,9 +16,13 @@ import static Client.Login.Main.HUB_IP;
 public class GetIpService extends Service {
 
     String userName;
+    String videoName;
+    String channelName;
 
-    public GetIpService(String userName){
+    public GetIpService(String userName, String videoName, String channelName){
         this.userName = userName;
+        this.videoName = videoName;
+        this.channelName = channelName;
     }
 
     @Override
@@ -37,8 +41,33 @@ public class GetIpService extends Service {
 
                     dout.writeUTF("#GETIP");
                     dout.writeUTF(userName);
+                    dout.writeUTF(videoName);
+                    dout.writeUTF(channelName);
 
-                    MediaPlayerAndControlsController.videoPeerIP = dis.readUTF();
+                    String ip = dis.readUTF();
+                    String altIp = "";
+                    if(dis.readBoolean()){
+                        altIp = dis.readUTF();
+                    }
+
+                    try{
+                        Socket sock = new Socket(ip, 15001);
+                        DataInputStream ds = new DataInputStream(sock.getInputStream());
+                        DataOutputStream dt = new DataOutputStream(sock.getOutputStream());
+                        ObjectInputStream os = new ObjectInputStream(sock.getInputStream());
+                        ObjectOutputStream ooos = new ObjectOutputStream(sock.getOutputStream());
+
+                        dt.writeUTF("#PING");
+                        ois.close();
+                        ooos.close();
+                        sock.close();
+                    }catch (Exception e){
+                        System.out.println("Error in connecting to primary host, switching to alternate host");
+                        ip = altIp;
+                        MediaPlayerAndControlsController.isAlternateIp = true;
+                    }
+
+                    MediaPlayerAndControlsController.videoPeerIP = ip;
                     VideoPlayerController.peerIP = MediaPlayerAndControlsController.videoPeerIP;
 
                 }catch (Exception e){

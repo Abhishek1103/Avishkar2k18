@@ -14,5 +14,6 @@
     <orderEntry type="library" name="jna-platform-4.1.0" level="project" />
     <orderEntry type="library" name="guava" level="project" />
     <orderEntry type="library" name="com.google.guava:guava:26.0-jre" level="project" />
+    <orderEntry type="library" name="com.recombee:api-client:2.2.0" level="project" />
   </component>
 </module>

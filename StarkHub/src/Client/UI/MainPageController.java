@@ -3,6 +3,7 @@ package Client.UI;
 import Client.DataClasses.Channel;
 import Client.Login.LayoutController;
 import Client.Login.Main;
+import Client.Utility.HelloService;
 import Client.Utility.InitializeListsAndMapsService;
 import Client.Utility.NotificationServiceAtLogin;
 import Client.Utility.NotificationServiceRealTime;
@@ -15,13 +16,16 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.util.Pair;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
@@ -37,7 +41,7 @@ public class MainPageController implements Initializable {
     public static boolean IS_TRENDING = false;
 
     @FXML
-    JFXButton btn, notificationButton, addChannelButton, addVideoButton;
+    JFXButton btn, notificationButton, addChannelButton, addVideoButton, premiumButton;
     @FXML
     AnchorPane contentAnchorPane, menuBtnAnchor, filterAnchorPane, rootAnchorPane;
     @FXML
@@ -54,6 +58,7 @@ public class MainPageController implements Initializable {
     public static ArrayList<Video> watchLaterList, historyList;
     public static HashMap<String, String> subscribedChannelMap;
     public static HashMap<String,Channel> myChannelMap;
+    public static ArrayList<Pair<Client.DataClasses.Video, String> > premiumVideoList; //TODO: HouseKeeping for this list
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,6 +93,30 @@ public class MainPageController implements Initializable {
         notificationPopup = initNotificationPopup();
 
         LayoutController.isNotifReady = true;
+
+        try {
+            if (LayoutController.isPremium) {
+                premiumButton.setGraphic(new ImageView(new Image(new FileInputStream(new File("../Resuorces/golden-star-24.png")))));
+                premiumButton.setOnAction(e -> {
+                   // TODO: show popup that already premium
+                    VBox vBox = new VBox(10);
+                    Label l = new Label("Already a Premiumm User");
+                    vBox.getChildren().add(l);
+                    JFXPopup pop = new JFXPopup(vBox);
+                    pop.show(premiumButton, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT);
+                });
+            }else{
+                premiumButton.setGraphic(new ImageView(new Image(new FileInputStream(new File("../Resuorces/white-star-24.png")))));
+                premiumButton.setOnAction(e -> {
+                    // Todo: show T&C and premimum page
+                });
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        HelloService hello = new HelloService();
+        hello.start();
     }
 
 
@@ -353,7 +382,7 @@ public class MainPageController implements Initializable {
     }
 
     public void playlistButtonClicked(){
-
+        // TODO: Optional feature
     }
 
     public void watchLaterButtonClicked(){
@@ -369,6 +398,9 @@ public class MainPageController implements Initializable {
         //TODO: The line below throws Error
         notificationCircle.setOpacity(0.0);
         notificationPopup.show(notificationButton,JFXPopup.PopupVPosition.TOP,JFXPopup.PopupHPosition.LEFT);
+        synchronized (this) {
+            notificationMap.clear();
+        }
     }
 
     void logOutButtonClicked(){
@@ -392,14 +424,14 @@ public class MainPageController implements Initializable {
 
         Tooltip tt = new Tooltip();
         tt.setText("Create a new Channel");
-        tt.setStyle("-fx-font: normal bold 11 Langdon; "
+        tt.setStyle("-fx-font: normal bold 12 Langdon; "
                 + "-fx-base: #AE3522; "
                 + "-fx-text-fill: orange;");
 
         addChannelButton.setTooltip(tt);
 
         Tooltip t = new Tooltip();
-        t.setStyle("-fx-font: normal bold 11 Langdon; "
+        t.setStyle("-fx-font: normal bold 12 Langdon; "
                 + "-fx-base: #AE3522; "
                 + "-fx-text-fill: orange;");
         t.setText("Add Video to a Channel");

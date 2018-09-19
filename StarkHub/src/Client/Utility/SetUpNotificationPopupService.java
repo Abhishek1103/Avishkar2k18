@@ -39,8 +39,9 @@ public class SetUpNotificationPopupService extends Service {
                         bt.setText(e.getKey());
 
                         bt.setOnAction(evt -> {
-                            // TODO: Remove from the popup and map
-                            // TODO: Open video if possible
+                            MainPageController.notificationMap.remove(e.getKey());
+                            MainPageController.notificationVbox.getChildren().remove(pane);
+                            // TODO: Open video
                         });
 
                         Platform.runLater(() -> {

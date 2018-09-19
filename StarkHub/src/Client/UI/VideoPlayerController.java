@@ -39,14 +39,15 @@ public class VideoPlayerController implements Initializable {
         }
 
         // TODO: Service to receive Comments
-        CommentRecceiverService commentRecceiverService = new CommentRecceiverService(peerIP, videoName );
-        commentRecceiverService.start();
+        if(!MediaPlayerAndControlsController.isAlternateIp) {
+            CommentRecceiverService commentRecceiverService = new CommentRecceiverService(peerIP, videoName);
+            commentRecceiverService.start();
 
-        commentRecceiverService.setOnSucceeded(e -> {
-            SetCommentsOnUIService scui = new SetCommentsOnUIService(vbox);
-            scui.start();
-        });
-
+            commentRecceiverService.setOnSucceeded(e -> {
+                SetCommentsOnUIService scui = new SetCommentsOnUIService(vbox);
+                scui.start();
+            });
+        }
     }
 
 

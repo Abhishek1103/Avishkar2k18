@@ -39,9 +39,10 @@ public class CommentSectionController implements Initializable {
         String comment = commentTextArea.getText();
         commentTextArea.clear();
 
-        CommentPostService cps = new CommentPostService(peerIP, comment,videoName, Main.USERNAME);
-        cps.start();
-
+        if(!MediaPlayerAndControlsController.isAlternateIp) {
+            CommentPostService cps = new CommentPostService(peerIP, comment, videoName, Main.USERNAME);
+            cps.start();
+        }
         // TODO: Post comment on UI
 
         try {

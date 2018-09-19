@@ -262,10 +262,11 @@ public class ClientPageController implements Initializable {
                 MediaPlayerAndControlsController.ownerName = userName;
                 MediaPlayerAndControlsController.channelName = channel;
                 MediaPlayerAndControlsController.videoPath = v.getPathOfVideo();
+                MediaPlayerAndControlsController.alternateVideoPath = v.getAlternatePathOfVideo();
                 VideoPlayerController.videoName = v.getVideoName();
 
                 // TODO: show loading
-                GetIpService gis = new GetIpService(userName);
+                GetIpService gis = new GetIpService(userName, v.getVideoName(), channel);
                 gis.start();
 
                 gis.setOnSucceeded(event -> {

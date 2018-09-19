@@ -91,7 +91,7 @@ public class ShowHistoryController implements Initializable {
                 MediaPlayerAndControlsController.videoPath = v.getPathOfVideo();
                 VideoPlayerController.videoName = v.getVideoName();
 
-                GetIpService gis = new GetIpService(userName);
+                GetIpService gis = new GetIpService(userName, v.getVideoName(), channel);
                 gis.start();
 
                 gis.setOnSucceeded(event -> {

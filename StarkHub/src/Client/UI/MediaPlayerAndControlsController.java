@@ -56,6 +56,9 @@ public class MediaPlayerAndControlsController implements Initializable {
 
     public static MediaPlayer mediaPlayer;
 
+    public static boolean isAlternateIp = false;
+    public static String alternateVideoPath = "";
+
     Timeline slideIn, slideOut;
     double previousVol = 50.0;
 
@@ -81,6 +84,10 @@ public class MediaPlayerAndControlsController implements Initializable {
             VIDEO_URL = "http://"+videoPeerIP+"/Videos/"+ UrlEscapers.urlFragmentEscaper().escape(videoPath.substring(videoPath.lastIndexOf('/')+1));
             System.out.println("Video_URL Generated: "+VIDEO_URL);
             //VIDEO_URL = "http://"+"172.31.85.85"+"/Videos/"+"Berklee.mp4";
+
+            if(isAlternateIp){
+                VIDEO_URL = "http://"+videoPeerIP+alternateVideoPath.substring(0,alternateVideoPath.lastIndexOf('/'))+"/"+UrlEscapers.urlFragmentEscaper().escape(videoPath.substring(videoPath.lastIndexOf('/')+1));
+            }
 
             System.out.println("Video URL: "+VIDEO_URL);
             Media media = new Media(VIDEO_URL);
