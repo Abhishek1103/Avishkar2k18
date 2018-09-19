@@ -1,6 +1,9 @@
 package hubFramework;
 
 import java.io.*;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,98 +52,12 @@ public class HubPeerCommunication implements Runnable {
                 }
                 case "SEARCH": {
                     System.out.println("#SEARCH");
-                    ArrayList<String> searchWaliString = (ArrayList<String>) peer.ois.readObject();
-                    StringBuffer queryBuffer = new StringBuffer("SELECT * FROM paththumbnailmap WHERE ");
-                    for (int i = 0; i < searchWaliString.size() - 1; i++) {
-                        queryBuffer.append("name LIKE '%" + searchWaliString.get(i) + "%' OR ");
-                    }
-                    queryBuffer.append("name LIKE '%" + searchWaliString.get(searchWaliString.size() - 1) + "%';");
-                    String query = queryBuffer.toString();
-                    Statement stm = connect();
-                    System.out.println("Conneted to db");
-                    System.out.println(query);
-                    ResultSet rs = stm.executeQuery(query);
-                    System.out.println("rs found");
-
-                    ArrayList<Video> result = new ArrayList<>();
-                    while (rs.next()) {
-                        String pathOfVideo = rs.getString(1);
-                        String username = rs.getString(3);
-                        String channelName = rs.getString(4);
-                        try {
-                            File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
-                            ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
-                            User obj = (User) readSerializedObject.readObject();
-                            System.out.println("obj for " + username);
-                            int f = 0;
-                            for (Channel ch : obj.channels) {
-                                if (ch.channelName.equals(channelName)) {
-                                    for (Video vid : ch.videos) {
-                                        if (vid.pathOfVideo.equals(pathOfVideo)) {
-                                            f = 1;
-                                            result.add(vid);
-                                            break;
-                                        }
-                                    }
-                                    if (f == 1)
-                                        break;
-                                }
-                            }
-                            peer.oos.writeObject(result);
-                            peer.oos.flush();
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                            e.printStackTrace();
-                        }
-                    }
+                    search();
                     break;
                 }
                 case "#TAGSEARCH": {
                     System.out.println("#TAGSEARCH");
-                    ArrayList<String> tagsWaliString = (ArrayList<String>) peer.ois.readObject();
-                    StringBuffer queryBuffer = new StringBuffer("SELECT * FROM videos WHERE ");
-                    for (int i = 0; i < tagsWaliString.size() - 1; i++) {
-                        queryBuffer.append("tags LIKE '%" + tagsWaliString.get(i) + "%' OR ");
-                    }
-                    queryBuffer.append("tags LIKE '%" + tagsWaliString.get(tagsWaliString.size() - 1) + "%';");
-                    String query = queryBuffer.toString();
-                    Statement stm = connect();
-                    System.out.println("Conneted to db");
-                    System.out.println(query);
-                    ResultSet rs = stm.executeQuery(query);
-                    System.out.println("rs found");
-
-                    ArrayList<Video> result = new ArrayList<>();
-                    while (rs.next()) {
-                        String pathOfVideo = rs.getString(1);
-                        String username = rs.getString(3);
-                        String channelName = rs.getString(4);
-                        try {
-                            File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
-                            ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
-                            User obj = (User) readSerializedObject.readObject();
-                            System.out.println("obj for " + username);
-                            int f = 0;
-                            for (Channel ch : obj.channels) {
-                                if (ch.channelName.equals(channelName)) {
-                                    for (Video vid : ch.videos) {
-                                        if (vid.pathOfVideo.equals(pathOfVideo)) {
-                                            f = 1;
-                                            result.add(vid);
-                                            break;
-                                        }
-                                    }
-                                    if (f == 1)
-                                        break;
-                                }
-                            }
-                            peer.oos.writeObject(result);
-                            peer.oos.flush();
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                            e.printStackTrace();
-                        }
-                    }
+                    tagSearch();
                     break;
                 }
                 case "#MAKECHANNEL": {
@@ -153,22 +70,18 @@ public class HubPeerCommunication implements Runnable {
                     addVideoInChannel();
                     break;
                 }
-//                case "GETCOMMENT":
-//
-//                    break;
-//                case "SETCOMMENT":
-//
-//                    break;
-//                case "GETLIKES":
-//
-//                    break;
+                case "#SETLIKES":
+                {
+                    System.out.println("#SETLIKES");
+                    setLikes();
+                    break;
+                }
                 case "#COMMENTNUMBER":
                 {
                     System.out.println("#COMMENTNUMBER");
                     try {
                         String username = peer.dis.readUTF();
                         String channelName = peer.dis.readUTF();
-                        Video vid = (Video) peer.ois.readObject();
                         File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
                         ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
                         User obj = (User) readSerializedObject.readObject();
@@ -176,69 +89,9 @@ public class HubPeerCommunication implements Runnable {
                         int f = 0;
                         for(Channel ch : obj.channels)
                         {
-                            for(Video v:ch.videos)
-                            {
-                                if(v.equals(vid))
-                                {
-                                    v.numberOfComments += 1;
-                                    f = 1;
-                                    break;
-                                }
-                            }
-                            if(f == 1)
+                            if(ch.channelName.equals(channelName)) {
+                                ch.totalNoOfComments += 1;
                                 break;
-                        }
-                        System.out.println("Writting back");
-                        ObjectOutputStream writeSerializedObject = new ObjectOutputStream(new FileOutputStream(
-                                new File(System.getProperty("user.home") + "/Hub/Client/" + username)));
-                        writeSerializedObject.writeObject(obj);
-                        writeSerializedObject.close();
-                        System.out.println("Done Writting back object " + username);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                }
-                case "#SETLIKES":
-                {
-                    System.out.println("#SETLIKES");
-                    try {
-                        String username = peer.dis.readUTF();
-                        String channelName = peer.dis.readUTF();
-                        Video vid = (Video) peer.ois.readObject();
-                        File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
-                        ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
-                        User obj = (User) readSerializedObject.readObject();
-                        System.out.println("obj for " + username);
-                        String event = peer.dis.readUTF();
-                        if(event.equals("#ADD"))
-                        {
-                            int f = 0;
-                            for (Channel ch : obj.channels) {
-                                for (Video v : ch.videos) {
-                                    if (v.equals(vid)) {
-                                        v.numberOfLikes += 1;
-                                        f = 1;
-                                        break;
-                                    }
-                                }
-                                if (f == 1)
-                                    break;
-                            }
-                        }
-                        else if(event.equals("#SUB"))
-                        {
-                            int f = 0;
-                            for (Channel ch : obj.channels) {
-                                for (Video v : ch.videos) {
-                                    if (v.equals(vid)) {
-                                        v.numberOfLikes -= 1;
-                                        f = 1;
-                                        break;
-                                    }
-                                }
-                                if (f == 1)
-                                    break;
                             }
                         }
                         System.out.println("Writting back");
@@ -252,22 +105,80 @@ public class HubPeerCommunication implements Runnable {
                     }
                     break;
                 }
-                case "GETSTATOFCHANNEL":
-
-                    break;
-//                case "GETRATING":
-//
-//                    break;
-//                case "ADDTAG":
-//
-//                    break;
-                case "ADDSUBSCRIBER":
+                case "#GETSTATOFCHANNEL":
                 {
-
+                    System.out.println("#GETSTATOFCHANNEL");
+                    getStatOfChannel();
                     break;
+                }
+                case "#ADDSUBSCRIBER":
+                {
+                    System.out.println("#ADDSUBSCRIBER");
+                    String username = peer.dis.readUTF();
+                    String subscriberName = peer.dis.readUTF();
+                    String channelName = peer.dis.readUTF();
+                    File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
+                    ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
+                    User obj = (User) readSerializedObject.readObject();
+                    int f = 0;
+                    for (Channel ch : obj.channels) {
+                        if(ch.channelName.equals(channelName)){
+                            synchronized (this) {
+                                ch.channelSubscribers += 1;
+                                ch.subscriberName.add(subscriberName);
+                            }
+                            f = 1;
+                        }
+                        if (f == 1)
+                            break;
+                    }
+                    System.out.println("Subscriber added: "+subscriberName+" to channel "+channelName);
+                    ObjectOutputStream writeSerializedObject = new ObjectOutputStream(new FileOutputStream(
+                            new File(System.getProperty("user.home") + "/Hub/Client/" + username)));
+                    writeSerializedObject.writeObject(obj);
+                    writeSerializedObject.close();
+                    System.out.println("Done Writting back object " + username);
+                    break;
+                }
+                case "#GETIP":
+                {
+                    System.out.println("#GETIP");
+                    getIP();
+                    break;
+                }
+                case "#PREMIUM":
+                {
+                    //TODO:according to downtime randomly select people and make store data in them
+                    String targetUsername = peer.dis.readUTF();
+                    String query = "SELECT ip FROM TABLE useripmap WHERE username='"+targetUsername+"';";
+                    Statement stm = connect();
+                    System.out.println("Conneted to db");
+                    System.out.println(query);
+                    ResultSet rs = stm.executeQuery(query);
+                    System.out.println("rs found");
+                    rs.next();
+                    String targetIP = rs.getString(1);
+                    try{
+                        Socket targetSocket = new Socket(targetIP, 15001);
+                        peer.dos.writeBoolean(true);
+                        new Thread(new ReceiveAndStoreData(peer, targetUsername, targetIP)).start();
+                        //new Thread(new SendData(new Peer()) -> do this at end of
+                    } catch (ConnectException e) {
+                        peer.dos.writeBoolean(false);
+                        System.out.println("Connect exception");
+                        System.out.println(e.getMessage());
+                        e.printStackTrace();
+                    }
+                    catch (UnknownHostException e)
+                    {
+                        peer.dos.writeBoolean(false);
+                        System.out.println("UnknownHost exception");
+                        System.out.println(e.getMessage());
+                        e.printStackTrace();
+                    }
                 }
                 default:
-                    System.out.println("Ye kya flag hai "+peer.peerSocket.getInetAddress().getHostName()+" bhai "+ flag);
+                    System.out.println("Ye kya flag hai "+peer.peerSocket.getInetAddress().getHostName()+" bhai: "+ flag);
             }
 
         } catch (Exception e) {
@@ -340,7 +251,7 @@ public class HubPeerCommunication implements Runnable {
             peer.dos.writeBoolean(res);
             System.out.println("returned "+res);
             if(res)
-                stm.executeUpdate("INSERT INTO useripmap VALUES("+"'"+username+"'"+","+"'"+peer.peerSocket.getInetAddress().getHostAddress()+"',"+"''"+","+"''"+")"+";");
+                stm.executeUpdate("INSERT INTO useripmap VALUES("+"'"+username+"'"+","+"'"+peer.peerSocket.getInetAddress().getHostAddress()+"',"+"''"+","+"''"+","+"''"+","+"''"+","+"''"+")"+";");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -425,8 +336,9 @@ public class HubPeerCommunication implements Runnable {
         {
             HashMap<String, Video> recommendedData = null;
             String n = "12";
-            if(flag == 1)
+            if(flag == 1) {
                 n = "16";
+            }
             else
             {
                 recommendedData = new HashMap<String, Video>();
@@ -451,9 +363,10 @@ public class HubPeerCommunication implements Runnable {
                     for (Channel ch : obj.channels) {
                         if (ch.channelName.equals(channelName)) {
                             for (Video vid : ch.videos) {
-                                if (vid.pathOfVideo.equals(path))
+                                if (vid.pathOfVideo.equals(path)) {
                                     System.out.println(vid.videoName);
-                                    data.put(vid.videoName, vid);
+                                }
+                                data.put(vid.videoName, vid);
                             }
                         }
                     }
@@ -469,6 +382,10 @@ public class HubPeerCommunication implements Runnable {
             peer.oos.writeObject(recommendedData);
             peer.oos.writeObject(data);
         }
+
+        //Send  login time notifications if any
+        SendLoginTimeNotificationDaemon loginTime = new SendLoginTimeNotificationDaemon(username, peer.peerSocket.getInetAddress().getHostName());
+        new Thread(loginTime).start();
     }
 
     private void addVideoInChannel() throws IOException
@@ -487,7 +404,7 @@ public class HubPeerCommunication implements Runnable {
                 ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
                 User obj = (User) readSerializedObject.readObject();
                 System.out.println("obj for " + username);
-                ArrayList<Video> allVideos = new ArrayList<>();
+                ArrayList<Video> allVideos = new ArrayList<Video>();
                 while(numberOfVideo-- > 0)
                 {
                     String pathOfVideo = peer.dis.readUTF();
@@ -515,9 +432,11 @@ public class HubPeerCommunication implements Runnable {
                     stm.executeUpdate("INSERT INTO paththumbnailmap VALUES(" + "'" + pathOfVideo + "'" + "," + "'" + finalTag + "','" + username + "','" + channelName + "','" + vid.videoName + "')" + ";");
                     System.out.println("Updated entry");
                 }
+                Channel notifierChannel = null;
                 for (Channel ch : obj.channels) {
                     if (ch.channelName.equals(channelName))
                     {
+                        notifierChannel = ch;
                         for(Video vid : allVideos)
                             ch.videos.add(vid);
                         break;
@@ -529,11 +448,213 @@ public class HubPeerCommunication implements Runnable {
                 writeSerializedObject.writeObject(obj);
                 writeSerializedObject.close();
                 System.out.println("Done Writting back object " + username);
+                //TODO: notify all subscribers , done but not tested
+                System.out.println("allVideos "+allVideos);
+                Notification notificationObject = new Notification(notifierChannel, allVideos);
+                Thread notificationThread = new Thread(notificationObject);
+                notificationThread.start();
 
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 e.printStackTrace();
             }
         }
+    }
+
+    private void search() throws IOException, ClassNotFoundException, SQLException {
+        ArrayList<String> searchWaliString = (ArrayList<String>) peer.ois.readObject();
+        StringBuffer queryBuffer = new StringBuffer("SELECT * FROM paththumbnailmap WHERE ");
+        for (int i = 0; i < searchWaliString.size() - 1; i++) {
+            queryBuffer.append("name LIKE '%" + searchWaliString.get(i) + "%' OR ");
+        }
+        queryBuffer.append("name LIKE '%" + searchWaliString.get(searchWaliString.size() - 1) + "%';");
+        String query = queryBuffer.toString();
+        Statement stm = connect();
+        System.out.println("Conneted to db");
+        System.out.println(query);
+        ResultSet rs = stm.executeQuery(query);
+        System.out.println("rs found");
+
+        ArrayList<Video> result = new ArrayList<Video>();
+        while (rs.next()) {
+            String pathOfVideo = rs.getString(1);
+            String username = rs.getString(3);
+            String channelName = rs.getString(4);
+            try {
+                File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
+                ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
+                User obj = (User) readSerializedObject.readObject();
+                System.out.println("obj for " + username);
+                int f = 0;
+                for (Channel ch : obj.channels) {
+                    if (ch.channelName.equals(channelName)) {
+                        for (Video vid : ch.videos) {
+                            if (vid.pathOfVideo.equals(pathOfVideo)) {
+                                f = 1;
+                                result.add(vid);
+                                break;
+                            }
+                        }
+                        if (f == 1)
+                            break;
+                    }
+                }
+                peer.oos.writeObject(result);
+                peer.oos.flush();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void tagSearch() throws IOException, ClassNotFoundException, SQLException {
+        ArrayList<String> tagsWaliString = (ArrayList<String>) peer.ois.readObject();
+        StringBuffer queryBuffer = new StringBuffer("SELECT * FROM videos WHERE ");
+        for (int i = 0; i < tagsWaliString.size() - 1; i++) {
+            queryBuffer.append("tags LIKE '%" + tagsWaliString.get(i) + "%' OR ");
+        }
+        queryBuffer.append("tags LIKE '%" + tagsWaliString.get(tagsWaliString.size() - 1) + "%';");
+        String query = queryBuffer.toString();
+        Statement stm = connect();
+        System.out.println("Conneted to db");
+        System.out.println(query);
+        ResultSet rs = stm.executeQuery(query);
+        System.out.println("rs found");
+
+        ArrayList<Video> result = new ArrayList<Video>();
+        while (rs.next()) {
+            String pathOfVideo = rs.getString(1);
+            String username = rs.getString(3);
+            String channelName = rs.getString(4);
+            try {
+                File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
+                ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
+                User obj = (User) readSerializedObject.readObject();
+                System.out.println("obj for " + username);
+                int f = 0;
+                for (Channel ch : obj.channels) {
+                    if (ch.channelName.equals(channelName)) {
+                        for (Video vid : ch.videos) {
+                            if (vid.pathOfVideo.equals(pathOfVideo)) {
+                                f = 1;
+                                result.add(vid);
+                                break;
+                            }
+                        }
+                        if (f == 1)
+                            break;
+                    }
+                }
+                peer.oos.writeObject(result);
+                peer.oos.flush();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void setLikes()
+    {
+        try {
+            String username = peer.dis.readUTF();
+            String channelName = peer.dis.readUTF();
+            String videoName = peer.dis.readUTF();
+            //Video vid = (Video) peer.ois.readObject();
+            File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
+            ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
+            User obj = (User) readSerializedObject.readObject();
+            System.out.println("obj for " + username);
+            String event = peer.dis.readUTF();
+            if(event.equals("#ADD"))
+            {
+                int f = 0;
+                for (Channel ch : obj.channels) {
+                    if(ch.channelName.equals(channelName)){
+                        for (Video v : ch.videos) {
+                            if (v.videoName.equals(videoName)) {
+                                synchronized (this) {
+                                    v.numberOfLikes += 1;
+                                    ch.totalNoOfLikes += 1;
+                                }
+                                f = 1;
+                                break;
+                            }
+                        }
+                    }
+                    if (f == 1)
+                        break;
+                }
+            }
+            else if(event.equals("#SUB"))
+            {
+                int f = 0;
+                for (Channel ch : obj.channels) {
+                    if(ch.channelName.equals(channelName)){
+                        for (Video v : ch.videos) {
+                            if (v.videoName.equals(videoName)) {
+                                synchronized (this) {
+                                    v.numberOfLikes -= 1;
+                                    ch.totalNoOfLikes -= 1;
+                                }
+                                f = 1;
+                                break;
+                            }
+                        }
+                    }
+                    if (f == 1)
+                        break;
+                }
+            }
+            System.out.println("Writting back");
+            ObjectOutputStream writeSerializedObject = new ObjectOutputStream(new FileOutputStream(
+                    new File(System.getProperty("user.home") + "/Hub/Client/" + username)));
+            writeSerializedObject.writeObject(obj);
+            writeSerializedObject.close();
+            System.out.println("Done Writting back object " + username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getStatOfChannel()
+    {
+        try {
+            double rating = 0;
+            String username = peer.dis.readUTF();
+            String channelName = peer.dis.readUTF();
+            File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
+            ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
+            User obj = (User) readSerializedObject.readObject();
+            System.out.println("obj for " + username);
+            int f = 0;
+            Channel requestedChannel = null;
+            for (Channel ch : obj.channels) {
+                if (ch.channelName.equals(channelName)) {
+                    requestedChannel = ch;
+                    rating = 0.5*ch.channelSubscribers + 0.25*ch.totalNoOfComments + 0.25*ch.totalNoOfLikes;
+                    break;
+                }
+            }
+            peer.dos.writeDouble(rating);
+            peer.dos.writeInt(requestedChannel.totalNoOfLikes);
+            peer.dos.writeInt(requestedChannel.totalNoOfComments);
+            peer.dos.writeInt(requestedChannel.channelSubscribers);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getIP() throws IOException, SQLException {
+        String username = peer.dis.readUTF();
+        String query = "SELECT ip FROM useripmap WHERE username = '"+username+"';";
+        Statement stm = connect();
+        System.out.println(query);
+        ResultSet rs = stm.executeQuery(query);
+        rs.next();
+        String ip = rs.getString(1);
+        System.out.println("Sending back ip "+ip);
+        peer.dos.writeUTF(ip);
     }
 }

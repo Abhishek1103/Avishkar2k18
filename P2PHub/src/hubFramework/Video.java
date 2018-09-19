@@ -7,10 +7,24 @@ import java.util.ArrayList;
 
 public class Video implements Serializable
 {
-    protected String videoName, ownerName, pathOfVideo, channelName;
+    protected String videoName;
+    protected String ownerName;
+    protected String pathOfVideo;
+    protected String channelName;
+
+    protected String alternatePathOfVideo;
+
     protected int numberOfLikes, numberOfDislikes, numberOfComments, numberOfViews;
     protected String thumbnailPath;
     protected ArrayList<String> tags;
+
+    public String getAlternatePathOfVideo() {
+        return alternatePathOfVideo;
+    }
+
+    public void setAlternatePathOfVideo(String alternatePathOfVideo) {
+        this.alternatePathOfVideo = alternatePathOfVideo;
+    }
 
     public String getVideoName() {
         return videoName;
@@ -100,6 +114,7 @@ public class Video implements Serializable
         this.thumbnailPath = thumbnailPath;
         this.tags = tags;
         this.channelName = channelName;
+        alternatePathOfVideo = "";
     }
 
 }
