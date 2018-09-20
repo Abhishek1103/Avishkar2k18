@@ -2,6 +2,7 @@ package Client.Utility;
 
 import Client.Login.Main;
 import Client.UI.ClientPageController;
+import Client.UI.MainPageController;
 import Client.UI.VideoPlayerController;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -38,10 +39,16 @@ public class ResetThumbnailPathService extends Service {
                         }else if(!ClientPageController.receivedVideosRecommended.isEmpty()&&ClientPageController.receivedVideosRecommended.containsKey(name)){
                             ClientPageController.receivedVideosRecommended.get(name).setThumbnailPath(f.getAbsolutePath());
                         }
+                        else if(!MainPageController.searchVideosResult.isEmpty() && MainPageController.searchVideosResult.containsKey(name)){
+                            MainPageController.searchVideosResult.get(name).setThumbnailPath(f.getAbsolutePath());
+                        }
+                        else if(!MainPageController.trendingVideos.isEmpty() && MainPageController.trendingVideos.containsKey(name)){
+                            MainPageController.trendingVideos.get(name).setThumbnailPath(f.getAbsolutePath());
+                        }
                     }
 
                     System.out.println("ThumbNailPath Corrected");
-
+                    ClientPageController.startResetingThumbNail = false;
 
                 }catch(Exception e){
                     e.printStackTrace();

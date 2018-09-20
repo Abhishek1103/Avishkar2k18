@@ -3,12 +3,14 @@ package Client.UI;
 import Client.DataClasses.Channel;
 import Client.Login.LayoutController;
 import Client.Login.Main;
+import Client.Search.SearchService;
 import Client.Utility.HelloService;
 import Client.Utility.InitializeListsAndMapsService;
 import Client.Utility.NotificationServiceAtLogin;
 import Client.Utility.NotificationServiceRealTime;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
+import com.jfoenix.controls.JFXTextField;
 import hubFramework.Video;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 public class MainPageController implements Initializable {
 
@@ -48,6 +51,8 @@ public class MainPageController implements Initializable {
     ImageView menuButton;
     @FXML
     Circle notificationCircle;
+    @FXML
+    JFXTextField searchBar;
 
     JFXPopup popup;
     JFXPopup filterPopup;
@@ -59,6 +64,9 @@ public class MainPageController implements Initializable {
     public static HashMap<String, String> subscribedChannelMap;
     public static HashMap<String,Channel> myChannelMap;
     public static ArrayList<Pair<Client.DataClasses.Video, String> > premiumVideoList; //TODO: HouseKeeping for this list
+    public static HashMap<String, hubFramework.Video> searchVideosResult;
+    public static HashMap<String, hubFramework.Video> trendingVideos;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -409,6 +417,13 @@ public class MainPageController implements Initializable {
 
     void myChannelsButtonClicked(){
         System.out.println("My Channels clicked");
+
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/myChannels.fxml"));
+            contentAnchorPane.getChildren().setAll(pane);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     void dashBoardButtonClicked(){
@@ -438,6 +453,29 @@ public class MainPageController implements Initializable {
         addVideoButton.setTooltip(t);
     }
 
+
+    public void searchPressed(){
+        String searchText = searchBar.getText().trim();
+        StringTokenizer t = new StringTokenizer(searchText, " ");
+        ArrayList<String> searchQuery = new ArrayList<>();
+        while(t.hasMoreTokens()){
+            searchQuery.add(t.nextToken());
+        }
+
+        SearchService searchService = new SearchService(searchQuery);
+        searchService.start();
+
+        searchService.setOnSucceeded(e-> {
+            // TODO: Start Thumbnail receiver service
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/searchResultsPage"));
+
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
+    }
 
 
 }

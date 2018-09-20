@@ -2,6 +2,7 @@ package Client.Login;
 
 import Client.DataClasses.Channel;
 import Client.UI.MainPageController;
+import Client.Utility.ByeService;
 import Server.Server;
 import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXPasswordField;
@@ -218,6 +219,8 @@ public class LayoutController implements Initializable {
         curStage.setOnCloseRequest(e -> {
             try {
 
+                ByeService bye = new ByeService();
+                bye.start();
 
                 ArrayList<Video> watchLater, history;
                 watchLater = MainPageController.watchLaterList;

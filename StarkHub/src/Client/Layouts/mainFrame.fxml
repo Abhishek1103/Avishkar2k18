@@ -109,7 +109,7 @@
                   <Glow />
                </effect>
             </ImageView>
-            <JFXTextField focusColor="WHITE" layoutX="295.0" layoutY="38.0" prefHeight="26.0" prefWidth="456.0" promptText="Search" style="-fx-background-color: #ffffff;" unFocusColor="#f8f8f8" />
+            <JFXTextField fx:id="searchBar" focusColor="WHITE" layoutX="295.0" layoutY="38.0" onAction="#searchPressed" prefHeight="26.0" prefWidth="456.0" promptText="Search" style="-fx-background-color: #ffffff;" unFocusColor="#f8f8f8" />
             <AnchorPane fx:id="menuBtnAnchor" layoutX="1160.0" layoutY="22.0" prefHeight="45.0" prefWidth="57.0">
                <children>
                   <ImageView fx:id="menuButton" fitHeight="33.0" fitWidth="29.0" layoutX="15.0" layoutY="10.0" onMouseClicked="#openMenu" pickOnBounds="true" preserveRatio="true">

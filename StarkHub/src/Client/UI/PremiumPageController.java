@@ -2,6 +2,8 @@ package Client.UI;
 
 import Client.DataClasses.Channel;
 import Client.DataClasses.Video;
+import Client.Login.LayoutController;
+import Client.Login.Main;
 import Client.Utility.SendData;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
@@ -15,6 +17,10 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Pair;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,8 +91,15 @@ public class PremiumPageController implements Initializable {
 
         btn.setOnAction(e -> {
             String s = ((Label)(pane.getChildren().get(1))).getText();
+            String vidName = s.substring(s.indexOf(':')+1).trim();
             allVideosListView.getItems().add(new Label(s));
             selectedVideoListView.getItems().remove(pane);
+            ArrayList<Pair<Video, String>> lst = premList;
+            for(Pair<Video, String> p: lst){
+                if(p.getKey().getVideoName().equals(vidName)){
+                    premList.remove(p);
+                }
+            }
         });
 
         return pane;
@@ -135,6 +148,25 @@ public class PremiumPageController implements Initializable {
 
         sd.setOnSucceeded(e -> {
             System.out.println("Premeium list successfully sent");
+            try {
+                File f = new File(System.getProperty("user.home") + "/starkhub/" + Main.USERNAME + "/credentials.cfg");
+                BufferedReader br = new BufferedReader(new FileReader(f));
+                String usname = br.readLine();
+                String pass = br.readLine();
+                String name = br.readLine();
+                br.close();
+                PrintWriter pw = new PrintWriter(f);
+                pw.println(usname);
+                pw.println(pass);
+                pw.println(name);
+                pw.println("true");
+                pw.close();
+
+                LayoutController.isPremium = true;
+
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
         });
 
     }
