@@ -164,9 +164,9 @@ public class ShowHistoryController implements Initializable {
         ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
         ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
-        dout.writeUTF(Main.USERNAME);
         dout.writeUTF("#TRENDING");
 
+        System.out.println("Received: "+dis.readUTF());
 
         ThumbnailReceiverService thumbnailReceiverService = new ThumbnailReceiverService();
         thumbnailReceiverService.start();
@@ -176,7 +176,7 @@ public class ShowHistoryController implements Initializable {
             ResetThumbnailPathService r = new ResetThumbnailPathService();
             r.start();
         });
-
+        System.out.println("Received: "+dis.readUTF());
         MainPageController.trendingVideos = (HashMap<String, Video>)ois.readObject();
 
         ClientPageController.startResetingThumbNail = true;

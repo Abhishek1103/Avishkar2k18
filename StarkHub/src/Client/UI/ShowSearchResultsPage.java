@@ -50,7 +50,9 @@ public class ShowSearchResultsPage implements Initializable {
 
         ThumbnailReceiverService service = new ThumbnailReceiverService();
         service.start();
+        System.out.println("ThumbNail service started");
         service.setOnSucceeded(e -> {
+            System.out.println("thumbNail service succeded");
             putOnThumbnails();
             System.out.println("Thubnails displayed");
 
@@ -66,6 +68,8 @@ public class ShowSearchResultsPage implements Initializable {
 
         try{
             videoMap = MainPageController.searchVideosResult;
+            System.out.println("Search Results: "+videoMap);
+            makeUI();
         }catch(Exception ex){
             System.out.println(ex.getMessage());
             ex.printStackTrace();
@@ -95,13 +99,18 @@ public class ShowSearchResultsPage implements Initializable {
                 vBox.getChildren().add(l);
 
                 int k = videoMap.size();
+                System.out.println("SearchResult size: "+ k );
+                if(k<4)
+                    k=4;
                 k /= 4;
                 if(k%4!=0)
                     k++;
 
                 for(int i=0;i<k;i++){
                     HBox h = createSection();
+                    System.out.println("created Section");
                     for(int j=0;j<4 && it.hasNext();j++){
+                        System.out.println("Creating a single item");
                         String name = ((Map.Entry)it.next()).getKey().toString();
                         AnchorPane p = createSingleItem(name);
                         h.getChildren().add(p);

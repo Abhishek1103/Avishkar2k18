@@ -16,9 +16,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
+import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -53,12 +54,54 @@ public class MyChannelsController implements Initializable {
 
         // TODO: GET Number of likes, comments, views from hub
 
-        for(Map.Entry<String, Channel> entry: map.entrySet()){
+        Socket sock = new Socket(Main.HUB_IP,1111);
+        DataInputStream dis = new DataInputStream(sock.getInputStream());
+        DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+        ObjectInputStream ois= new ObjectInputStream(sock.getInputStream());
+        ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
+        dout.writeUTF("#GETSTATOFCHANNEL");
+        dout.writeUTF(Main.USERNAME);
+
+
+        for(Map.Entry<String, Channel> entry: map.entrySet()){
             Channel c = entry.getValue();
-            Label l = new Label(c.getChannelName());
-            l.setFont(new Font(20));
-            vBox.getChildren().add(l);
+
+
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/myChannelChannelItem.fxml"));
+            Label chanName = (Label)pane.getChildren().get(0);
+            Label likeslbl, cmtlbl, subslbl, viewslbl, ratlbl;
+            likeslbl = (Label)pane.getChildren().get(1);
+            cmtlbl = (Label)pane.getChildren().get(2);
+            subslbl = (Label)pane.getChildren().get(3);
+            viewslbl = (Label)pane.getChildren().get(4);
+            ratlbl = (Label)pane.getChildren().get(5);
+
+
+            dout.writeUTF(c.getChannelName());
+
+            double channelRating = dis.readDouble();
+            int totalLikes = dis.readInt();
+            int totalComments = dis.readInt();
+            int totalSubscribers = dis.readInt();
+            int totalViews = dis.readInt();
+
+            chanName.setText(c.getChannelName());
+            likeslbl.setText("Likes: "+totalLikes);
+            cmtlbl.setText("Comments: "+totalComments);
+            subslbl.setText("Subscribers: "+totalSubscribers);
+            viewslbl.setText("Views: "+totalViews);
+            ratlbl.setText(""+channelRating*10);
+
+
+            vBox.getChildren().add(pane);
+
+            ArrayList<hubFramework.Video> list = (ArrayList<hubFramework.Video>) ois.readObject();
+            HashMap<String, hubFramework.Video> videonamemap = new HashMap<>();
+
+            for(hubFramework.Video v:list){
+                videonamemap.put(v.getVideoName(), v);
+            }
 
             AnchorPane content = FXMLLoader.load(getClass().getResource("../Layouts/myChannelItemContainer"));
             JFXListView<AnchorPane> listView = (JFXListView<AnchorPane>) content.getChildren().get(0);
@@ -73,8 +116,13 @@ public class MyChannelsController implements Initializable {
                 Label commentsLabel = (Label) (item.getChildren().get(3));
                 Label viewsLabel = (Label) (item.getChildren().get(4));
 
+                hubFramework.Video vid = videonamemap.get(v.getVideoName());
+
                 imgv.setImage(new Image(new FileInputStream(new File(v.getThumbnailPath()))));
                 videoNameLabel.setText(v.getVideoName());
+                likesLabel.setText("Likes: "+vid.getNumberOfLikes());
+                commentsLabel.setText("Comments: "+vid.getNumberOfComments());
+                viewsLabel.setText("Views: "+vid.getNumberOfViews());
 
                 listView.getItems().add(item);
             }

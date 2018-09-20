@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Pair;
 import sun.security.util.Password;
 
 import java.io.*;
@@ -54,6 +55,8 @@ public class LayoutController implements Initializable {
     public static boolean isPremium = false;
 
     JFXPopup invalidUsernamePopup, emptyPopup;
+
+    Thread serverThread;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,7 +120,8 @@ public class LayoutController implements Initializable {
                     Main.isNewUser = false;
                     USERNAME = userName;
                     Server.starkHubUsername = userName;
-                    new Thread(new Server()).start();
+                    serverThread = new Thread(new Server());
+                    serverThread.start();
                     startMainPage();
                 }else{
                     System.out.println("AUTHENTICATION FAILED");
@@ -160,7 +164,8 @@ public class LayoutController implements Initializable {
                     Main.USERNAME = userName;
                     USERNAME = userName;
                     Server.starkHubUsername = userName;
-                    new Thread(new Server()).start();
+                    serverThread = new Thread(new Server());
+                    serverThread.start();
                     Main.isNewUser = true;
                     startMainPage();
                 } catch (Exception e) {
@@ -189,6 +194,8 @@ public class LayoutController implements Initializable {
         new File(userHome+"/starkhub/"+userName+"/history").mkdirs();
         new File(userHome+"/starkhub/"+userName+"/comments").mkdirs();
         new File(userHome+"/starkhub/"+userName+"/subscriptions").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/premium").mkdirs();
+        new File(userHome+"/starkhub/"+userName+"/prem").mkdirs();
         PrintWriter pw = new PrintWriter(f);
         pw.println(userName);
         String hashedPassword = Hashing.sha256().hashString(passWord, StandardCharsets.UTF_8).toString();
@@ -225,6 +232,7 @@ public class LayoutController implements Initializable {
                 ArrayList<Video> watchLater, history;
                 watchLater = MainPageController.watchLaterList;
                 history = MainPageController.historyList;
+                ArrayList<Pair<Client.DataClasses.Video, String>> premList = MainPageController.premiumVideoList;
 
                 HashMap<String, String> subscribedChannelMap = MainPageController.subscribedChannelMap;
                 HashMap<String, Channel> myChannelMap = MainPageController.myChannelMap;
@@ -244,32 +252,50 @@ public class LayoutController implements Initializable {
                 System.out.println("Object written");
                 System.out.println("Add to watch later ArrayList Written");
 
-                if(!f.exists())
-                    f.createNewFile();
                 f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/history/list");
+                if(!f.exists()) {
+                    f.createNewFile();
+                }
                 ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
                 os.writeObject(history);
                 os.close();
                 System.out.println("Object written");
                 System.out.println("History  ArrayList Written");
 
-                if(!f.exists())
-                    f.createNewFile();
                 f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/mychannels/list");
+                if(!f.exists()) {
+                    f.createNewFile();
+                }
                 os = new ObjectOutputStream(new FileOutputStream(f));
                 os.writeObject(myChannelMap);
                 os.close();
                 System.out.println("Object written");
                 System.out.println("MyChannelMap Written");
 
-                if(!f.exists())
-                    f.createNewFile();
                 f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/subscriptions/list");
+                if(!f.exists()) {
+                    f.createNewFile();
+                }
                 os = new ObjectOutputStream(new FileOutputStream(f));
                 os.writeObject(subscribedChannelMap);
                 os.close();
                 System.out.println("Object written");
                 System.out.println("SubscribedChannelsMap Written");
+
+
+                f = new File(System.getProperty("user.home") + "/starkhub/"+ Main.USERNAME +"/prem/list");
+                if(!f.exists()) {
+                    f.createNewFile();
+                }
+                os = new ObjectOutputStream(new FileOutputStream(f));
+                os.writeObject(premList);
+                os.close();
+                System.out.println("Object written");
+                System.out.println("PremiumVideoList Written");
+
+
+                serverThread.interrupt();
+
             }catch(Exception ex){
                 System.out.println(ex.getMessage());
                 ex.printStackTrace();

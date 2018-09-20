@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
@@ -80,6 +81,9 @@
                      <effect>
                         <Shadow />
                      </effect>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
                   </JFXButton>
                </children>
             </AnchorPane>
@@ -94,7 +98,10 @@
                         <Image url="@../Resuorces/notification-30.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="notificationButton" layoutX="4.0" layoutY="4.0" onAction="#notificationButtonPressed" prefHeight="29.0" prefWidth="29.0" text=" " />
+                  <JFXButton fx:id="notificationButton" layoutX="4.0" layoutY="4.0" onAction="#notificationButtonPressed" prefHeight="29.0" prefWidth="29.0" text=" ">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor></JFXButton>
                </children>
             </AnchorPane>
             <ImageView fx:id="proPicImageView" fitHeight="73.0" fitWidth="93.0" layoutX="751.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
@@ -102,13 +109,16 @@
                   <Glow />
                </effect>
             </ImageView>
-            <JFXTextField focusColor="WHITE" layoutX="295.0" layoutY="38.0" prefHeight="26.0" prefWidth="456.0" promptText="Search" style="-fx-background-color: #ffffff;" unFocusColor="#f8f8f8" />
+            <JFXTextField fx:id="searchBar" focusColor="WHITE" layoutX="295.0" layoutY="38.0" onAction="#searchPressed" prefHeight="26.0" prefWidth="456.0" promptText="Search" style="-fx-background-color: #ffffff;" unFocusColor="#f8f8f8" />
             <AnchorPane fx:id="menuBtnAnchor" layoutX="1160.0" layoutY="22.0" prefHeight="45.0" prefWidth="57.0">
                <children>
                   <ImageView fx:id="menuButton" fitHeight="33.0" fitWidth="29.0" layoutX="15.0" layoutY="10.0" onMouseClicked="#openMenu" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resuorces/menu-vertical-24.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
                   </ImageView>
                </children>
             </AnchorPane>
@@ -124,7 +134,10 @@
                         <Image url="@../Resuorces/plus-24.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="addVideoButton" buttonType="RAISED" layoutX="2.0" layoutY="2.0" onAction="#addVideo" prefHeight="26.0" prefWidth="26.0" ripplerFill="#d70d0d" text=" " />
+                  <JFXButton fx:id="addVideoButton" buttonType="RAISED" layoutX="2.0" layoutY="2.0" onAction="#addVideo" prefHeight="26.0" prefWidth="26.0" ripplerFill="#d70d0d" text=" ">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor></JFXButton>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="filterAnchorPane" layoutX="761.0" layoutY="38.0" prefHeight="29.0" prefWidth="29.0">
@@ -134,9 +147,17 @@
                         <Image url="@../Resuorces/filter1-24.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="filterButton" buttonType="RAISED" onAction="#openFilterMenu" prefHeight="29.0" prefWidth="29.0" ripplerFill="#c91010" text=" " />
+                  <JFXButton fx:id="filterButton" buttonType="RAISED" onAction="#openFilterMenu" prefHeight="29.0" prefWidth="29.0" ripplerFill="#c91010" text=" ">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor></JFXButton>
                </children>
             </AnchorPane>
+            <JFXButton fx:id="premiumButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="947.0" layoutY="31.0" prefHeight="36.0" prefWidth="37.0">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="contentAnchorPane" layoutX="249.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="986.0" />
@@ -147,7 +168,10 @@
                   <Image url="@../Resuorces/addchannel-24.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="addChannelButton" buttonType="RAISED" layoutX="2.0" layoutY="2.0" onAction="#addChannel" prefHeight="26.0" prefWidth="26.0" ripplerFill="#d70d0d" text=" " />
+            <JFXButton fx:id="addChannelButton" buttonType="RAISED" layoutX="2.0" layoutY="2.0" onAction="#addChannel" prefHeight="26.0" prefWidth="26.0" ripplerFill="#d70d0d" text=" ">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor></JFXButton>
          </children>
       </AnchorPane>
    </children>

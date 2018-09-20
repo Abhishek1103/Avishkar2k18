@@ -104,7 +104,7 @@ public class MainPageController implements Initializable {
 
         try {
             if (LayoutController.isPremium) {
-                premiumButton.setGraphic(new ImageView(new Image(new FileInputStream(new File("../Resuorces/golden-star-24.png")))));
+                premiumButton.setGraphic(new ImageView(new Image("Client/Resuorces/golden-star-24.png")));
                 premiumButton.setOnAction(e -> {
                    // TODO: show popup that already premium
                     VBox vBox = new VBox(10);
@@ -114,7 +114,7 @@ public class MainPageController implements Initializable {
                     pop.show(premiumButton, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT);
                 });
             }else{
-                premiumButton.setGraphic(new ImageView(new Image(new FileInputStream(new File("../Resuorces/white-star-24.png")))));
+                premiumButton.setGraphic(new ImageView(new Image("Client/Resuorces/white-star-24.png")));
                 premiumButton.setOnAction(e -> {
                     // Todo: show T&C and premimum page
                 });
@@ -271,6 +271,7 @@ public class MainPageController implements Initializable {
 
         button.setOnAction(e -> {
             SEARCH_CRITERIA = 0;
+            filterPopup.hide();
         } );
 
         return button;
@@ -287,6 +288,7 @@ public class MainPageController implements Initializable {
 
         button.setOnAction(e -> {
             SEARCH_CRITERIA = 1;
+            filterPopup.hide();
         } );
 
         return button;
@@ -303,6 +305,7 @@ public class MainPageController implements Initializable {
 
         button.setOnAction(e -> {
             SEARCH_CRITERIA = 2;
+            filterPopup.hide();
         } );
 
         return button;
@@ -468,9 +471,11 @@ public class MainPageController implements Initializable {
         searchService.setOnSucceeded(e-> {
             // TODO: Start Thumbnail receiver service
             try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/searchResultsPage"));
-
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/searchResultsPage.fxml"));
+                contentAnchorPane.getChildren().setAll(pane);
             }catch (Exception ex){
+                ex.getCause();
+                ex.getMessage();
                 ex.printStackTrace();
             }
         });

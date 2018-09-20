@@ -38,11 +38,13 @@ public class SearchService extends Service {
 
                     if(MainPageController.SEARCH_CRITERIA == 0){
                         dout.writeUTF("#SEARCH");
-                    }else if(MainPageController.SEARCH_CRITERIA == 2){
+                    }else if(MainPageController.SEARCH_CRITERIA == 3){
                         dout.writeUTF("#TAGSEARCH");
                     }
 
                     oos.writeObject(searchQuery);
+
+                    System.out.println("Received: "+dis.readUTF());
 
                     MainPageController.searchVideosResult = (HashMap<String, Video>)(ois.readObject());
                     System.out.println("Results received: "+MainPageController.searchVideosResult);

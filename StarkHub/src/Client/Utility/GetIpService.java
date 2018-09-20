@@ -1,6 +1,7 @@
 package Client.Utility;
 
 import Client.DataClasses.Video;
+import Client.Login.Main;
 import Client.UI.MediaPlayerAndControlsController;
 import Client.UI.VideoPlayerController;
 import javafx.concurrent.Service;
@@ -40,6 +41,7 @@ public class GetIpService extends Service {
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
                     dout.writeUTF("#GETIP");
+                    dout.writeUTF(Main.USERNAME);
                     dout.writeUTF(userName);
                     dout.writeUTF(videoName);
                     dout.writeUTF(channelName);

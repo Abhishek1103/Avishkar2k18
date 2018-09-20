@@ -6,6 +6,7 @@ import Client.UI.MainPageController;
 import hubFramework.Video;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.util.Pair;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -65,6 +66,17 @@ public class InitializeListsAndMapsService extends Service {
                         MainPageController.subscribedChannelMap = (HashMap<String, String>) ois.readObject();
                         ois.close();
                         System.out.println("Read Subscriptions");
+                    }
+
+                    f = new File(System.getProperty("user.home") + "/starkhub/"+Main.USERNAME +"/prem/list");
+                    if(!f.exists()){
+                        System.out.println("Subscribed file does not exist");
+                        MainPageController.premiumVideoList= new ArrayList<>();
+                    }else {
+                        ois = new ObjectInputStream(new FileInputStream(f));
+                        MainPageController.premiumVideoList = (ArrayList<Pair<Client.DataClasses.Video, String>>) ois.readObject();
+                        ois.close();
+                        System.out.println("Read premList");
                     }
 
                     System.out.println("WatchLater: "+MainPageController.watchLaterList);

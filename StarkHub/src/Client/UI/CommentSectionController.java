@@ -9,6 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,7 +48,8 @@ public class CommentSectionController implements Initializable {
             CommentPostService cps = new CommentPostService(peerIP, comment, videoName, Main.USERNAME);
             cps.start();
         }
-        // TODO: Post comment on UI
+
+
 
         try {
             VBox vbox = (VBox) commentSectionAnchorPane.getParent();
@@ -54,6 +60,26 @@ public class CommentSectionController implements Initializable {
             ta.setEditable(false);
             vbox.getChildren().add(3, pane);
         }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            Socket sock = new Socket(Main.HUB_IP, 1111);
+            DataInputStream dis = new DataInputStream(sock.getInputStream());
+            DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
+            ObjectInputStream ois= new ObjectInputStream(sock.getInputStream());
+            ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
+
+            dout.writeUTF("#COMMENTNUMBER");
+            dout.writeUTF(MediaPlayerAndControlsController.ownerName);
+            dout.writeUTF(MediaPlayerAndControlsController.channelName);
+            dout.writeUTF(MediaPlayerAndControlsController.videoPath.substring(MediaPlayerAndControlsController.videoPath.lastIndexOf('/')+1));
+
+            ois.close();
+            oos.close();
+            sock.close();
+
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
