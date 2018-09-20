@@ -20,6 +20,7 @@ public class ThumbnailReceiverService extends Service<Void> {
                     System.out.println("Listening for thumbnails");
                     ServerSocket serverSocket = new ServerSocket(11234);
                     Socket sock = serverSocket.accept();
+                    System.out.println("ThumbnailRecSer: "+sock);
 
                     ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
                     ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());

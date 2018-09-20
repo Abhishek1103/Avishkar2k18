@@ -93,6 +93,7 @@ public class AddChannelController implements Initializable {
             try{
                 //channelFile.createNewFile();
                 Channel channel = new Channel(channelName, USERNAME);
+                System.out.println("VideoList of the Channel: "+videoList);
                 channel.setVideoList(videoList);
                 channel.setNumberOfVideos(videoList.size());
 
@@ -101,6 +102,7 @@ public class AddChannelController implements Initializable {
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(channelFile));
                 oos.writeObject(map);
                 oos.close();
+
 
             }catch (Exception e){
                 System.out.println(e.getMessage());
@@ -118,6 +120,7 @@ public class AddChannelController implements Initializable {
                     showLoading();
                     videoListView.getItems().clear();
                     hbox.getChildren().clear();
+                    //videoList.clear();
                 });
 
             }catch(Exception e){
@@ -126,6 +129,7 @@ public class AddChannelController implements Initializable {
         }
 
         //Todo: Redirect to home page or my channels page after creating the channel
+        //videoList.clear();
     }
 
 

@@ -9,12 +9,13 @@ public class Channel implements Serializable {
     protected int numberOfVideos;
     protected String channelOwner;
 
-    protected ArrayList<Video> videoList;
+    ArrayList<Video> videoList;
 
 
     public Channel(String channelName, String channelOwner){
         this.channelName = channelName;
         this.channelOwner = channelOwner;
+        videoList = new ArrayList<>();
     }
 
     public String getChannelName() {

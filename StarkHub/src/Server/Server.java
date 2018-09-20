@@ -130,7 +130,7 @@ public class Server implements Runnable
                                 break;
                             }
                             case "#GETCOMMENTS": {
-                                System.out.println("#GETCOMMENTS");
+                                System.out.println("Server: #GETCOMMENTS");
                                 HashMap<String, String> commentMap = null;
                                 String videoName = peer.dis.readUTF();
                                 File file = new File(System.getProperty("user.home") + "/starkhub/" + Server.starkHubUsername + "/comments/" + videoName);
@@ -146,10 +146,11 @@ public class Server implements Runnable
                                         e.printStackTrace();
                                     }
                                 }
+                                System.out.println("Server: Comments Sent");
                                 break;
                             }
                             case "#ADDCOMMENT": {
-                                System.out.println("#ADDCOMMENT");
+                                System.out.println("Server: #ADDCOMMENT");
                                 HashMap<String, String> commentMap = null;
                                 String videoName = peer.dis.readUTF();
                                 String commenter = peer.dis.readUTF();
@@ -195,6 +196,8 @@ public class Server implements Runnable
                             }
                         }
                     } catch (IOException e) {
+                        e.getCause();
+                        e.getMessage();
                         e.printStackTrace();
                     }
                 } else {

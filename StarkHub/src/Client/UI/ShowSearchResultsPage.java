@@ -59,7 +59,10 @@ public class ShowSearchResultsPage implements Initializable {
             ResetThumbnailPathService r = new ResetThumbnailPathService();
             r.start();
 
-            r.setOnSucceeded(ev-> System.out.println("Thumbnail path resetting service ended"));
+            r.setOnSucceeded(ev-> {
+                System.out.println("Thumbnail path resetting service ended");
+                //ClientPageController.startResetingThumbNail = false;
+            });
 
         });
 
@@ -75,7 +78,7 @@ public class ShowSearchResultsPage implements Initializable {
             ex.printStackTrace();
         }
 
-
+        ClientPageController.startResetingThumbNail = false;
 
     }
 

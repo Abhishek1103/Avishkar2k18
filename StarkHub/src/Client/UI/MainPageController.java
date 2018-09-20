@@ -323,6 +323,7 @@ public class MainPageController implements Initializable {
 
         button.setOnAction(e -> {
             SEARCH_CRITERIA = 3;
+            filterPopup.hide();
         } );
 
         return button;

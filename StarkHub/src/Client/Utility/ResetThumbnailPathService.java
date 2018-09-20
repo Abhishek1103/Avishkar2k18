@@ -25,10 +25,10 @@ public class ResetThumbnailPathService extends Service {
 
                     System.out.println("Reset ThumbNail Running");
 
-                    while(!ClientPageController.startResetingThumbNail){
-                        System.out.println(ClientPageController.startResetingThumbNail+"");
-                        sleep(100);
-                    }
+//                    while(!ClientPageController.startResetingThumbNail){
+//                        System.out.println(ClientPageController.startResetingThumbNail+"-----------");
+//                        sleep(100);
+//                    }
 
                     File[] fileList = new File(System.getProperty("user.home")+"/starkhub/"+Main.USERNAME+"/temp").listFiles();
 
