@@ -7,7 +7,7 @@ public class Channel implements Serializable
 {
     protected String channelName;
     //protected int channelPopularityIndex;
-    protected int totalNoOfLikes, totalNoOfComments;
+    protected int totalNoOfLikes, totalNoOfComments, totalNoOfViews;
     protected int channelSubscribers;
     protected ArrayList<String> subscriberName;
     protected ArrayList<Video> videos;
@@ -15,6 +15,7 @@ public class Channel implements Serializable
     Channel(String name)
     {
         channelName = name;
+        totalNoOfViews = 0;
         //channelPopularityIndex = 0;
         channelSubscribers = 0;
         totalNoOfLikes = 0;

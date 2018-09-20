@@ -38,6 +38,7 @@ public class SendLoginTimeNotificationDaemon implements Runnable
                     else {
                         dos.writeBoolean(true);
                         dos.writeInt(obj.notification.size());
+
                         Pair<String, Video> message;
                         while((message = obj.notification.poll()) != null ) {
                             //message = obj.notification.poll();
@@ -45,6 +46,8 @@ public class SendLoginTimeNotificationDaemon implements Runnable
                             dos.writeUTF(message.getKey());
                             oos.writeObject(message.getValue());
                         }
+                        System.out.println("Written msgs");
+                        System.out.println("All notification in object after sending:\n"+obj.notification);
                         System.out.println("Writting back");
                         ObjectOutputStream writeSerializedObject = new ObjectOutputStream(new FileOutputStream(
                                 new File(System.getProperty("user.home") + "/Hub/Client/" + username)));

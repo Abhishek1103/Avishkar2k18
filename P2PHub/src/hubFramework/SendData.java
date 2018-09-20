@@ -27,7 +27,7 @@ public class SendData implements Runnable
         SocketChannel ssc = null;
         try {
             ssc = SocketChannel.open();
-            ssc.connect(new InetSocketAddress(targetIP, 5000));
+            ssc.connect(new InetSocketAddress(targetIP, 15004));
             File dir = new File(pathOfFiles);
             for(File file : dir.listFiles())
             {

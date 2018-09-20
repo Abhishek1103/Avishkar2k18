@@ -21,6 +21,9 @@ public class HubServer
         SendRealTimeNotificationDaemon realTime = new SendRealTimeNotificationDaemon();
         new Thread(realTime).start();
 
+        Timer timer = new Timer();
+        timer.schedule(new TrendSetter(), 0, 300 * 1000);
+
         ServerSocket hub = new ServerSocket(1111);
         while(true)
         {
