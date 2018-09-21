@@ -158,6 +158,9 @@ public class ShowHistoryController implements Initializable {
 
     void initTrending() throws Exception{
 
+        vbox = new VBox(10);
+        vbox.setPadding(new Insets(10));
+
         Socket sock = new Socket(Main.HUB_IP, 1111);
         DataInputStream dis = new DataInputStream(sock.getInputStream());
         DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
@@ -176,7 +179,7 @@ public class ShowHistoryController implements Initializable {
             ResetThumbnailPathService r = new ResetThumbnailPathService();
             r.start();
         });
-        System.out.println("Received: "+dis.readUTF());
+        //System.out.println("Received: "+dis.readUTF());
         MainPageController.trendingVideos = (HashMap<String, Video>)ois.readObject();
 
         ClientPageController.startResetingThumbNail = true;

@@ -12,9 +12,9 @@
          <content>
             <AnchorPane prefHeight="651.0" prefWidth="980.0">
                <children>
-                  <JFXListView fx:id="allVideosListView" layoutX="14.0" layoutY="78.0" prefHeight="351.0" prefWidth="324.0" />
+                  <JFXListView fx:id="allVideosListView" layoutX="34.0" layoutY="78.0" prefHeight="351.0" prefWidth="324.0" />
                   <JFXListView fx:id="selectedVideoListView" layoutX="664.0" layoutY="75.0" prefHeight="355.0" prefWidth="283.0" />
-                  <Label layoutX="23.0" layoutY="451.0" prefHeight="33.0" prefWidth="335.0" text="Label" />
+                  <Label layoutX="29.0" layoutY="449.0" prefHeight="33.0" prefWidth="335.0" text="Label" />
                   <Label layoutX="36.0" layoutY="41.0" prefHeight="28.0" prefWidth="308.0" text="Label" />
                   <Label layoutX="676.0" layoutY="47.0" prefHeight="16.0" prefWidth="234.0" text="Selected Videos" />
                   <JFXButton fx:id="makePremiumButton" buttonType="RAISED" layoutX="425.0" layoutY="541.0" onAction="#makePremiumButtonClicked" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #66625f;" text="Make Premium" textFill="WHITE" />

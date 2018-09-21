@@ -117,6 +117,14 @@ public class MainPageController implements Initializable {
                 premiumButton.setGraphic(new ImageView(new Image("Client/Resuorces/white-star-24.png")));
                 premiumButton.setOnAction(e -> {
                     // Todo: show T&C and premimum page
+                    try {
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("../Layouts/premiumPageLayout.fxml"));
+                        contentAnchorPane.getChildren().setAll(pane);
+                    } catch (Exception ex) {
+                        ex.getCause();
+                        ex.getMessage();
+                        ex.printStackTrace();
+                    }
                 });
             }
         }catch (Exception e){
@@ -482,6 +490,8 @@ public class MainPageController implements Initializable {
         });
 
     }
+
+
 
 
 }

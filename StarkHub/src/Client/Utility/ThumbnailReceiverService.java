@@ -18,7 +18,16 @@ public class ThumbnailReceiverService extends Service<Void> {
             protected Void call() throws Exception {
                 try{
                     System.out.println("Listening for thumbnails");
-                    ServerSocket serverSocket = new ServerSocket(11234);
+                    ServerSocket serverSocket= null;
+
+                    try{
+                        serverSocket = new ServerSocket(11234);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        e.getCause();
+                        e.getMessage();
+                    }
+
                     Socket sock = serverSocket.accept();
                     System.out.println("ThumbnailRecSer: "+sock);
 
