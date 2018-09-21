@@ -47,6 +47,7 @@ public class GetIpService extends Service {
                     dout.writeUTF(channelName);
 
                     String ip = dis.readUTF();
+                    System.out.println("Received ip from hub:"+ ip);
                     String altIp = "";
                     if(dis.readBoolean()){
                         altIp = dis.readUTF();
