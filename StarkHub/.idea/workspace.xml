@@ -108,7 +108,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3529815">
+    <splitter split-orientation="horizontal" split-proportion="0.2851268">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -219,10 +219,10 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="213">
+                <state relative-caret-position="807">
                   <caret line="187" column="88" selection-start-line="187" selection-start-column="88" selection-end-line="187" selection-end-column="88" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -273,11 +273,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="116" column="30" lean-forward="true" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
+                <state relative-caret-position="681">
+                  <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="33" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -522,7 +522,7 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/aks/IdeaProjects/StarkHub/src/Client/UI/MainPageController.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537541070487" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537541778851" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Jars/guava.jar!/" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -1161,16 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="116" column="30" lean-forward="true" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
@@ -1187,8 +1177,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
+        <state relative-caret-position="807">
           <caret line="187" column="88" selection-start-line="187" selection-start-column="88" selection-end-line="187" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
