@@ -1,6 +1,7 @@
 package Client.Utility;
 
 import Client.DataClasses.Video;
+import Client.Login.Main;
 import Client.UI.MainPageController;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -32,20 +33,28 @@ public class SendData extends Service {
                     ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
                     dout.writeUTF("#PREMIUM");
+                    dout.writeUTF(Main.USERNAME);
                     boolean bool = dis.readBoolean();
 
+                    System.out.println("Received bool: "+bool);
 
                     if(bool){
                         try {
+
                             ServerSocketChannel ssc = ServerSocketChannel.open();
                             ssc.socket().bind(new InetSocketAddress(5000));
-                            SocketChannel sc = ssc.accept();
 
                             ArrayList<Pair<Video, String>> list = MainPageController.premiumVideoList;
+                            dout.writeInt(list.size());
+                            System.out.println("PremList: "+list);
+
+                            SocketChannel sc = ssc.accept();
 
                             for (Pair<Video, String> p: list) {
                                 try {
+                                    System.out.println("Vid Name: "+p.getKey().getVideoName());
                                     dout.writeUTF(p.getKey().getVideoName());
+                                    System.out.println("p.getValue: "+p.getValue());
                                     dout.writeUTF(p.getValue());
                                     String vidPath = p.getKey().getVideoPath();
                                     System.out.println("VidPath: " + vidPath);
@@ -58,6 +67,8 @@ public class SendData extends Service {
                                     e.printStackTrace();
                                 }
                             }
+
+                            ssc.socket().close();
                         }catch(Exception e){
                             e.printStackTrace();
                         }
@@ -67,6 +78,7 @@ public class SendData extends Service {
                     ois.close();
                     oos.close();
                     sock.close();
+
 
                 }catch(Exception e){
                     e.printStackTrace();
