@@ -23,18 +23,18 @@ public class AutoCompController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        String[] possibleOptions = {"Hello", "Hi", "Hell", "Lion", "Leo","Abhishek", "Abhinav", "Abhilasha"};
-
-        TextFields.bindAutoCompletion(txtFeild, possibleOptions);
-
-        listView.getItems().addAll(new Label("Hello"), new Label("Hi"), new Label("Aloha"));
-
-
-        ObservableList<Label> lst = listView.getSelectionModel().getSelectedItems();
-        System.out.println("list: "+lst);
-        for(Label l : lst){
-            System.out.println(""+l);
-        }
+//        String[] possibleOptions = {"Hello", "Hi", "Hell", "Lion", "Leo","Abhishek", "Abhinav", "Abhilasha"};
+//
+//        TextFields.bindAutoCompletion(txtFeild, possibleOptions);
+//
+//        listView.getItems().addAll(new Label("Hello"), new Label("Hi"), new Label("Aloha"));
+//
+//
+//        ObservableList<Label> lst = listView.getSelectionModel().getSelectedItems();
+//        System.out.println("list: "+lst);
+//        for(Label l : lst){
+//            System.out.println(""+l);
+//        }
     }
 
     public void doIt(){

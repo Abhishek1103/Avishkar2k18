@@ -41,6 +41,8 @@ public class SendData extends Service {
 
                     if(bool){
                         try {
+                            ServerSocketChannel ssc = ServerSocketChannel.open();
+                            ssc.socket().bind(new InetSocketAddress(5000));
 
                             ArrayList<Pair<Video, String>> list = MainPageController.premiumVideoList;
                             dout.writeInt(list.size());
@@ -48,18 +50,21 @@ public class SendData extends Service {
                             System.out.println("Sent List size: "+list.size());
                             System.out.println("PremList: "+list);
 
-                            ServerSocketChannel ssc = ServerSocketChannel.open();
-                            ssc.socket().bind(new InetSocketAddress(5000));
 
 
-                            System.out.println("Socket: "+sock + " isClosed: "+sock.isClosed() );
-
-                            System.out.println("Listening for SocketChannel ");
-                            SocketChannel sc = ssc.accept();
-                            System.out.println("Received SocketChannel: "+sc);
+//                            System.out.println("Socket: "+sock + " isClosed: "+sock.isClosed() );
+//
+//                            System.out.println("Listening for SocketChannel ");
+//                            SocketChannel sc = ssc.accept();
+//                            System.out.println("Received SocketChannel: "+sc);
 
                             for (Pair<Video, String> p: list) {
                                 try {
+                                    System.out.println("Socket: "+sock + " isClosed: "+sock.isClosed() );
+
+                                    System.out.println("Listening for SocketChannel ");
+                                    SocketChannel sc = ssc.accept();
+                                    System.out.println("Received SocketChannel: "+sc);
                                     System.out.println("Vid Name: "+p.getKey().getVideoName());
                                     dout.writeUTF(p.getKey().getVideoName());
                                     System.out.println("p.getValue: "+p.getValue());
@@ -71,12 +76,13 @@ public class SendData extends Service {
                                     } else {
                                         System.out.println("Some error occured while transfering: " + p.getKey().getVideoName() + ", path: " + p.getKey().getVideoPath());
                                     }
+                                    sc.close();
                                 }catch (Exception e){
                                     e.printStackTrace();
                                 }
                             }
 
-                            ssc.socket().close();
+                            ssc.close();
                         }catch(Exception e){
                             e.printStackTrace();
                         }
@@ -106,18 +112,18 @@ public class SendData extends Service {
 
             while (bytesRead >= 0) {
                 buf.flip();
-                dout.writeInt(1);
+                //dout.writeInt(1);
                 sc.write(buf);
                 buf.clear();
                 bytesRead = fc.read(buf);
-                System.out.println("bytesRead: "+bytesRead);
+                //System.out.println("bytesRead: "+bytesRead);
 
             }
             System.out.println("Sending -1");
-            dout.writeInt(-1);
+            //dout.writeInt(-1);
 
 
-            //fc.close();
+            fc.close();
         }catch(Exception e){
             e.printStackTrace();
             return false;

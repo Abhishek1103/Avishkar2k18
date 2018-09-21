@@ -37,11 +37,13 @@ public class ReceiveData extends Service {
                     ServerSocketChannel ssc = ServerSocketChannel.open();
                     ssc.socket().bind(new InetSocketAddress(15004));
 
-                    SocketChannel sc = ssc.accept();
+
 
                     for(int i=0;i<n;i++){
                         String vidName = list.get(i);
 
+                        SocketChannel sc = ssc.accept();
+                        System.out.println("socket: "+sc);
                         String path = System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME+"/premium/"+vidName;
 
                         if(save(sc, path, dis)){
@@ -49,9 +51,10 @@ public class ReceiveData extends Service {
                         }else{
                             System.out.println("Some error occured while saving file: "+vidName);
                         }
+                        sc.close();
                     }
 
-                    sc.close();
+                    ssc.close();
 
 
                 }catch (Exception e){
@@ -72,13 +75,13 @@ public class ReceiveData extends Service {
             FileChannel fc = new RandomAccessFile(path,"rw").getChannel();
             ByteBuffer buf = ByteBuffer.allocate(2048);
 
-            int n = dis.readInt();
+            //int n = dis.readInt();
             int bytesRead = sc.read(buf);
             while(bytesRead!= -1){
                 buf.flip();
                 fc.write(buf);
                 buf.clear();
-                n = dis.readInt();
+                //n = dis.readInt();
                 if(n == -1)
                     break;
                 bytesRead = sc.read(buf);

@@ -181,12 +181,14 @@ public class Server implements Runnable
 
                             case "#RECEIVEDATA" : {
                                 // TODO: Logic
+                                System.out.println("In #RECEIVEDATA");
                                 int n = peer.dis.readInt();
                                 ArrayList<String> list = new ArrayList<>();
                                 list = (ArrayList<String>) peer.ois.readObject();
                                 peer.dos.writeUTF(System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME+"/premium/");
                                 ReceiveData receive = new ReceiveData(n, list, peer.dis);
                                 receive.start();
+                                Thread.sleep(500);
                                 peer.dos.writeBoolean(true);
                                 break;
                             }

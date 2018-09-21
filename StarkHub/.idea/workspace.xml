@@ -76,7 +76,8 @@
         <counts>
           <entry key="class" value="2" />
           <entry key="fxml" value="75" />
-          <entry key="java" value="278" />
+          <entry key="java" value="286" />
+          <entry key="log" value="1" />
           <entry key="png" value="3" />
         </counts>
       </usages-collector>
@@ -84,7 +85,8 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="278" />
+          <entry key="JAVA" value="286" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="75" />
         </counts>
       </usages-collector>
@@ -92,12 +94,12 @@
         <counts>
           <entry key="dummy" value="25" />
           <entry key="fxml" value="234" />
-          <entry key="java" value="52151" />
+          <entry key="java" value="53416" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="52151" />
+          <entry key="JAVA" value="53416" />
           <entry key="PLAIN_TEXT" value="25" />
           <entry key="XML" value="234" />
         </counts>
@@ -108,7 +110,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.2851268">
+    <splitter split-orientation="horizontal" split-proportion="0.36045772">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -144,29 +146,32 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewChannelService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-453">
-                  <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+                <state relative-caret-position="812">
+                  <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/DataClasses/Channel.java">
+            <entry file="file://$PROJECT_DIR$/src/Test/FileTransferTest2.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+                <state relative-caret-position="408">
+                  <caret line="45" column="22" lean-forward="true" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Search/SearchService.java">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="324">
-                  <caret line="32" selection-start-line="32" selection-end-line="32" />
+                <state relative-caret-position="91">
+                  <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -222,11 +227,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="807">
-                  <caret line="187" column="88" selection-start-line="187" selection-start-column="88" selection-end-line="187" selection-end-column="88" />
+                <state relative-caret-position="429">
+                  <caret line="190" column="48" selection-start-line="190" selection-start-column="48" selection-end-line="190" selection-end-column="48" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Server/Peer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="72">
+                  <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -234,8 +248,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Server/ReceiveData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="371">
-                  <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+                <state relative-caret-position="241">
+                  <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
                 </state>
               </provider>
             </entry>
@@ -243,17 +257,21 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="58">
-                  <caret line="30" selection-start-line="30" selection-end-line="30" />
+                <state relative-caret-position="190">
+                  <caret line="25" selection-start-line="25" selection-end-line="25" />
+                  <folding>
+                    <element signature="e#674#2708#0" expanded="true" />
+                    <element signature="e#2707#2708#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/UI/MainPageController.java">
+            <entry file="file://$PROJECT_DIR$/src/Test/FileTransferTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6959">
-                  <caret line="494" selection-start-line="494" selection-end-line="494" />
+                <state relative-caret-position="341">
+                  <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -262,22 +280,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/UI/PremiumPageController.java">
+            <entry file="file://$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="212">
-                  <caret line="125" column="74" selection-start-line="125" selection-start-column="74" selection-end-line="125" selection-end-column="74" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendData.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="681">
-                  <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="33" />
+                <state relative-caret-position="214">
+                  <caret line="89" column="208" lean-forward="true" selection-start-line="89" selection-start-column="208" selection-end-line="89" selection-end-column="208" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -307,10 +313,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Test/ServerTest.java">
+            <entry file="file://$PROJECT_DIR$/src/Client/Utility/GetIpService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="324">
-                  <caret line="20" selection-start-line="20" selection-end-line="20" />
+                <state relative-caret-position="99">
+                  <caret line="51" column="40" lean-forward="true" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -318,14 +324,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Client/Utility/GetIpService.java">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoPlayCanvasController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="666">
-                  <caret line="49" column="66" selection-start-line="49" selection-start-column="66" selection-end-line="49" selection-end-column="66" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state relative-caret-position="108">
+                  <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
@@ -357,9 +360,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Client/Layouts/watchLaterItem.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/Layouts/showWatchLaterPage.fxml" />
-        <option value="$PROJECT_DIR$/src/Client/UI/WatchLaterItemController.java" />
         <option value="$PROJECT_DIR$/src/hubFramework/Video.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/CommentPostService.java" />
         <option value="$PROJECT_DIR$/src/Client/Layouts/commentItem.fxml" />
@@ -398,16 +398,19 @@
         <option value="$PROJECT_DIR$/src/Client/UI/MainPageController.java" />
         <option value="$PROJECT_DIR$/src/Client/UI/ShowHistoryController.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/ThumbnailReceiverService.java" />
-        <option value="$PROJECT_DIR$/src/Client/Utility/GetIpService.java" />
         <option value="$PROJECT_DIR$/src/Test/ServerTest.java" />
-        <option value="$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java" />
         <option value="$PROJECT_DIR$/src/Test/MediaPlayerAndControlsTest.java" />
         <option value="$PROJECT_DIR$/src/Client/UI/PremiumPageController.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/HelloService.java" />
         <option value="$PROJECT_DIR$/src/Client/UI/AddChannelController.java" />
+        <option value="$PROJECT_DIR$/src/Test/FileTransferTest2.java" />
+        <option value="$PROJECT_DIR$/src/Test/FileTransferTest.java" />
         <option value="$PROJECT_DIR$/src/Client/Utility/SendData.java" />
         <option value="$PROJECT_DIR$/src/Server/ReceiveData.java" />
         <option value="$PROJECT_DIR$/src/Server/Server.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java" />
+        <option value="$PROJECT_DIR$/src/Client/Utility/GetIpService.java" />
+        <option value="$PROJECT_DIR$/src/Client/UI/VideoPlayCanvasController.java" />
       </list>
     </option>
   </component>
@@ -522,10 +525,10 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/aks/IdeaProjects/StarkHub/src/Client/UI/MainPageController.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537541778851" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537551026759" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Jars/guava.jar!/" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -572,8 +575,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LayoutTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.LayoutTest" />
+    <configuration name="FileTransferTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test.FileTransferTest" />
+      <module name="StarkHub" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileTransferTest2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test.FileTransferTest2" />
       <module name="StarkHub" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -623,20 +640,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegExDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test.autoCompleteTextFeild.RegExDemo" />
-      <module name="StarkHub" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.autoCompleteTextFeild.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -696,18 +699,18 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.RegExDemo" />
-      <item itemvalue="Application.LayoutTest" />
       <item itemvalue="Application.MediaPlayerAndControlsTest" />
       <item itemvalue="Application.ServerTest" />
+      <item itemvalue="Application.FileTransferTest2" />
+      <item itemvalue="Application.FileTransferTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.FileTransferTest" />
+        <item itemvalue="Application.FileTransferTest2" />
         <item itemvalue="Application.MediaPlayerAndControlsTest" />
         <item itemvalue="Application.ServerTest" />
-        <item itemvalue="Application.LayoutTest" />
-        <item itemvalue="Application.RegExDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -741,7 +744,7 @@
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22145145" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.16061899" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" weight="0.32977587" />
       <window_info id="Designer" order="3" />
@@ -750,7 +753,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.37864077" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4261057" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.1639698" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -774,6 +777,40 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22145145" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" weight="0.32977587" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.37864077" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3635383" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.1639698" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32901832" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Problems" order="9" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="bottom" id="Profiler" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32901832" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32901832" />
+      <window_info anchor="bottom" id="Terminal" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JetGradle" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -787,37 +824,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Test/LayoutTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="63" lean-forward="true" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/WatchLaterItemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/ShowWatchLaterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="83" column="87" selection-start-line="83" selection-start-column="87" selection-end-line="83" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/Layouts/commentItem.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
@@ -887,6 +893,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
           <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -910,6 +919,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
           <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -917,6 +929,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
           <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#652#1671#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -924,6 +940,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
           <caret line="71" selection-start-line="68" selection-start-column="12" selection-end-line="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -962,13 +981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12456">
           <caret line="747" selection-start-line="747" selection-end-line="747" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoPlayCanvasController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1053,30 +1065,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5148">
-          <caret line="315" selection-start-line="315" selection-end-line="315" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Test/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/GetIpService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="49" column="66" selection-start-line="49" selection-start-column="66" selection-end-line="49" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1144,13 +1136,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewChannelService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-453">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/UI/ClientPageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-90">
@@ -1161,24 +1146,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotifyNewChannelService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="812">
+          <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hs_err_pid13272.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15336" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/Utility/NotificationServiceAtLogin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="190">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#674#2708#0" expanded="true" />
+            <element signature="e#2707#2708#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/ReceiveData.java">
+    <entry file="file://$PROJECT_DIR$/src/Test/FileTransferTest2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="408">
+          <caret line="45" column="22" lean-forward="true" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/Test/FileTransferTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="807">
-          <caret line="187" column="88" selection-start-line="187" selection-start-column="88" selection-end-line="187" selection-end-column="88" />
+        <state relative-caret-position="341">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1187,11 +1191,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Client/Utility/SendData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="33" />
+        <state relative-caret-position="91">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Peer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="190" column="48" selection-start-line="190" selection-start-column="48" selection-end-line="190" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/ReceiveData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/MediaPlayerAndControlsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="89" column="208" lean-forward="true" selection-start-line="89" selection-start-column="208" selection-end-line="89" selection-end-column="208" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/Utility/GetIpService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="51" column="40" lean-forward="true" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client/UI/VideoPlayCanvasController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1262,7 +1317,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>com.recombee:api-client:2.2.0</last-edited>
+          <last-edited>jna-4.1.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

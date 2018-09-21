@@ -87,7 +87,7 @@ public class MediaPlayerAndControlsController implements Initializable {
 
             if(isAlternateIp){
                 System.out.println("Alternate Video path: "+alternateVideoPath);
-                VIDEO_URL = "http://"+videoPeerIP+alternateVideoPath.substring(0,alternateVideoPath.lastIndexOf('/'))+"/"+UrlEscapers.urlFragmentEscaper().escape(videoPath.substring(videoPath.lastIndexOf('/')+1));
+                VIDEO_URL = "http://"+videoPeerIP+alternateVideoPath.substring(0,alternateVideoPath.lastIndexOf('/'))+"/"+UrlEscapers.urlFragmentEscaper().escape(videoPath.substring(videoPath.lastIndexOf('/')));
                 System.out.println("Alternate Path: "+VIDEO_URL);
             }
 
