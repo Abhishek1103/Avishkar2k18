@@ -112,7 +112,7 @@ public class Server implements Runnable
                     ex.printStackTrace();
                 }
 
-                if (people.size() < 5 || people.contains(username) || socket.getInetAddress().getHostName().equals("172.31.84.87")) {
+                if (people.size() < 5 || people.contains(username) || socket.getInetAddress().getHostAddress().equals("172.31.84.87")) {
                     peer.dos.writeBoolean(true);
                     if (people.size() < 5)
                         people.add(username);
@@ -185,14 +185,14 @@ public class Server implements Runnable
                                 ArrayList<String> list = new ArrayList<>();
                                 list = (ArrayList<String>) peer.ois.readObject();
                                 peer.dos.writeUTF(System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME+"/premium/");
-                                ReceiveData receive = new ReceiveData(n, list);
+                                ReceiveData receive = new ReceiveData(n, list, peer.dis);
                                 receive.start();
                                 peer.dos.writeBoolean(true);
                                 break;
                             }
 
                             default: {
-                                System.out.println("Ye kya flag hai be " + flag);
+                                System.out.println("Ye kya flag hai be :" + flag+"---------");
                             }
                         }
                     } catch (IOException e) {

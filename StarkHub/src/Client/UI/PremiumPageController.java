@@ -55,6 +55,7 @@ public class PremiumPageController implements Initializable {
 
 
              map = MainPageController.myChannelMap;
+            System.out.println("MyChannel Map: "+map);
              premList = new ArrayList<>();
              list = new ArrayList<>();
 
@@ -122,7 +123,7 @@ public class PremiumPageController implements Initializable {
 
 
     public void makePremiumButtonClicked(){
-        ObservableList<AnchorPane> list = selectedVideoListView.getSelectionModel().getSelectedItems();
+        ObservableList<AnchorPane> list = selectedVideoListView.getItems();
 
         for(AnchorPane p: list) {
 
@@ -130,10 +131,15 @@ public class PremiumPageController implements Initializable {
             String channelName = s.substring(0,s.indexOf(':'));
             String vidName = s.substring(s.indexOf(':')+1).trim();
 
+            System.out.println("VidName from listitem: "+vidName);
+            System.out.println("channelName from listItem: "+channelName);
+
             Channel c = map.get(channelName);
 
             ArrayList<Video> l = c.getVideoList();
+            System.out.println("Looping in videoList");
             for(Video v: l){
+                System.out.println("-VideoName: "+v.getVideoName());
                 if(v.getVideoName().equals(vidName)){
                     premList.add(new Pair<>(v, channelName));
                     break;
@@ -141,33 +147,39 @@ public class PremiumPageController implements Initializable {
             }
         }
 
+        System.out.println("PremList: "+premList);
+
         MainPageController.premiumVideoList = premList;
 
-        SendData sd = new SendData();
-        sd.start();
+        if(!premList.isEmpty()) {
+            SendData sd = new SendData();
+            sd.start();
 
-        sd.setOnSucceeded(e -> {
-            System.out.println("Premeium list successfully sent");
-            try {
-                File f = new File(System.getProperty("user.home") + "/starkhub/" + Main.USERNAME + "/credentials.cfg");
-                BufferedReader br = new BufferedReader(new FileReader(f));
-                String usname = br.readLine();
-                String pass = br.readLine();
-                String name = br.readLine();
-                br.close();
-                PrintWriter pw = new PrintWriter(f);
-                pw.println(usname);
-                pw.println(pass);
-                pw.println(name);
-                pw.println("true");
-                pw.close();
+            sd.setOnSucceeded(e -> {
+                System.out.println("Premeium list successfully sent");
+                try {
+                    File f = new File(System.getProperty("user.home") + "/starkhub/" + Main.USERNAME + "/credentials.cfg");
+                    BufferedReader br = new BufferedReader(new FileReader(f));
+                    String usname = br.readLine();
+                    String pass = br.readLine();
+                    String name = br.readLine();
+                    br.close();
+                    PrintWriter pw = new PrintWriter(f);
+                    pw.println(usname);
+                    pw.println(pass);
+                    pw.println(name);
+                    pw.println("true");
+                    pw.close();
 
-                LayoutController.isPremium = true;
+                    LayoutController.isPremium = true;
 
-            }catch(Exception ex){
-                ex.printStackTrace();
-            }
-        });
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }else{
+            System.out.println("PremList is Empty...!!");
+        }
 
     }
 

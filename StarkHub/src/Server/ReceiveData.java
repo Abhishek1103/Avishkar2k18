@@ -4,6 +4,8 @@ import Client.Login.Main;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.RandomAccessFile;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -16,10 +18,12 @@ public class ReceiveData extends Service {
 
     int n;
     ArrayList<String> list;
+    DataInputStream dis;
 
-    public ReceiveData(int n, ArrayList<String> list){
+    public ReceiveData(int n, ArrayList<String> list, DataInputStream dis){
         this.n = n;
         this.list = list;
+        this.dis = dis;
     }
 
     @Override
@@ -40,7 +44,7 @@ public class ReceiveData extends Service {
 
                         String path = System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME+"/premium/"+vidName;
 
-                        if(save(sc, path)){
+                        if(save(sc, path, dis)){
                             System.out.println("File saved successfully");
                         }else{
                             System.out.println("Some error occured while saving file: "+vidName);
@@ -61,18 +65,22 @@ public class ReceiveData extends Service {
     }
 
 
-    boolean save(SocketChannel sc, String path){
+    boolean save(SocketChannel sc, String path, DataInputStream dis){
 
         try{
 
             FileChannel fc = new RandomAccessFile(path,"rw").getChannel();
             ByteBuffer buf = ByteBuffer.allocate(2048);
 
+            int n = dis.readInt();
             int bytesRead = sc.read(buf);
             while(bytesRead!= -1){
                 buf.flip();
                 fc.write(buf);
                 buf.clear();
+                n = dis.readInt();
+                if(n == -1)
+                    break;
                 bytesRead = sc.read(buf);
             }
             fc.close();

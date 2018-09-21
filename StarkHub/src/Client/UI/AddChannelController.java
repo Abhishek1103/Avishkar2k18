@@ -120,6 +120,7 @@ public class AddChannelController implements Initializable {
                     showLoading();
                     videoListView.getItems().clear();
                     hbox.getChildren().clear();
+                    channelNameTxt.clear();
                     //videoList.clear();
                 });
 

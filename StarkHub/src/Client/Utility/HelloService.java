@@ -25,7 +25,9 @@ public class HelloService extends Service {
                     ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 
                     dout.writeUTF("#HELO");
+                    System.out.println("Sent #HELO");
                     dout.writeUTF(Main.USERNAME);
+                    System.out.println("Sent Username");
                     ois.close();
                     oos.close();
                     socket.close();
