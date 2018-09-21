@@ -36,7 +36,7 @@ public class TrendSetter extends TimerTask
             r2.next();
             double maxTime = r2.getDouble(1);
             double alpha = 0.33;
-            String scoreSetQuery = "update trendingtable set score="+alpha+"*totalViews+((viewsInOneFrame/"+maxView+")*10 * " +
+            String scoreSetQuery = "update trendingtable set score=("+alpha+"*totalViews)+((viewsInOneFrame/"+maxView+")*10 * " +
                     "(lastViewedTime/"+maxTime+")*10);";
             String clearAllViewAndTime = "update trendingtable set viewsInOneFrame=0, lastViewedTime=0;";
             System.out.println("Setting trend score");

@@ -29,11 +29,12 @@ public class HubServer
         {
             System.out.println("Waiting for connection accept");
             Socket connectedSocket = hub.accept();
-            System.out.println("Connection arrived: "+connectedSocket.getInetAddress().getHostName());
+            System.out.println("Connection arrived: "+connectedSocket.getInetAddress().getHostAddress());
+            System.out.println("canonical host name: "+connectedSocket.getInetAddress().getCanonicalHostName());
             Peer peer = new Peer(connectedSocket);
             System.out.println("Streams initialized and objectified");
             new Thread(new HubPeerCommunication(peer)).start();
-            System.out.println("Thread started for "+connectedSocket.getInetAddress().getHostName());
+            System.out.println("Thread started for "+connectedSocket.getInetAddress().getHostAddress());
         }
     }
 }

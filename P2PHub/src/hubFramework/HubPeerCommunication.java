@@ -50,7 +50,7 @@ public class HubPeerCommunication implements Runnable {
                     System.out.println("#EXISTINGUSER");
                     String username = peer.dis.readUTF();
                     Statement stm = connect();
-                    stm.executeUpdate("update useripmap set ip='"+peer.peerSocket.getInetAddress().getHostName()
+                    stm.executeUpdate("update useripmap set ip='"+peer.peerSocket.getInetAddress().getHostAddress()
                             +"' where username='"+username+"'");
                     existingUser(username, 2);
                     break;
@@ -97,8 +97,8 @@ public class HubPeerCommunication implements Runnable {
                         c++;
                         channelVideo = rs.getString(1);
                         username = rs.getString(2);
-                        channelName = channelVideo.substring(0, channelList.indexOf(":"));
-                        videoName = channelVideo.substring(channelList.indexOf(":")+1);
+                        channelName = channelVideo.substring(0, channelVideo.indexOf(":"));
+                        videoName = channelVideo.substring(channelVideo.indexOf(":")+1);
                         userList.add(username);
                         channelList.add(channelName);
                         videoList.add(videoName);
@@ -132,9 +132,9 @@ public class HubPeerCommunication implements Runnable {
                         }
                     }
                     peer.dos.writeUTF("#SENDING");
-                    //System.out.println(peer.peerSocket.getInetAddress().getHostName()+":11234");
+                    //System.out.println(peer.peerSocket.getInetAddress().getHostAddress()+":11234");
                     Thread.sleep(500);
-                    new Thread(new SendThumbnails(data, peer.peerSocket.getInetAddress().getHostName())).start();
+                    new Thread(new SendThumbnails(data, peer.peerSocket.getInetAddress().getHostAddress())).start();
                     peer.oos.writeObject(data);
                     break;
                 }
@@ -200,7 +200,10 @@ public class HubPeerCommunication implements Runnable {
                     System.out.println("#PREMIUM");
                     Statement stm = connect();
                     String username = peer.dis.readUTF();
-                    String queryForUserSelection = "SELECT username FROM useripmap ORDER BY finalUptime DESC LIMIT 5;";
+                    System.out.println("In premium got username as"+username);
+                    String queryForUserSelection = "SELECT username FROM useripmap WHERE dataWritten='n' AND " +
+                            "username <> '"+username+"' ORDER BY finalUptime DESC LIMIT 5;";
+                    System.out.println(queryForUserSelection);
                     ResultSet rs = stm.executeQuery(queryForUserSelection);
                     ArrayList<String> userlist = new ArrayList<String>();
                     while(rs.next())
@@ -208,7 +211,7 @@ public class HubPeerCommunication implements Runnable {
                         userlist.add(rs.getString(1));
                     }
                     String targetUsername = userlist.get((int)(Math.random()*userlist.size()));
-                    String query = "SELECT ip FROM TABLE useripmap WHERE username='"+targetUsername+"';";
+                    String query = "SELECT ip FROM useripmap WHERE username='"+targetUsername+"';";
                     System.out.println("Conneted to db");
                     System.out.println(query);
                     rs = stm.executeQuery(query);
@@ -217,31 +220,38 @@ public class HubPeerCommunication implements Runnable {
                     String targetIP = rs.getString(1);
                     try{
                         Socket targetSocket = new Socket(targetIP, 15001);
+                        Peer targetPeer = new Peer(targetSocket);
+                        targetPeer.dos.writeUTF("HUB");
+                        targetPeer.dis.readBoolean();
+                        targetPeer.dos.writeUTF("#PING");
                         query = "UPDATE useripmap SET alternateip='"+targetIP+"' where username='"+username+"';";
                         System.out.println(query);
                         stm.executeUpdate(query);
                         System.out.println("alternate ip added for user"+username);
                         peer.dos.writeBoolean(true);
+                        System.out.println("True send and starting receive thread");
                         new Thread(new ReceiveAndStoreData(username, peer, targetUsername, targetIP)).start();
                         //new Thread(new SendData(new Peer()) -> do this at end of
                     } catch (ConnectException e) {
                         peer.dos.writeBoolean(false);
-                        System.out.println("Connect exception");
+                        System.out.println("Connect exception unable to connect to alternate ip");
                         System.out.println(e.getMessage());
                         e.printStackTrace();
                     }
                     catch (UnknownHostException e)
                     {
                         peer.dos.writeBoolean(false);
-                        System.out.println("UnknownHost exception");
+                        System.out.println("UnknownHost exception unable to connect to alternate ip");
                         System.out.println(e.getMessage());
                         e.printStackTrace();
                     }
+                    break;
                 }
                 case "#HELO":
                 {
-                    System.out.println("#HELO");
+                    System.out.println("#HELO=====");
                     hello();
+                    System.out.println("Back from helo function");
                     break;
                 }
                 case "#BYE":
@@ -251,7 +261,7 @@ public class HubPeerCommunication implements Runnable {
                     break;
                 }
                 default:
-                    System.out.println("Ye kya flag hai "+peer.peerSocket.getInetAddress().getHostName()+" bhai: "+ flag);
+                    System.out.println("Ye kya flag hai "+peer.peerSocket.getInetAddress().getHostAddress()+" bhai: "+ flag);
             }
 
         } catch (Exception e) {
@@ -259,15 +269,15 @@ public class HubPeerCommunication implements Runnable {
             e.printStackTrace();
         }
         finally {
-            try {
-                peer.dis.close();
-                peer.dos.close();
-                peer.oos.close();
-                peer.ois.close();
-                peer.peerSocket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //try {
+                //peer.dis.close();
+                //peer.dos.close();
+                //peer.oos.close();
+                //peer.ois.close();
+                //peer.peerSocket.close();
+            //} catch (IOException e) {
+            //    e.printStackTrace();
+            //}
         }
     }
 
@@ -363,9 +373,10 @@ public class HubPeerCommunication implements Runnable {
         String query1 = "SELECT starttime FROM useripmap WHERE username='"+username+"';";
         System.out.println(query+"\n"+query1);
         ResultSet rs = stm.executeQuery(query);
-        ResultSet rs1 = stm.executeQuery(query);
-        rs.next();rs1.next();
+        rs.next();
         resultedUptime = rs.getString(1);
+        ResultSet rs1 = stm.executeQuery(query1);
+        rs1.next();
         startTime = rs1.getString(1);
         Long addTime  = time - Long.parseLong(startTime);
         StringTokenizer uptime = new StringTokenizer(resultedUptime);
@@ -381,8 +392,8 @@ public class HubPeerCommunication implements Runnable {
         }
         double finalUptime = ((double)calculatedUptime)/4;
         addTimeString.append(addTime);
-        System.out.println("Got uptime string: " +addTimeString.toString());
-        query = "UPDATE useripmap SET uptime='"+addTimeString.toString()+"' AND finalUptime="+finalUptime+" WHERE username='"+username+"';";
+        System.out.println("Got uptime string: " +addTimeString.toString()+"\ngot finalUptime: "+finalUptime);
+        query = "UPDATE useripmap SET uptime='"+addTimeString.toString()+"', finalUptime="+finalUptime+" WHERE username='"+username+"';";
         System.out.println(query);
         stm.executeUpdate(query);
         System.out.println("query update done");
@@ -424,7 +435,7 @@ public class HubPeerCommunication implements Runnable {
             System.out.println("Error in writing Serialized object");
             e.printStackTrace();
         }
-        stm.executeUpdate("update useripmap set ip='"+peer.peerSocket.getInetAddress().getHostName()
+        stm.executeUpdate("update useripmap set ip='"+peer.peerSocket.getInetAddress().getHostAddress()
                 +"' where username='"+username+"'");
         existingUser(username, 1);
     }
@@ -545,18 +556,19 @@ public class HubPeerCommunication implements Runnable {
                 }
             }
             peer.dos.writeUTF("#SENDING");
-            //System.out.println(peer.peerSocket.getInetAddress().getHostName()+":11234");
+            //System.out.println(peer.peerSocket.getInetAddress().getHostAddress()+":11234");
             Thread.sleep(500);
             HashMap<String, Video> hm = new HashMap<String, Video>();
             hm.putAll(data);
-            hm.putAll(recommendedData);
-            new Thread(new SendThumbnails(hm, peer.peerSocket.getInetAddress().getHostName())).start();
+            if(recommendedData != null)
+                hm.putAll(recommendedData);
+            new Thread(new SendThumbnails(hm, peer.peerSocket.getInetAddress().getHostAddress())).start();
             peer.oos.writeObject(recommendedData);
             peer.oos.writeObject(data);
         }
 
         //Send  login time notifications if any
-        SendLoginTimeNotificationDaemon loginTime = new SendLoginTimeNotificationDaemon(username, peer.peerSocket.getInetAddress().getHostName());
+        SendLoginTimeNotificationDaemon loginTime = new SendLoginTimeNotificationDaemon(username, peer.peerSocket.getInetAddress().getHostAddress());
         new Thread(loginTime).start();
     }
 
@@ -676,9 +688,9 @@ public class HubPeerCommunication implements Runnable {
             }
         }
         peer.dos.writeUTF("#SENDING");
-        //System.out.println(peer.peerSocket.getInetAddress().getHostName()+":11234");
-        Thread.sleep(1500);
-        new Thread(new SendThumbnails(result, peer.peerSocket.getInetAddress().getHostName())).start();
+        //System.out.println(peer.peerSocket.getInetAddress().getHostAddress()+":11234");
+        Thread.sleep(3000);
+        new Thread(new SendThumbnails(result, peer.peerSocket.getInetAddress().getHostAddress())).start();
         peer.oos.writeObject(result);
         peer.oos.flush();
     }
@@ -696,7 +708,6 @@ public class HubPeerCommunication implements Runnable {
         System.out.println(query);
         ResultSet rs = stm.executeQuery(query);
         System.out.println("rs found");
-
         HashMap<String, Video> result = new HashMap<String, Video>();
         while (rs.next()) {
             String pathOfVideo = rs.getString(1);
@@ -728,9 +739,9 @@ public class HubPeerCommunication implements Runnable {
             }
         }
         peer.dos.writeUTF("#SENDING");
-        //System.out.println(peer.peerSocket.getInetAddress().getHostName()+":11234");
-        Thread.sleep(1500);
-        new Thread(new SendThumbnails(result, peer.peerSocket.getInetAddress().getHostName())).start();
+        //System.out.println(peer.peerSocket.getInetAddress().getHostAddress()+":11234");
+        Thread.sleep(3000);
+        new Thread(new SendThumbnails(result, peer.peerSocket.getInetAddress().getHostAddress())).start();
         peer.oos.writeObject(result);
         peer.oos.flush();
     }
@@ -831,12 +842,14 @@ public class HubPeerCommunication implements Runnable {
             double rating = 0;
             String username = peer.dis.readUTF();
             String channelName = peer.dis.readUTF();
+            System.out.println(channelName+"--- 1");
             File file = new File(System.getProperty("user.home") + "/Hub/Client/" + username);
             ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
             User obj = (User) readSerializedObject.readObject();
-            System.out.println("obj for " + username);
+            System.out.println("---obj for " + username);
             Channel requestedChannel = null;
             for (Channel ch : obj.channels) {
+                System.out.println(ch.channelName + " for username "+username);
                 if (ch.channelName.equals(channelName)) {
                     requestedChannel = ch;
                     rating = 0.5*ch.channelSubscribers + 0.25*ch.totalNoOfComments + 0.25*ch.totalNoOfLikes;
@@ -878,12 +891,15 @@ public class HubPeerCommunication implements Runnable {
         System.out.println("Sending back ip "+ip);
         peer.dos.writeUTF(ip);
         String alternateIP = rs.getString(2);
+        System.out.println("Alternate ip before sending to user: ------------"+alternateIP+"------------");
         if(alternateIP == null || alternateIP.isEmpty())
         {
+            System.out.println("Sending alternate ip: false");
             peer.dos.writeBoolean(false);
         }
         else
         {
+            System.out.println("Sending alternate ip: true");
             peer.dos.writeBoolean(true);
             peer.dos.writeUTF(alternateIP);
         }

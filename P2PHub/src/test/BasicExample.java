@@ -13,11 +13,11 @@ public class BasicExample {
     public static void main(String[] args) {
 
         check();
-//        System.setProperty("http.proxySet", "true");
-//        System.setProperty("java.net.useSystemProxies", "true");
-//        System.setProperty("http.proxyHost", "172.31.100.29");
-//        System.setProperty("http.proxyPort", "3128");
-//        Authenticator.setDefault(new ProxyAuthenticator("edcguest", "edcguest"));
+        System.setProperty("http.proxySet", "true");
+        System.setProperty("java.net.useSystemProxies", "true");
+        System.setProperty("http.proxyHost", "172.31.100.29");
+        System.setProperty("http.proxyPort", "3128");
+        Authenticator.setDefault(new ProxyAuthenticator("edcguest", "edcguest"));
 
 //        System.setProperty("http.proxyHost", "172.31.100.29");
 //        System.setProperty("http.proxyPort", "3128");
@@ -57,7 +57,7 @@ public class BasicExample {
         String secretToken = "MGowrzpa9y03pMsec8BYePfIEgQLSwtfX01161reCWywx0EY7Eg8Ni7iK43dTLDj";
         RecombeeClient client = new RecombeeClient("binary-warriors", secretToken);
         try {
-            //client.send(new ResetDatabase()); //Clear everything from the database
+            client.send(new ResetDatabase()); //Clear everything from the database
             final int NUM = 100;
             // Generate some random purchases of items by users
             final double PROBABILITY_PURCHASED = 0.1;
