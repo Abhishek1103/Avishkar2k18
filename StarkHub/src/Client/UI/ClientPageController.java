@@ -51,8 +51,8 @@ public class ClientPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)  {
 
-        receivedVideos = null;
-        receivedVideosRecommended = null;
+        receivedVideos = new HashMap<>();
+        receivedVideosRecommended = new HashMap<>();
         nameImageViewMap = new HashMap<>();
 
 

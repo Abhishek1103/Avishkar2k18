@@ -98,16 +98,18 @@ public class Server implements Runnable
             System.out.println(getUsername() + "\n" + getRootPasswd());
             //System.exit(0);
             //TODO: get starkhub wala username
-            starkHubUsername = "aks";
+            starkHubUsername = Main.USERNAME;
             HashSet<String> people = new HashSet<String>();
             ServerSocket incomingConnection = new ServerSocket(15001);
             while (true) {
                 Socket socket = incomingConnection.accept();
+                System.out.println("Server: Incoming socket: "+socket);
                 String username = "";
                 Peer peer=null;
                 try{
                     peer = new Peer(socket);
                     username = peer.dis.readUTF();
+                    System.out.println("Server: Read Username: "+username);
                 }catch(Exception ex){
                     ex.printStackTrace();
                 }
@@ -120,7 +122,7 @@ public class Server implements Runnable
                         String flag = peer.dis.readUTF();
                         switch (flag) {
                             case "#DISCONNECT": {
-                                System.out.println("#DISCONNECT received");
+                                System.out.println("Server: #DISCONNECT received");
                                 people.remove(username);
                                 peer.dis.close();
                                 peer.dos.close();
@@ -167,7 +169,7 @@ public class Server implements Runnable
                                         ObjectInputStream readSerializedObject = new ObjectInputStream(new FileInputStream(file));
                                         commentMap = (HashMap<String, String>) readSerializedObject.readObject();
                                         commentMap.put(commentText, commenter);
-                                        System.out.println("Writting back");
+                                        System.out.println("Server: Writting back");
                                         ObjectOutputStream writeSerializedObject = new ObjectOutputStream(new FileOutputStream(file));
                                         writeSerializedObject.writeObject(commentMap);
                                         readSerializedObject.close();
@@ -181,15 +183,18 @@ public class Server implements Runnable
 
                             case "#RECEIVEDATA" : {
                                 // TODO: Logic
-                                System.out.println("In #RECEIVEDATA");
+                                System.out.println("Server:  #RECEIVEDATA");
                                 int n = peer.dis.readInt();
+                                System.out.println("Server: rececived n: "+n);
                                 ArrayList<String> list = new ArrayList<>();
                                 list = (ArrayList<String>) peer.ois.readObject();
+                                System.out.println("Server: list: "+list );
                                 peer.dos.writeUTF(System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME+"/premium/");
                                 ReceiveData receive = new ReceiveData(n, list, peer.dis);
                                 receive.start();
                                 Thread.sleep(500);
                                 peer.dos.writeBoolean(true);
+                                System.out.println("Sent Boolean: true" );
                                 break;
                             }
 

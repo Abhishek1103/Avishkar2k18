@@ -33,15 +33,16 @@ public class ReceiveData extends Service {
             protected Void call() throws Exception {
 
                 try{
-
+                    System.out.println("ReceiveData thread started");
                     ServerSocketChannel ssc = ServerSocketChannel.open();
+                    System.out.println("Initialised ssc");
                     ssc.socket().bind(new InetSocketAddress(15004));
-
+                    System.out.println("Bound to port 15004");
 
 
                     for(int i=0;i<n;i++){
-                        String vidName = list.get(i);
-
+                        String vidName = dis.readUTF();
+                        System.out.println("vidname : "+vidName);
                         SocketChannel sc = ssc.accept();
                         System.out.println("socket: "+sc);
                         String path = System.getProperty("user.home")+"/starkhub/"+ Main.USERNAME+"/premium/"+vidName;
@@ -52,6 +53,7 @@ public class ReceiveData extends Service {
                             System.out.println("Some error occured while saving file: "+vidName);
                         }
                         sc.close();
+                        System.out.println("file received: "+vidName);
                     }
 
                     ssc.close();
