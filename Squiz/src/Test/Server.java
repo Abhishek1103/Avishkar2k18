@@ -2,6 +2,7 @@ package Test;
 
 
 import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
 import java.math.BigInteger;
 import java.net.*;
 import java.io.*;
@@ -15,9 +16,9 @@ import java.util.Arrays;
 public class Server
 {
     static SecretKey secretKey;
-    private static final String transformation = "AES/ECB/PKCS5Padding";
+    private static final String transformation = "AES";
 
-    public static void main(String[] args) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException, InvalidKeySpecException {
+    public static void main(String[] args) throws Exception {
         ServerSocket connection = new ServerSocket(7000);
 
         Socket client = connection.accept();
@@ -43,13 +44,18 @@ public class Server
         saveKeys("/home/aks/Desktop/Public.key", rsaPublicKeySpec.getModulus(),rsaPublicKeySpec.getPublicExponent());
         saveKeys("/home/aks/Desktop/Private.key", rsaPrivateKeySpec.getModulus(), rsaPrivateKeySpec.getPrivateExponent());
 
-        Cipher cipher1 = Cipher.getInstance("RSA");
+        sendFile("/home/aks/Desktop/Public.key", oos);
+        String pathOfSurbhitPublicKey = saveFile("/home/aks/Desktop/SurPub.key", ois);
+
+        PublicKey surbhitPublicKey = readPublicKeyFromFile("/home/aks/Desktop/SurPub.key");
+
+        Cipher cipher1 = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher1.init(Cipher.ENCRYPT_MODE, publicKey);
 
         String plain = "My name is Abhishek";
         byte[] b = cipher1.doFinal(plain.getBytes());
 
-        Cipher deCipher = Cipher.getInstance("RSA");
+        Cipher deCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         deCipher.init(Cipher.DECRYPT_MODE, privateKey);
         byte[] p = deCipher.doFinal(b);
         String s = new String(p);
@@ -58,9 +64,9 @@ public class Server
 
         /*INSERT CODE HERE*/
 
-        sendFile("/home/aks/Desktop/Public.key", oos);
 
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+
+        Cipher cipher = Cipher.getInstance("AES");
 
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
 
@@ -69,6 +75,22 @@ public class Server
         keyGenerator.init(keyBitSize, secureRandom);
 
         secretKey = keyGenerator.generateKey();
+        //
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        encryptRSA(secretKey, baos, "RSA", surbhitPublicKey);
+
+        int[] arr = {1,2,3,4};
+
+        oos.writeObject(arr);
+        oos.flush();
+
+        byte[] bt = encryptSecretKey(secretKey, surbhitPublicKey);
+
+        oos.writeObject(bt);
+        oos.flush();
+        System.out.println("AES Secret key encrypted and written to Surbhit");
+
+        System.out.println(dis.readBoolean());
 
         System.out.println(""+secretKey.toString());
 
@@ -98,7 +120,10 @@ public class Server
         System.out.println(list);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        encrypt(list, baos);
+        encrypt(list, baos, transformation, secretKey);
+
+        oos.writeObject(baos.toByteArray());
+        System.out.println("Encrypted Array list sent to surbhit");
 
         connection.close();
     }
@@ -134,13 +159,13 @@ public class Server
 
     }
 
-    public static void encrypt(Serializable object, OutputStream ostream) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+    public static void encrypt(Serializable object, OutputStream ostream, String algo, SecretKey secretKey) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
         try {
             // Length is 16 byte
             //SecretKeySpec sks = new SecretKeySpec(secretKey., transformation);
 
             // Create cipher
-            Cipher cipher = Cipher.getInstance(transformation);
+            Cipher cipher = Cipher.getInstance(algo);
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             SealedObject sealedObject = new SealedObject(object, cipher);
 
@@ -154,10 +179,30 @@ public class Server
         }
     }
 
+    public static void encryptRSA(Serializable object, OutputStream ostream, String algo, PublicKey publicKey) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+        try {
+            // Length is 16 byte
+            //SecretKeySpec sks = new SecretKeySpec(secretKey., transformation);
 
-    public static Object decrypt(InputStream istream) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+            // Create cipher
+            Cipher cipher = Cipher.getInstance(algo);
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            SealedObject sealedObject = new SealedObject(object, cipher);
 
-        Cipher cipher = Cipher.getInstance(transformation);
+            // Wrap the output stream
+            CipherOutputStream cos = new CipherOutputStream(ostream, cipher);
+            ObjectOutputStream outputStream = new ObjectOutputStream(cos);
+            outputStream.writeObject(sealedObject);
+            outputStream.close();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static Object decrypt(InputStream istream, String algo) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+
+        Cipher cipher = Cipher.getInstance(algo);
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
 
         CipherInputStream cipherInputStream = new CipherInputStream(istream, cipher);
@@ -265,14 +310,14 @@ public class Server
 
     private static String saveFile(String fileName, ObjectInputStream ois) throws Exception
     {
-        String path1 = "";
+        String path1 = fileName;
 
         FileOutputStream fos = null;
         byte[] buffer = new byte[1024];
         // Read file name.
         Object o = null;
         path1 =fileName;
-        fos = new FileOutputStream(path1);
+        fos = new FileOutputStream(fileName);
 
         // Read file to the end.
         Integer bytesRead = 0;
@@ -297,5 +342,53 @@ public class Server
 
     public static void throwException(String message) throws Exception {
         throw new Exception(message);
+    }
+
+    private static  byte[] encryptSecretKey (SecretKey skey, PublicKey publicKey)
+    {
+        Cipher cipher = null;
+        byte[] key = null;
+
+        try
+        {
+            // initialize the cipher with the user's public key
+            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey );
+            key = cipher.doFinal(skey.getEncoded());
+        }
+        catch(Exception e )
+        {
+            System.out.println ( "exception encoding key: " + e.getMessage() );
+            e.printStackTrace();
+        }
+        return key;
+    }
+
+    private static SecretKey decryptAESKey(byte[] data, PrivateKey privateKey )
+    {
+        SecretKey key = null;
+        PrivateKey privKey = null;
+        Cipher cipher = null;
+
+        try
+        {
+            // this is OUR private key
+            privKey = privateKey;
+
+            // initialize the cipher...
+            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.DECRYPT_MODE, privKey );
+
+            // generate the aes key!
+            key = new SecretKeySpec( cipher.doFinal(data), "AES" );
+        }
+        catch(Exception e)
+        {
+            System.out.println ( "exception decrypting the aes key: "
+                    + e.getMessage() );
+            return null;
+        }
+
+        return key;
     }
 }
