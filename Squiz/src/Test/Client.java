@@ -8,18 +8,18 @@ public class Client
 {
     public static void main(String[] args) throws Exception
     {
-        Socket connection = new Socket("127.0.0.1", 7000);
+        Socket connection = new Socket("172.31.84.87", 7000);
         DataOutputStream dos = new DataOutputStream(connection.getOutputStream());
         DataInputStream dis = new DataInputStream(connection.getInputStream());
 
         ObjectInputStream ois = new ObjectInputStream(connection.getInputStream());
         ObjectOutputStream oos = new ObjectOutputStream(connection.getOutputStream());
 
-        /*INSERT CODE HERE*/
-
-        String fileName = "Public.key";
-        saveFile(fileName,ois);
+        String fileName = "/home/aks/Desktop/Public.key";
+        String pathOfAESKeyEncryptedByRSA = saveFile(fileName,ois);
         connection.close();
+
+	/*INSERT CODE HERE*/
 
     }
 
@@ -31,7 +31,7 @@ public class Client
         byte[] buffer = new byte[1024];
         // Read file name.
         Object o = null;
-        path1 = System.getProperty("user.home") + "/Hub/Thumbnails/"+fileName;
+        path1 =fileName;
         fos = new FileOutputStream(path1);
 
         // Read file to the end.

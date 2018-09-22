@@ -60,10 +60,10 @@ public class EncryptionTest {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         encrypt(list, baos);
 
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("/home/surbhit/Desktop/enc"));
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("/home/aks/Desktop/enc"));
         oos.writeObject(baos.toByteArray());
 
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("/home/surbhit/Desktop/enc"));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("/home/aks/Desktop/enc"));
         byte[] b = (byte[])ois.readObject();
 
         //ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
