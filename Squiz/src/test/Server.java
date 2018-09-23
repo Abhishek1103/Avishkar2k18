@@ -127,8 +127,7 @@ public class Server
         connection.close();
     }
 
-    private static void sendFile(String path, ObjectOutputStream oos)
-    {
+    private static void sendFile(String path, ObjectOutputStream oos) {
 
         try {
             System.out.println("In send file");

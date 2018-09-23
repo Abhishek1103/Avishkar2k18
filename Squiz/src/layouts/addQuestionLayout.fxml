@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" prefHeight="586.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AddQuestionController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="153.0" prefWidth="906.0">
+         <children>
+            <Label layoutX="28.0" layoutY="38.0" prefHeight="34.0" prefWidth="100.0" text="Question: ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="questionTxt" layoutX="179.0" layoutY="28.0" prefHeight="54.0" prefWidth="397.0" promptText="Question Description" />
+            <JFXRadioButton fx:id="singleButton" layoutX="192.0" layoutY="115.0" text="MCQ Single Correct" />
+            <JFXRadioButton fx:id="multipleButton" layoutX="366.0" layoutY="115.0" text="MCQ Multiple Correct" />
+            <JFXRadioButton fx:id="trueFalseButton" layoutX="572.0" layoutY="115.0" text="True/False" />
+            <Label layoutX="620.0" layoutY="27.0" prefHeight="54.0" prefWidth="52.0" text="Marks: " />
+            <JFXTextField fx:id="marksTxt" layoutX="686.0" layoutY="42.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="150.0" prefHeight="428.0" prefWidth="906.0">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="341.0" prefWidth="882.0">
+               <children>
+                  <AnchorPane fx:id="singlePane" layoutX="13.0" layoutY="11.0" prefHeight="313.0" prefWidth="858.0">
+                     <children>
+                        <JFXRadioButton fx:id="op1Button" layoutX="157.0" layoutY="67.0" text="Option 1" />
+                        <JFXTextField layoutX="270.0" layoutY="62.0" prefHeight="26.0" prefWidth="397.0" promptText="Option Description" />
+                        <JFXRadioButton fx:id="op2Button" layoutX="157.0" layoutY="118.0" text="Option 2" />
+                        <JFXTextField layoutX="270.0" layoutY="113.0" prefHeight="26.0" prefWidth="397.0" promptText="Option Description" />
+                        <JFXRadioButton fx:id="op3Button" layoutX="157.0" layoutY="170.0" text="Option 3" />
+                        <JFXTextField layoutX="270.0" layoutY="157.0" prefHeight="26.0" prefWidth="397.0" promptText="Option Description" />
+                        <JFXRadioButton fx:id="op4Button" layoutX="157.0" layoutY="225.0" text="Option 4" />
+                        <JFXTextField layoutX="270.0" layoutY="212.0" prefHeight="26.0" prefWidth="397.0" promptText="Option Description" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="multiplePane" prefHeight="313.0" prefWidth="847.0">
+                     <children>
+                        <JFXTextField layoutX="282.0" layoutY="68.0" prefHeight="26.0" prefWidth="397.0" />
+                        <CheckBox fx:id="op1CheckBox" layoutX="169.0" layoutY="81.0" mnemonicParsing="false" text="Option 1" />
+                        <JFXTextField layoutX="282.0" layoutY="126.0" prefHeight="26.0" prefWidth="397.0" />
+                        <CheckBox fx:id="op2CheckBox" layoutX="169.0" layoutY="139.0" mnemonicParsing="false" text="Option 2" />
+                        <JFXTextField layoutX="282.0" layoutY="188.0" prefHeight="26.0" prefWidth="397.0" />
+                        <CheckBox fx:id="op3CheckBox" layoutX="169.0" layoutY="201.0" mnemonicParsing="false" text="Option 3" />
+                        <JFXTextField layoutX="282.0" layoutY="249.0" prefHeight="26.0" prefWidth="397.0" />
+                        <CheckBox fx:id="op4CheckBox" layoutX="169.0" layoutY="262.0" mnemonicParsing="false" text="Option 4" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <JFXButton fx:id="addQuestionButton" buttonType="RAISED" layoutX="393.0" layoutY="373.0" onAction="#addQuestionButtonClicked" prefHeight="26.0" prefWidth="125.0" style="-fx-background-color: #a5032b;" text="Add Question" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

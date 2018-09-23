@@ -4,6 +4,7 @@ import constants.Constants;
 import constants.Flags;
 
 import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -68,15 +69,16 @@ public class AES {
         }
     }
 
+    // Encode Secret key to Base64 string
     public String getEncodedKey() throws Exception{
         SecretKey key = this.getSecretKey();
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
-
-    /*
-            byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
-            // rebuild key using SecretKeySpec
-            SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
-     */
+    // Decode base64 String to Secret Key
+    public SecretKey decodeKey(String encodedKey) throws Exception{
+        byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
+        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, ALGORITHM);
+        return originalKey;
+    }
 }

@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="656.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AddSubjectController">
    <children>
-      <JFXTextField fx:id="subJectNameTxtFeild" layoutX="315.0" layoutY="165.0" prefHeight="26.0" prefWidth="449.0" promptText="Subject Name" />
+      <JFXTextField fx:id="subjectNameTxtFeild" layoutX="315.0" layoutY="165.0" prefHeight="26.0" prefWidth="449.0" promptText="Subject Name" />
       <Label layoutX="155.0" layoutY="172.0" text="Subject Name">
          <font>
             <Font size="16.0" />
@@ -25,7 +24,7 @@
             <DropShadow />
          </effect>
       </Label>
-      <JFXTextField fx:id="subJectIdTxtFeild" layoutX="313.0" layoutY="239.0" prefHeight="26.0" prefWidth="449.0" promptText="Subject Code/Id" />
+      <JFXTextField fx:id="subjectIdTxtFeild" layoutX="313.0" layoutY="239.0" prefHeight="26.0" prefWidth="449.0" promptText="Subject Code/Id" />
       <Label layoutX="155.0" layoutY="246.0" text="Subject Code/Id:">
          <font>
             <Font size="16.0" />
@@ -37,7 +36,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <JFXButton fx:id="addSubjectButton" buttonType="RAISED" layoutX="268.0" layoutY="562.0" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #269ab7;" text="Add Subject" textFill="WHITE" />
+      <JFXButton fx:id="addSubjectButton" buttonType="RAISED" layoutX="268.0" layoutY="562.0" onAction="#addSubjectButtonClicked" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #269ab7;" text="Add Subject" textFill="WHITE" />
       <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="622.0" layoutY="562.0" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #919596;" text="Cancel" textFill="#fcefef" />
    </children>
 </AnchorPane>

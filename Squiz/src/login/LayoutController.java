@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXTextField;
 
 import constants.Constants;
 import constants.Flags;
+import encryption.AES;
+import encryption.RSA;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -138,6 +140,13 @@ public class LayoutController implements Initializable {
 
                 if(isAuthorised){
                     // TODO: Open main page
+                    Constants.USERNAME = userName;
+                    Constants.USER_DIR = path.substring(0, path.lastIndexOf('/')+1);
+                    if(Flags.isTeacher){
+                        startTeacherMainPage();
+                    }else if(Flags.isStudent){
+                        startStudentMainPage();
+                    }
                 }else{
                     System.out.println("Authorisation failed");
                     // TODO: show a GUI alert
@@ -196,9 +205,39 @@ public class LayoutController implements Initializable {
                 createDirectories(userName);
                 writeCredentialsFile(userName, pass, name, path);
                 Constants.USERNAME = userName;
-                Constants.USER_DIR = path.substring(0, path.lastIndexOf('/'+1));
-                System.out.println("User Directory: "+Constants.USER_HOME);
-                startMainPage();
+                Constants.USER_DIR = path.substring(0, path.lastIndexOf('/')+1);
+                System.out.println("User Directory: "+Constants.USER_DIR);
+
+                // TODO: Generate keys, save them locally
+
+
+                Constants.rsa = new RSA();
+                Constants.rsa.generateKeyPair();
+                Constants.rsa.savePrivateKey("Private.key");
+                Constants.rsa.savePublicKey("Public.key");
+
+                Constants.PUBLIC_KEY_PATH = Constants.USER_DIR+"keys/Public.key";
+                Constants.PRIVATE_KEY_PATH = Constants.USER_DIR+"keys/Private.key";
+
+                Constants.aes = new AES();
+                Constants.aes.generateAESKey();
+                String encodedAESKey = Constants.aes.getEncodedKey();
+                String aesKeyPath = Constants.USER_DIR+"keys/Secretkey.key";
+                Constants.SECRET_KEY_PATH = aesKeyPath;
+
+                PrintWriter pw = new PrintWriter(new FileWriter(new File(aesKeyPath)));
+                pw.println(encodedAESKey);
+                pw.close();
+
+                // TODO: contact the server
+
+
+                if(Flags.isTeacher){
+                    startTeacherMainPage();
+                }else if(Flags.isStudent){
+                    startStudentMainPage();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -222,20 +261,12 @@ public class LayoutController implements Initializable {
 
         try {
             makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/");
+            makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/"+"subjects/");
+            makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/"+"keys");
         }catch (Exception e){
             e.printStackTrace();
         }
 
-//        new File(userHome+"/starkhub/"+userName+"/thumbnails").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/playlists").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/mychannels").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/temp").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/watchLater").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/history").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/comments").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/subscriptions").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/premium").mkdirs();
-//        new File(userHome+"/starkhub/"+userName+"/prem").mkdirs();
     }
 
 
@@ -340,6 +371,49 @@ public class LayoutController implements Initializable {
 
     }
 
+    void startStudentMainPage(){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("layouts/mainStudentPage.fxml"));
+        }
+        catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        try {
+            Stage curStage = (Stage) rootPane.getScene().getWindow();
+
+            curStage.setScene(new Scene(root));
+
+            curStage.setOnCloseRequest(e -> {
+                // TODO: Actions to be taken upon closing of application
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    void startTeacherMainPage(){
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("layouts/mainTeacherPage.fxml"));
+        }
+        catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        try {
+            Stage curStage = (Stage) rootPane.getScene().getWindow();
+
+            curStage.setScene(new Scene(root));
+
+            curStage.setOnCloseRequest(e -> {
+                // TODO: Actions to be taken upon closing of application
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
     // Athenticating signUp from the HUB
     boolean authenticateSignUp(String username){
         boolean result = false;
@@ -351,7 +425,8 @@ public class LayoutController implements Initializable {
             ObjectInputStream ois = new ObjectInputStream(serverConn.getInputStream());
             ObjectOutputStream oos = new ObjectOutputStream(serverConn.getOutputStream());
 
-            dout.writeUTF("#USERNAME");
+            dout.writeBoolean(Flags.isTeacher);
+            dout.writeUTF("#AUTH");
             dout.writeUTF(username);
             result = din.readBoolean();
 
@@ -454,9 +529,12 @@ public class LayoutController implements Initializable {
         return stringBuffer.toString();
     }
 
+
     private void makeDirectory(String path)throws Exception{
         new File(path).mkdirs();
     }
+
+
 
     private boolean readFromCredentialsFile(String userName, String pass, String path) throws Exception{
         BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(path)));
