@@ -2,6 +2,9 @@ package Client.DataClasses;
 
 import java.io.Serializable;
 
+
+// Comment class: For storing attributes an behaviours of comments
+
 public class Comment implements Serializable {
 
     String userName;

@@ -11,6 +11,10 @@ import java.io.File;
 
 import static java.lang.Thread.sleep;
 
+/*
+        Service to correct the Thumnails path of video
+        objects received from the HUB
+ */
 
 public class ResetThumbnailPathService extends Service {
     @Override

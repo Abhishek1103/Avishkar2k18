@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="468.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SingleChoiceController">
+   <children>
+      <JFXTextArea fx:id="quesTextArea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="115.0" prefWidth="687.0" promptText="Question" text="Question">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextArea>
+      <JFXRadioButton fx:id="op1RB" layoutX="117.0" layoutY="201.0" prefHeight="16.0" prefWidth="180.0" />
+      <JFXRadioButton fx:id="op2RB" layoutX="117.0" layoutY="254.0" prefHeight="16.0" prefWidth="180.0" />
+      <JFXRadioButton fx:id="op3RB" layoutX="118.0" layoutY="309.0" prefHeight="16.0" prefWidth="180.0" />
+      <JFXRadioButton fx:id="op4RB" layoutX="119.0" layoutY="367.0" prefHeight="16.0" prefWidth="180.0" />
+      <JFXButton fx:id="submitButton" buttonType="RAISED" layoutX="286.0" layoutY="411.0" onAction="#submitButtonClicked" prefHeight="26.0" prefWidth="127.0" style="-fx-background-color: #ffffff;" text="Submit" />
+   </children>
+</AnchorPane>

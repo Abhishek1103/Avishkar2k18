@@ -30,7 +30,7 @@ public class AES {
         Flags.isSecretKeyGenerated = true;
     }
 
-    private void setSecretKey(SecretKey secretKey){
+    public void setSecretKey(SecretKey secretKey){
         this.secretKey = secretKey;
     }
 
@@ -53,7 +53,7 @@ public class AES {
     }
 
     // Decrypt with AES
-    public Object decryptWithAES(InputStream _inputStream) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, InvalidKeyException {
+    public Object decryptWithAES(InputStream _inputStream, SecretKey secretKey) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, InvalidKeyException {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
 
@@ -70,8 +70,7 @@ public class AES {
     }
 
     // Encode Secret key to Base64 string
-    public String getEncodedKey() throws Exception{
-        SecretKey key = this.getSecretKey();
+    public String getEncodedKey(SecretKey key) throws Exception{
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 

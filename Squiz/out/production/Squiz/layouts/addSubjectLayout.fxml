@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="656.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AddSubjectController">
+   <children>
+      <JFXTextField fx:id="subjectNameTxtFeild" layoutX="315.0" layoutY="165.0" prefHeight="26.0" prefWidth="449.0" promptText="Subject Name" />
+      <Label layoutX="155.0" layoutY="172.0" text="Subject Name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="210.0" layoutY="34.0" prefHeight="64.0" prefWidth="602.0" text="Enter Subject Details">
+         <font>
+            <Font size="25.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <JFXTextField fx:id="subjectIdTxtFeild" layoutX="313.0" layoutY="239.0" prefHeight="26.0" prefWidth="449.0" promptText="Subject Code/Id" />
+      <Label layoutX="155.0" layoutY="246.0" text="Subject Code/Id:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <JFXTextArea fx:id="additionalDetailsTxtArea" layoutX="300.0" layoutY="321.0" promptText="Not More Than 50 words" />
+      <Label layoutX="146.0" layoutY="328.0" prefHeight="19.0" prefWidth="141.0" text="Additional Details">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="addSubjectButton" buttonType="RAISED" layoutX="268.0" layoutY="562.0" onAction="#addSubjectButtonClicked" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #269ab7;" text="Add Subject" textFill="WHITE" />
+      <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="622.0" layoutY="562.0" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: #919596;" text="Cancel" textFill="#fcefef" />
+   </children>
+</AnchorPane>

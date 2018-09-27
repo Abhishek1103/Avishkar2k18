@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="107.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SubjectItemStudentController">
+   <children>
+      <Label layoutX="59.0" layoutY="14.0" prefHeight="40.0" prefWidth="308.0" text="Subject Name" textFill="#ab3030">
+         <font>
+            <Font size="29.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label layoutX="59.0" layoutY="63.0" prefHeight="16.0" prefWidth="210.0" text="Teacher Name">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="550.0" layoutY="33.0" prefHeight="40.0" prefWidth="111.0" style="-fx-background-color: #c40736;" text="Show Quizzes" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -78,7 +78,7 @@ public class AddChannelController implements Initializable {
         holderAnchorPane.setVisible(true);
     }
 
-
+    // Creating channel and notifying HUB
     public  void createChannel(){
         String channelName = channelNameTxt.getText();
         File channelFile = new File(userHome+"/starkhub/"+USERNAME+"/mychannels/list");
@@ -113,6 +113,7 @@ public class AddChannelController implements Initializable {
 
                 showLoading();
 
+                // Service for Notifying the HUB about the new Channel
                 NotifyNewChannelService nns = new NotifyNewChannelService(videoList, channelName);
                 nns.start();
                 nns.setOnSucceeded(e -> {
@@ -174,13 +175,14 @@ public class AddChannelController implements Initializable {
 
     public void discard(){
         /*
-            Load back the main UI
+            // TODO: Load back the main UI
 
          */
         showLoading();
 
     }
 
+    // Show a loading component while data is being fetched or transfered
     void showLoading(){
         if(!loadingAnchorPane.isVisible()) {
             System.out.println("Showing loading gif");
@@ -288,10 +290,9 @@ public class AddChannelController implements Initializable {
         videoListView.getSelectionModel().clearSelection();
         tagsTextArea.clear();
 
-
     }
 
-
+    // Adding tags to video Objects
     ArrayList<String> getTagsFromTextArea(){
         String rawString = tagsTextArea.getText();
         StringTokenizer tokenizer = new StringTokenizer(rawString, ",");
@@ -304,6 +305,7 @@ public class AddChannelController implements Initializable {
         return extractedTags;
     }
 
+    // initialize no Videos Selected POPUP
     JFXPopup initNoVideosPopup(){
         Label l = new Label("No Videos Selected");
         l.setWrapText(true);
@@ -313,6 +315,7 @@ public class AddChannelController implements Initializable {
         return p;
     }
 
+    // initialize duplicate channel name POPUP
     JFXPopup initAnotherChannelName(){
         Label l = new Label("Select another Channel Name");
         l.setWrapText(true);

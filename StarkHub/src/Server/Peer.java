@@ -6,6 +6,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/*
+       class for opening streams to a peer
+ */
+
 public class Peer {
     protected Socket peerSocket;
     protected DataInputStream dis;

@@ -14,6 +14,12 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/*
+        Initialised at login
+        Receives pending notifications
+        while the user was offline
+ */
+
 public class NotificationServiceAtLogin extends Service {
 
     Circle notifCircle;

@@ -16,7 +16,7 @@
    <children>
       <AnchorPane layoutX="174.0" prefHeight="509.0" prefWidth="433.0" style="-fx-background-color: #0864a3;">
          <children>
-            <Label layoutX="117.0" layoutY="240.0" text="Stark Hub" textFill="#ddcdcd">
+            <Label layoutX="131.0" layoutY="240.0" text="Squiz" textFill="#ddcdcd">
                <font>
                   <Font size="24.0" />
                </font>
@@ -26,7 +26,7 @@
                   <Image url="@../resources/omega-100.png" />
                </image>
             </ImageView>
-            <Label layoutX="117.0" layoutY="271.0" text="Where Magic Happens" textFill="#c6b9b9" />
+            <Label layoutX="117.0" layoutY="271.0" text="Wonders of Pym Particle" textFill="#c6b9b9" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="607.0" layoutY="67.0" prefHeight="404.0" prefWidth="420.0" style="-fx-background-color: #ffffff;">

@@ -14,6 +14,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import static Client.Login.Main.HUB_IP;
 
+/*
+        Contacting HUB to get the IP of
+        the serving Peer.
+ */
+
 public class GetIpService extends Service {
 
     String userName;
@@ -53,6 +58,7 @@ public class GetIpService extends Service {
                         altIp = dis.readUTF();
                     }
 
+                    // PINGING the peer to see if it's online
                     try{
                         Socket sock = new Socket(ip, 15001);
                         DataInputStream ds = new DataInputStream(sock.getInputStream());
@@ -65,6 +71,7 @@ public class GetIpService extends Service {
                         ooos.close();
                         sock.close();
                     }catch (Exception e){
+                        // Switching to alternate IP if peer is down
                         System.out.println("Error in connecting to primary host, switching to alternate host");
                         ip = altIp;
                         MediaPlayerAndControlsController.isAlternateIp = true;

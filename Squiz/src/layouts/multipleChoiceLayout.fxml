@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="468.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MultipleChoiceController">
+    <children>
+        <JFXTextArea fx:id="quesTextArea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="115.0" prefWidth="687.0" promptText="Question" text="Question">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </JFXTextArea>
+      <CheckBox fx:id="op1CB" layoutX="137.0" layoutY="193.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="op3CB" layoutX="137.0" layoutY="286.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="op4CB" layoutX="137.0" layoutY="330.0" mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="op2CB" layoutX="137.0" layoutY="236.0" mnemonicParsing="false" text="CheckBox" />
+      <JFXButton fx:id="submitButton" buttonType="RAISED" layoutX="313.0" layoutY="403.0" onAction="#submitButtonClicked" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #ffffff;" text="Submit" />
+    </children>
+</AnchorPane>

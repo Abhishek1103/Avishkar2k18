@@ -30,6 +30,7 @@ public class AddSubjectController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        System.out.println("Add subject loaded");
 
     }
 
@@ -46,7 +47,7 @@ public class AddSubjectController implements Initializable {
         System.out.println("subjectMap: "+Constants.SUBJECT_MAP);
 
         // TODO: Notify Server
-        NotifyServerAddSubjectService notify = new NotifyServerAddSubjectService(subject);
+        NotifyServerAddSubjectService notify = new NotifyServerAddSubjectService();
         notify.start();
         notify.setOnSucceeded(e -> {
             System.out.println("Notify subject completed");

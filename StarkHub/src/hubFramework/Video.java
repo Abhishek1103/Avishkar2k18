@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/*
+        Structure of video object received from HUB
+ */
+
 public class Video implements Serializable {
 
     protected String videoName;

@@ -16,6 +16,11 @@ import static Client.Login.Main.HUB_IP;
 import static Client.Login.Main.PORT;
 import static Client.Login.Main.USERNAME;
 
+/*
+        Initialised when a new channel is created
+        contacts HUB and transfers objects for updation
+ */
+
 public class NotifyNewChannelService extends Service {
 
     ArrayList<Video> videoList;

@@ -11,6 +11,10 @@ import java.net.Socket;
 
 import static Client.Login.Main.HUB_IP;
 
+/*
+        Initialised when dislike button is clicked on a video
+ */
+
 public class DecreaseLikeService extends Service {
 
 

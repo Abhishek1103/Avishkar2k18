@@ -14,6 +14,11 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/*
+        Initialised at Startup
+        Daemon for receiing notifications at Real-time
+ */
+
 public class NotificationServiceRealTime extends Service {
 
     Circle notifCircle;

@@ -82,6 +82,7 @@ public class LayoutController implements Initializable {
         }
     }
 
+    // Submitting signIn details
     public void signInSubmit(){
 
         String userName = signInUsernameTxt.getText();
@@ -136,6 +137,7 @@ public class LayoutController implements Initializable {
 
     }
 
+    // Submitting signUp details
     public void signUpSubmit(){
 
         System.out.println("SignUpClicked..!!");
@@ -183,6 +185,7 @@ public class LayoutController implements Initializable {
 
     }
 
+    // Creating a new user and directory structure
     public void createNewUser(String userName, String passWord, String name) throws Exception{
         File f = new File(userHome+"/starkhub/"+userName+"/credentials.cfg");
         new File(userHome+"/starkhub").mkdir();
@@ -210,6 +213,7 @@ public class LayoutController implements Initializable {
     }
 
 
+    // Starting the main view of the application
     public void startMainPage(){
         Parent root = null;
         try {
@@ -223,6 +227,7 @@ public class LayoutController implements Initializable {
         //curStage.initStyle(StageStyle.DECORATED);
         curStage.setScene(new Scene(root));
 
+        // Action on the application to be closed
         curStage.setOnCloseRequest(e -> {
             try {
 
@@ -304,7 +309,7 @@ public class LayoutController implements Initializable {
 
     }
 
-
+    // Athenticating signUp from the HUB
     boolean authenticateSignUp(String username){
         boolean result = false;
         try {
@@ -331,6 +336,7 @@ public class LayoutController implements Initializable {
         return result;
     }
 
+    // POPUP: for invalid username
     JFXPopup initInvalidUsernamePopup(){
         Label l = new Label("Username already taken..!!");
         l.setStyle("-fx-foreground-color:#ff0000");
@@ -340,6 +346,7 @@ public class LayoutController implements Initializable {
         return p;
     }
 
+    // POPUP: for invalid empty field
     JFXPopup initEmptyPopup(){
         Label l = new Label("This is a required Feild\nand Cannot be empty");
         l.setWrapText(true);
@@ -349,6 +356,7 @@ public class LayoutController implements Initializable {
         return p;
     }
 
+    // Prevalidation before connecting to HUB
     boolean preValidation(String name, String userName, String pass){
         if(name == null || name.isEmpty()){
             emptyPopup.show(signUpName, JFXPopup.PopupVPosition.TOP ,JFXPopup.PopupHPosition.LEFT);

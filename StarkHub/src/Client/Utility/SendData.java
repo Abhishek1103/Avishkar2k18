@@ -16,6 +16,11 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
+/*
+    Initialised when the User goes premium
+    and transfers his premium videos to other peer
+ */
+
 public class SendData extends Service {
     @Override
     protected Task<Void> createTask() {
@@ -26,6 +31,7 @@ public class SendData extends Service {
 
                 try{
 
+                    // Opening socket and streams o HUB
                     Socket sock = new Socket(Main.HUB_IP,1111);
                     DataInputStream dis = new DataInputStream(sock.getInputStream());
                     DataOutputStream dout = new DataOutputStream(sock.getOutputStream());
@@ -39,6 +45,7 @@ public class SendData extends Service {
                     boolean bool = dis.readBoolean();
                     System.out.println("Received bool: "+bool);
 
+                    // If Receiving peer is online
                     if(bool){
                         try {
                             ServerSocketChannel ssc = ServerSocketChannel.open();
@@ -88,7 +95,7 @@ public class SendData extends Service {
                         }
                     }
 
-
+                    // Closing HUB connections
                     ois.close();
                     oos.close();
                     sock.close();
@@ -103,7 +110,7 @@ public class SendData extends Service {
         };
     }
 
-
+    // Method to Transfer files
     boolean sendFile(SocketChannel sc, String filePath, DataOutputStream dout){
         try {
             FileChannel fc = new RandomAccessFile(filePath, "rw").getChannel();
@@ -119,9 +126,6 @@ public class SendData extends Service {
                 //System.out.println("bytesRead: "+bytesRead);
 
             }
-            System.out.println("Sending -1");
-            //dout.writeInt(-1);
-
 
             fc.close();
         }catch(Exception e){

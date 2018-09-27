@@ -19,6 +19,7 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AddSectionController implements Initializable {
@@ -59,8 +60,13 @@ public class AddSectionController implements Initializable {
         Section newSection = new Section(AddQuizController.quizName, sectionName, description, time+"");
         newSection.setQuestionHashMap(questionMap);
 
+        int marks=0;
         // TODO: Calculate total marks of section
+        for(Map.Entry<Integer, Question> entry: questionMap.entrySet()){
+            marks += entry.getValue().getMarks();
+        }
 
+        newSection.setSectionMarks(marks+"");
         AddQuizController.sectionMap.add(new Pair<>(sectionName, newSection));
 
         Stage stage = (Stage) mainAnchorPane.getScene().getWindow();
@@ -73,7 +79,7 @@ public class AddSectionController implements Initializable {
         // TODO: Open question window
         Stage playWindow = new Stage();
         playWindow.initModality(Modality.APPLICATION_MODAL);
-        Parent root = FXMLLoader.load(getClass().getResource("layouts/addQuestionLayout.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("layouts/addQuestionLayout.fxml"));
         Scene sc = new Scene(root);
         playWindow.setScene(sc);
         playWindow.showAndWait();

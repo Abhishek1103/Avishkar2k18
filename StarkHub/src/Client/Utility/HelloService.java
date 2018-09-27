@@ -10,6 +10,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/*
+        Intimating the HUB that the peer is UP
+ */
+
 public class HelloService extends Service {
     @Override
     protected Task<Void> createTask() {

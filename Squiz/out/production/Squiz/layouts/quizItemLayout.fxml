@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="117.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.QuizItemController">
+   <children>
+      <Label layoutX="17.0" layoutY="14.0" prefHeight="45.0" prefWidth="265.0" text="Quiz Name" textFill="#bf2626">
+         <font>
+            <Font size="28.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label layoutX="30.0" layoutY="73.0" prefHeight="16.0" prefWidth="147.0" text="Sections: " />
+      <Label layoutX="215.0" layoutY="73.0" prefHeight="16.0" prefWidth="147.0" text="Max Marks: " />
+      <JFXButton buttonType="RAISED" layoutX="623.0" layoutY="40.0" prefHeight="32.0" prefWidth="112.0" style="-fx-background-color: #af1138;" text="Attempt" textFill="WHITE" />
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>

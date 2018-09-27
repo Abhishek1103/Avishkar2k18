@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import constants.Constants;
 import constants.Flags;
+import data.Subject;
 import encryption.AES;
 import encryption.RSA;
 import javafx.fxml.FXML;
@@ -25,7 +26,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import utility.KeyTransferToServerService;
+import utility.LoginTimeService;
+import utility.RealTimeMessagesTeacherHandler;
+import utility.RealTimeMessagesTeacherService;
 
+import javax.print.attribute.HashAttributeSet;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
@@ -59,6 +65,8 @@ public class LayoutController implements Initializable {
     public static String USERNAME = "";
 
     JFXPopup invalidUsernamePopup, emptyPopup;
+
+    public static HashMap<String, String > messageUsers;
 
 
 
@@ -101,11 +109,11 @@ public class LayoutController implements Initializable {
         String userName = signInUsernameTxt.getText();
         String pass = signInPass.getText();
 
-        if(signUpStudentRadioButton.isSelected()){
+        if(signInStudentRadioButton.isSelected()){
             Flags.isStudent = true;
             Flags.isTeacher = false;
         }
-        else if(signUpTeacherRadioButton.isSelected()){
+        else if(signInTeacherRadioButton.isSelected()){
             Flags.isTeacher = true;
             Flags.isStudent = false;
         }else{
@@ -142,11 +150,50 @@ public class LayoutController implements Initializable {
                     // TODO: Open main page
                     Constants.USERNAME = userName;
                     Constants.USER_DIR = path.substring(0, path.lastIndexOf('/')+1);
+
+                    Constants.rsa = new RSA();
+                    Constants.rsa.generateKeyPair();
+                    Constants.rsa.savePrivateKey("Private.key");
+                    Constants.rsa.savePublicKey("Public.key");
+                    System.out.println("RSA keys Saved");
+
+                    Constants.PUBLIC_KEY_PATH = Constants.USER_DIR+"keys/Public.key";
+                    Constants.PRIVATE_KEY_PATH = Constants.USER_DIR+"keys/Private.key";
+                    System.out.println("Path_PUB_Key: "+Constants.PUBLIC_KEY_PATH);
+                    System.out.println("Path Pri Key: "+Constants.PRIVATE_KEY_PATH);
+
+
+                    Constants.aes = new AES();
+                    Constants.aes.generateAESKey();
+                    String encodedAESKey = Constants.aes.getEncodedKey(Constants.aes.getSecretKey());
+                    String aesKeyPath = Constants.USER_DIR+"keys/Secretkey.key";
+                    Constants.SECRET_KEY_PATH = aesKeyPath;
+
+                    PrintWriter pw = new PrintWriter(new FileWriter(new File(aesKeyPath)));
+                    pw.println(encodedAESKey);
+                    pw.close();
+
+                    // TODO: contact the server
+
+                    KeyTransferToServerService serverService = new KeyTransferToServerService();
+                    serverService.start();
+
+                    serverService.setOnSucceeded(e -> {
+                        System.out.println("Key service completed");
+                    });
+
+                    messageUsers = new HashMap<>();
+
                     if(Flags.isTeacher){
+                        Constants.SUBJECT_MAP = new HashMap<>();
                         startTeacherMainPage();
                     }else if(Flags.isStudent){
                         startStudentMainPage();
                     }
+                    RealTimeMessagesTeacherService service = new RealTimeMessagesTeacherService();
+                    service.start();
+                    LoginTimeService s = new LoginTimeService();
+                    s.start();
                 }else{
                     System.out.println("Authorisation failed");
                     // TODO: show a GUI alert
@@ -179,10 +226,12 @@ public class LayoutController implements Initializable {
             System.out.println("Auth: "+res);
 
             if(signUpStudentRadioButton.isSelected()){
+                System.out.println("signUpStudent");
                 Flags.isStudent = true;
                 Flags.isTeacher = false;
             }
             else if(signUpTeacherRadioButton.isSelected()){
+                System.out.println("signUpisTeeacher");
                 Flags.isTeacher = true;
                 Flags.isStudent = false;
             }else{
@@ -190,6 +239,9 @@ public class LayoutController implements Initializable {
                 // TODO: Show Popup
                 return;
             }
+
+            System.out.println("isTeacher: "+Flags.isTeacher);
+            System.out.println("isStudent: "+Flags.isStudent);
 
             String path = "";
 
@@ -215,13 +267,17 @@ public class LayoutController implements Initializable {
                 Constants.rsa.generateKeyPair();
                 Constants.rsa.savePrivateKey("Private.key");
                 Constants.rsa.savePublicKey("Public.key");
+                System.out.println("RSA keys Saved");
 
                 Constants.PUBLIC_KEY_PATH = Constants.USER_DIR+"keys/Public.key";
                 Constants.PRIVATE_KEY_PATH = Constants.USER_DIR+"keys/Private.key";
+                System.out.println("Path_PUB_Key: "+Constants.PUBLIC_KEY_PATH);
+                System.out.println("Path Pri Key: "+Constants.PRIVATE_KEY_PATH);
+
 
                 Constants.aes = new AES();
                 Constants.aes.generateAESKey();
-                String encodedAESKey = Constants.aes.getEncodedKey();
+                String encodedAESKey = Constants.aes.getEncodedKey(Constants.aes.getSecretKey());
                 String aesKeyPath = Constants.USER_DIR+"keys/Secretkey.key";
                 Constants.SECRET_KEY_PATH = aesKeyPath;
 
@@ -231,12 +287,22 @@ public class LayoutController implements Initializable {
 
                 // TODO: contact the server
 
+                KeyTransferToServerService serverService = new KeyTransferToServerService();
+                serverService.start();
+
+                serverService.setOnSucceeded(e -> {
+                    System.out.println("Key service completed");
+                });
+
 
                 if(Flags.isTeacher){
+                    Constants.SUBJECT_MAP = new HashMap<>();
                     startTeacherMainPage();
                 }else if(Flags.isStudent){
                     startStudentMainPage();
                 }
+                RealTimeMessagesTeacherService service = new RealTimeMessagesTeacherService();
+                service.start();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -261,8 +327,10 @@ public class LayoutController implements Initializable {
 
         try {
             makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/");
-            makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/"+"subjects/");
-            makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/"+"keys");
+            makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/" + "subjects/");
+            makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/" + "keys");
+            makeDirectory(Constants.USER_HOME + Constants.SQUIZ_DIR + type + "/" + userName + "/" + "chats");
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -374,7 +442,7 @@ public class LayoutController implements Initializable {
     void startStudentMainPage(){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("layouts/mainStudentPage.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("layouts/mainStudentPage.fxml"));
         }
         catch (IOException e1) {
             e1.printStackTrace();
@@ -393,9 +461,23 @@ public class LayoutController implements Initializable {
     }
 
     void startTeacherMainPage(){
+
+        try{
+            HashMap<String, Subject> map = new HashMap<>();
+            String path = Constants.USER_DIR + "subMap";
+            if(new File(path).exists()) {
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(path)));
+                map = (HashMap<String, Subject>) (ois.readObject());
+                Constants.SUBJECT_MAP = map;
+                System.out.println("Subject map deserialised");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("layouts/mainTeacherPage.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("layouts/mainTeacherPage.fxml"));
         }
         catch (IOException e1) {
             e1.printStackTrace();
@@ -407,6 +489,15 @@ public class LayoutController implements Initializable {
 
             curStage.setOnCloseRequest(e -> {
                 // TODO: Actions to be taken upon closing of application
+                // TODO: Serialize subjectMap
+                try {
+                    HashMap<String, Subject> map = Constants.SUBJECT_MAP;
+                    String path = Constants.USER_DIR + "subMap";
+                    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(path)));
+                    oos.writeObject(map);
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
             });
         }catch (Exception e){
             e.printStackTrace();
@@ -425,7 +516,13 @@ public class LayoutController implements Initializable {
             ObjectInputStream ois = new ObjectInputStream(serverConn.getInputStream());
             ObjectOutputStream oos = new ObjectOutputStream(serverConn.getOutputStream());
 
-            dout.writeBoolean(Flags.isTeacher);
+            if(signUpTeacherRadioButton.isSelected()){
+                dout.writeBoolean(true);
+            }else if(signUpStudentRadioButton.isSelected()){
+                dout.writeBoolean(false);
+            }
+
+
             dout.writeUTF("#AUTH");
             dout.writeUTF(username);
             result = din.readBoolean();

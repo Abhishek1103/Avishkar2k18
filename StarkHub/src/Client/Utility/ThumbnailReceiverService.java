@@ -9,6 +9,10 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/*
+        Receives ThumbNails from the HUB
+ */
+
 public class ThumbnailReceiverService extends Service<Void> {
     @Override
     protected Task<Void> createTask() {

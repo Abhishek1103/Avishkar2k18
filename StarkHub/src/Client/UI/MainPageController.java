@@ -154,8 +154,8 @@ public class MainPageController implements Initializable {
     // Initialize Popup
     protected JFXPopup initPopup(){
         VBox vbox = new VBox(10);
-        vbox.getChildren().add(createDashboardButton("Dashboard"));
-        vbox.getChildren().add(createCreatorDashboardButton("Creator Dashboard"));
+        //vbox.getChildren().add(createDashboardButton("Dashboard"));
+        //vbox.getChildren().add(createCreatorDashboardButton("Creator Dashboard"));
         vbox.getChildren().add(createMyCHannelsButton("My Channels"));
         vbox.getChildren().add(createLogOutButton("Log Out"));
         JFXPopup popup = new JFXPopup(vbox);

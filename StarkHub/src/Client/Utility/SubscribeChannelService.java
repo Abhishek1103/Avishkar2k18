@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
+/*
+        Initilaised when Subscribe Channel button is Clicked
+ */
+
 public class SubscribeChannelService extends Service {
     @Override
     protected Task<Void> createTask() {

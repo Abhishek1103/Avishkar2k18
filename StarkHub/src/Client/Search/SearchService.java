@@ -14,6 +14,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
+        Fires up when Search is clicked
+ */
+
 public class SearchService extends Service {
 
     ArrayList<String> searchQuery;
@@ -36,6 +40,7 @@ public class SearchService extends Service {
                     ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
                     ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
 
+                    // Search Criteria
                     if(MainPageController.SEARCH_CRITERIA == 0){
                         dout.writeUTF("#SEARCH");
                     }else if(MainPageController.SEARCH_CRITERIA == 3){

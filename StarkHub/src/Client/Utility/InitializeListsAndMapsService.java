@@ -12,6 +12,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
+        Initialised at startup
+        reads the state of previous instance
+        and accordingly deserializes objects
+ */
+
 public class InitializeListsAndMapsService extends Service {
     @Override
     protected Task<Void> createTask() {

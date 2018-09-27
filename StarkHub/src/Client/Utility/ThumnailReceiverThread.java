@@ -7,6 +7,10 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/*
+        TODO: No longer used
+ */
+
 public class ThumnailReceiverThread implements Runnable{
     @Override
     public void run() {

@@ -4,6 +4,11 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+/*
+        Has methods to save files on local system form a remote server
+ */
+
+
 public class SaveFile {
     //    Socket sock;
 //    SaveFile(Socket sock){

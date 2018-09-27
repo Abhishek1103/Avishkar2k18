@@ -11,6 +11,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/*
+        Intimating HUB that the peer is going down
+ */
+
 public class ByeService extends Service {
     @Override
     protected Task<Void> createTask() {

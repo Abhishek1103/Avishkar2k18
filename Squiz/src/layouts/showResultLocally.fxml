@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="274.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ShowResultsLocallyController">
+   <children>
+      <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="206.0" style="-fx-background-color: #ffffff;" text="Okay" textFill="#b91919">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="quizNameLabel" layoutX="61.0" layoutY="67.0" prefHeight="33.0" prefWidth="236.0" text="Quiz Name: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="marksLabel" layoutX="407.0" layoutY="63.0" prefHeight="42.0" prefWidth="126.0" text="Marks: " />
+   </children>
+</AnchorPane>

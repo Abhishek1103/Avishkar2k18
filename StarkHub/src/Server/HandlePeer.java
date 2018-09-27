@@ -3,6 +3,12 @@ package Server;
 import java.io.*;
 import java.util.HashMap;
 
+
+/*
+        TODO: Not used anymore: REMOVE
+ */
+
+@Deprecated
 public class HandlePeer implements Runnable
 {
     Peer peer;

@@ -85,7 +85,7 @@ public class AddVideoController implements Initializable {
         }
     }
 
-
+    // Add video in channel object and notify HUB
     public void addVideoToChannel(){
         String channelName = channelSelectComboBox.getSelectionModel().getSelectedItem();
         System.out.println(channelName);
@@ -117,6 +117,7 @@ public class AddVideoController implements Initializable {
         }
     }
 
+    // Add video in the temporary list
     public void addVideos(){
         try {
             fileChooser.setInitialDirectory(new File(userHome));
@@ -243,7 +244,7 @@ public class AddVideoController implements Initializable {
 
     }
 
-
+    // Generating tags from raw text
     ArrayList<String> getTagsFromTextArea(){
         String rawString = tagsTextArea.getText();
         StringTokenizer tokenizer = new StringTokenizer(rawString, ",");
@@ -257,6 +258,7 @@ public class AddVideoController implements Initializable {
     }
 
 
+    // Show loading UI while data fetch and Transfer
     void showLoading(){
         if(!loadingAnchorPane.isVisible()) {
             System.out.println("Showing loading gif");
@@ -277,7 +279,7 @@ public class AddVideoController implements Initializable {
         }
     }
 
-
+    // initialising noVideos Selected for adding tags POPUP
     JFXPopup initNoVideosPopup(){
         Label l = new Label("No Videos Selected");
         l.setWrapText(true);
@@ -289,7 +291,7 @@ public class AddVideoController implements Initializable {
 
     public void discard(){
         /*
-            Load back the main UI
+            // TODO: Load back the main UI
 
          */
         showLoading();

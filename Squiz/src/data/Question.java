@@ -1,11 +1,14 @@
 package data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question
+public class Question implements Serializable
 {
+    private String questionId;
     private String question;
     private String type;
+
     private String section;
     private ArrayList<String> options;
     private ArrayList<Integer> answer;
@@ -18,6 +21,14 @@ public class Question
         this.options = new ArrayList<String>();
         this.answer = new ArrayList<Integer>();
         this.marks = marks;
+    }
+
+    public String getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(String questionId) {
+        this.questionId = questionId;
     }
 
     public int getMarks() {

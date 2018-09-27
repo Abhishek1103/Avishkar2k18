@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="919.0" style="-fx-border-color: #aa12aa;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainQuizFrameController">
+    <children>
+        <AnchorPane fx:id="sectionAnchorPane" prefHeight="632.0" prefWidth="189.0" style="-fx-border-color: #12aa55;">
+            <children>
+                <VBox fx:id="sectionVbox" layoutX="4.0" layoutY="104.0" prefHeight="375.0" prefWidth="181.0" style="-fx-border-color: #511753;" />
+            <JFXButton fx:id="submitButton" buttonType="RAISED" layoutX="35.0" layoutY="541.0" onAction="#submitButtonClicked" prefHeight="48.0" prefWidth="110.0" style="-fx-background-color: #1c93ce;" text="Submit Quiz" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="questionAnchorPane" layoutX="195.0" layoutY="56.0" prefHeight="468.0" prefWidth="712.0" style="-fx-border-color: #123456;" />
+        <Label fx:id="timerLabel" alignment="CENTER" layoutX="450.0" layoutY="11.0" prefHeight="34.0" prefWidth="132.0" style="-fx-border-color: #555555; -fx-border-radius: 500;" text="Timer">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+            <effect>
+                <Reflection fraction="0.41" />
+            </effect>
+        </Label>
+        <JFXButton fx:id="previousQuestionButton" buttonType="RAISED" contentDisplay="CENTER" layoutX="343.0" layoutY="553.0" onAction="#previousQuestionButtonPressed" ripplerFill="WHITE" style="-fx-background-color: #c11d1d;" text="Prev Question" textFill="WHITE" />
+        <JFXButton fx:id="nextQuestionButton" buttonType="RAISED" contentDisplay="CENTER" layoutX="630.0" layoutY="553.0" onAction="#nextQuestionButtonPressed" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #c11d1d#c11d1d;" text="Next Question" textFill="WHITE" />
+    </children>
+</AnchorPane>

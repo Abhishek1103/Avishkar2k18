@@ -11,6 +11,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
+
+/*
+    Client side server: Handles serving of videos to other clients
+ */
+
 public class Server implements Runnable
 {
     protected static int numberOfConnections = 0;
@@ -18,19 +23,22 @@ public class Server implements Runnable
     private static String username;
     private static String rootPasswd;
 
-
+    // Accessor: username
     public static String getUsername() {
         return username;
     }
 
+    // Modifier: username
     public static void setUsername(String username) {
         Server.username = username;
     }
 
+    // Accessor: rootPasswd
     public static String getRootPasswd() {
         return rootPasswd;
     }
 
+    // Modifier: rootPasswd
     public static void setRootPasswd(String rootPasswd) {
         Server.rootPasswd = rootPasswd;
     }
@@ -96,8 +104,8 @@ public class Server implements Runnable
             }
 
             System.out.println(getUsername() + "\n" + getRootPasswd());
-            //System.exit(0);
-            //TODO: get starkhub wala username
+
+            // Listening for connections from other peers
             starkHubUsername = Main.USERNAME;
             HashSet<String> people = new HashSet<String>();
             ServerSocket incomingConnection = new ServerSocket(15001);
@@ -114,6 +122,7 @@ public class Server implements Runnable
                     ex.printStackTrace();
                 }
 
+                // Max number of peer connections is 5
                 if (people.size() < 5 || people.contains(username) || socket.getInetAddress().getHostAddress().equals("172.31.84.87")) {
                     peer.dos.writeBoolean(true);
                     if (people.size() < 5)
@@ -209,6 +218,7 @@ public class Server implements Runnable
                     }
                 } else {
                     try {
+                        // Closing connection and streams to a peer
                         peer.dos.writeBoolean(false);
                         peer.dos.close();
                         peer.dis.close();

@@ -12,13 +12,14 @@ import java.io.DataOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class NotifyServerAddSubjectService extends Service {
 
-    private Subject subject;
 
-    public NotifyServerAddSubjectService(Subject _subject){
-        this.subject = _subject;
+
+    public NotifyServerAddSubjectService(){
+
     }
 
     @Override
@@ -39,10 +40,11 @@ public class NotifyServerAddSubjectService extends Service {
                     dout.writeUTF(Constants.USERNAME);
 
 
-//                    ByteOutputStream baos = new ByteOutputStream();
-//                    Constants.aes.encryptWithAES(subject, baos);
+                    HashMap<String, Subject> map = Constants.SUBJECT_MAP;
+                    ByteOutputStream baos = new ByteOutputStream();
+                    Constants.aes.encryptWithAES(map, baos);
 
-                    oos.writeObject(subject);
+                    oos.writeObject(baos.toByteArray());
 
                     System.out.println("Subject Object Written");
 

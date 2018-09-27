@@ -14,6 +14,10 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
+/*
+        Service to recieve Premium Data of another peer from HUB
+ */
+
 public class ReceiveData extends Service {
 
     int n;
@@ -69,7 +73,7 @@ public class ReceiveData extends Service {
         };
     }
 
-
+    // Method to save large files on local storage
     boolean save(SocketChannel sc, String path, DataInputStream dis){
 
         try{

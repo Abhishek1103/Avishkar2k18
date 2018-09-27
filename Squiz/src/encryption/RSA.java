@@ -177,4 +177,34 @@ public class RSA {
         }
     }
 
+
+    public PrivateKey readPrivateKeyFromFile(String fileName) throws IOException {
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        PrivateKey privateKey = null;
+
+        try {
+
+            fis = new FileInputStream(new File(fileName));
+            ois = new ObjectInputStream(fis);
+            BigInteger modulus = (BigInteger)ois.readObject();
+            BigInteger exponent = (BigInteger)ois.readObject();
+
+            RSAPrivateKeySpec rsaPrivateKeySpec = new RSAPrivateKeySpec(modulus,exponent);
+            KeyFactory factory = KeyFactory.getInstance(ALGORITHM);
+            privateKey = factory.generatePrivate(rsaPrivateKeySpec);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(ois!=null){
+                ois.close();
+                if(fis != null){
+                    fis.close();
+                }
+            }
+        }
+        return privateKey;
+    }
+
 }

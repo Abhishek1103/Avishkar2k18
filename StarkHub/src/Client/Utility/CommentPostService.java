@@ -10,6 +10,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/*
+        Initiated  when a comment is made on a video
+ */
+
 public class CommentPostService extends Service {
 
     String peerIP;

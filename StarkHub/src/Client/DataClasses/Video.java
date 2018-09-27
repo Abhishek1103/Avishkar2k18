@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+// Video class: For storing attributes an behaviours of Video
+
 public class Video implements Serializable {
 
     protected String videoName;
@@ -15,24 +17,27 @@ public class Video implements Serializable {
     protected int numberOfLikes = 0;
     protected int numberOfComments = 0;
     protected ArrayList<Comment> comments;
-    //protected Image thumbnail;
     protected String thumbnailPath;
 
+
+    // Constructor
     public Video(String _videoName, ArrayList<String> _tags, String _videoPath){
         this.tags = _tags;
         this.videoName = _videoName;
         this.videoPath = _videoPath;
     }
 
-
+    // Accessor: videoName
     public String getVideoName(){
         return this.videoName;
     }
 
+    // Accessor: videoPath
     public String getVideoPath(){
         return this.videoPath;
     }
 
+    // Accessor: tags
     public ArrayList<String> getTags(){
         return this.tags;
     }
@@ -46,14 +51,12 @@ public class Video implements Serializable {
         comments.add(newComment);
     }
 
-//    public void setThumbnail(String imagePath) throws Exception {
-//        this.thumbnail = new Image(new FileInputStream(imagePath));
-//    }
-
+    // Accessor: thumbnail
     public Image getThumbnail() throws Exception{
         return new Image(new FileInputStream(thumbnailPath));
     }
 
+    // Accessor: thumbnailPath
     public String getThumbnailPath(){
         return this.thumbnailPath;
     }

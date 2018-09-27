@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="86.0" prefWidth="687.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MessageSenderItemController">
+   <children>
+      <Label layoutX="32.0" layoutY="11.0" prefHeight="38.0" prefWidth="370.0" text="Student Name" textFill="#bf2f2f">
+         <font>
+            <Font size="27.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label layoutX="35.0" layoutY="55.0" prefHeight="16.0" prefWidth="277.0" text="Asked you a query" textFill="#9e1717" />
+      <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="18.0" prefHeight="48.0" prefWidth="124.0" style="-fx-background-color: #b20a1f;" text="Reply" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <effect>
+            <Shadow />
+         </effect>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -44,17 +44,18 @@ public class FirstTeacherPageController implements Initializable {
 
 
     private void init() throws Exception{
+        if(subjectMap!=null && !subjectMap.isEmpty()) {
+            for (Map.Entry<String, Subject> entry : subjectMap.entrySet()) {
+                Subject subject = entry.getValue();
+                String subjectName = entry.getKey();
+                int numQuizzes = subject.getQuizHashMap().size();
 
-        for(Map.Entry<String, Subject> entry: subjectMap.entrySet()){
-            Subject subject = entry.getValue();
-            String subjectName = entry.getKey();
-            int numQuizzes = subject.getQuizHashMap().size();
+                AnchorPane pane = createSingleItem(subjectName, numQuizzes, subject);
+                vBox.getChildren().add(pane);
+            }
 
-            AnchorPane pane = createSingleItem(subjectName, numQuizzes, subject);
-            vBox.getChildren().add(pane);
+            scrollPane.setContent(vBox);
         }
-
-        scrollPane.setContent(vBox);
     }
 
     private AnchorPane createSingleItem(String subjectName, int numberOfQuizzes, Subject subject) throws Exception{

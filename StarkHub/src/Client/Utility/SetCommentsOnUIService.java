@@ -13,6 +13,10 @@ import javafx.scene.layout.VBox;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+        Service to set comments on the UI when the VideoPlayer is Loaded
+ */
+
 public class SetCommentsOnUIService extends Service {
 
     VBox vbox;

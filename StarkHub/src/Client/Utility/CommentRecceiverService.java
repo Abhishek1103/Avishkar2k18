@@ -12,6 +12,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
+
+/*
+        initiated when a comment has been made on
+        one of this peer's videos
+ */
+
 public class CommentRecceiverService extends Service {
 
 

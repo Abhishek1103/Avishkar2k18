@@ -5,6 +5,7 @@ import constants.Constants;
 import data.Question;
 import data.Quiz;
 import data.Section;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,11 +16,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import utility.NotifyServerAddSubjectService;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AddQuizController implements Initializable {
 
@@ -43,9 +43,16 @@ public class AddQuizController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+        sectionMap = new ArrayList<>();
 
         // TODO: Initialize subjectNameComboBox
+        Set<String> set = Constants.SUBJECT_MAP.keySet();
+
+        for(String str: set){
+            subjectNameComboBox.getItems().add(str);
+        }
+
+
     }
 
 
@@ -55,16 +62,26 @@ public class AddQuizController implements Initializable {
 
         String subName = subjectNameComboBox.getSelectionModel().getSelectedItem();
 
-        int marks = 100;
+        int marks = 0;
         // TODO: Calculate total marks of the quiz
-        int totalTime = 60;
+
+        int totalTime = 0;
         // TODO: Calculate totalTime
+        for(Pair<String, Section> p : sectionMap){
+            totalTime += Integer.parseInt(p.getValue().getSectionTime());
+            marks += Integer.parseInt(p.getValue().getSectionMarks());
+        }
 
         Quiz newQuiz = new Quiz(quizName, subName, marks, totalTime, quizDesc);
         newQuiz.setSectionArrayListOfPair(sectionMap);
 
         Constants.SUBJECT_MAP.get(subName).getQuizHashMap().put(quizName, newQuiz);
 
+        NotifyServerAddSubjectService service = new NotifyServerAddSubjectService();
+        service.start();
+        service.setOnSucceeded(e -> {
+            System.out.println("Notify service succeded");
+        });
         clear();
 
     }
@@ -72,13 +89,15 @@ public class AddQuizController implements Initializable {
     public void addSectionButtonClicked() throws Exception{
         Stage playWindow = new Stage();
         playWindow.initModality(Modality.APPLICATION_MODAL);
-        Parent root = FXMLLoader.load(getClass().getResource("layouts/addSectionLayout.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("layouts/addSectionLayout.fxml"));
         Scene sc = new Scene(root);
         playWindow.setScene(sc);
         playWindow.showAndWait();
     }
 
     public void clear(){
-
+        quizDescTxtArea.clear();
+        quizNameTxt.clear();
+        subjectNameComboBox.getSelectionModel().clearSelection();
     }
 }

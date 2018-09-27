@@ -35,7 +35,7 @@ public class Teacher implements Serializable
         return subjectHashMap;
     }
 
-    public void setSubjectHashMap(String subjectName, Subject subject) {
-        this.subjectHashMap.put(subjectName, subject);
+    public void setSubjectHashMap(HashMap<String, Subject> subjectHashMap) {
+        this.subjectHashMap = subjectHashMap;
     }
 }

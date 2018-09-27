@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RateQuizController">
+   <children>
+      <Label fx:id="tickLabel" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="328.0" layoutY="149.0" prefHeight="153.0" prefWidth="153.0" style="-fx-background-color: #38f42e; -fx-border-color: #ffffff; -fx-background-radius: 500; -fx-border-radius: 500;" />
+      <ImageView fx:id="tickImageView" fitHeight="113.0" fitWidth="109.0" layoutX="350.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/ok-80.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="215.0" layoutY="40.0" prefHeight="64.0" prefWidth="400.0" text="Rate This Quiz">
+         <font>
+            <Font name="System Bold" size="43.0" />
+         </font>
+      </Label>
+      <JFXRadioButton fx:id="goodRadioButton" layoutX="237.0" layoutY="384.0" text="Good" />
+      <JFXRadioButton fx:id="averageRadioButton" layoutX="390.0" layoutY="384.0" text="Average" />
+      <JFXRadioButton fx:id="notGoodRadioButton" layoutX="541.0" layoutY="384.0" text="Not Good" />
+      <JFXRadioButton fx:id="badRadioButton" layoutX="697.0" layoutY="384.0" text="Bad" />
+      <JFXRadioButton fx:id="greatRadioButton" layoutX="96.0" layoutY="384.0" text="Great" />
+      <JFXButton fx:id="submitButton" buttonType="RAISED" layoutX="304.0" layoutY="458.0" onAction="#submitButtonClicked" prefHeight="75.0" prefWidth="223.0" style="-fx-background-color: #ffffff;" text="Submit Review" textAlignment="CENTER" textFill="#5e5d5d">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

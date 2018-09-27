@@ -12,6 +12,9 @@ import java.net.Socket;
 
 import static Client.Login.Main.HUB_IP;
 
+/*
+    Initialised when Like button Clicked
+ */
 
 public class IncreaseLikeService extends Service {
 

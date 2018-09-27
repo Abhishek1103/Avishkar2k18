@@ -178,17 +178,21 @@ public class MediaPlayerAndControlsController implements Initializable {
 //        volumeSlider.setValue(50.0);
 
         //mediaPlayer.volumeProperty().bind(volumeSlider.valueProperty());
+        volumeSlider.setValue(mediaPlayer.getVolume()*100);
+        volumeSlider.valueProperty().addListener(e ->{
+            mediaPlayer.setVolume(volumeSlider.getValue()/100);
+        });
 
         volumeSlider.setOnMousePressed(e -> {
-            double diff = volumeSlider.getValue() - previousVol;
-            previousVol = volumeSlider.getValue();
-            mediaPlayer.setVolume(mediaPlayer.getVolume() + 10*diff);
+//            double diff = volumeSlider.getValue() - previousVol;
+//            previousVol = volumeSlider.getValue();
+            mediaPlayer.setVolume(volumeSlider.getValue()/100);
         });
 
         volumeSlider.setOnMouseDragged(e -> {
-            double diff = volumeSlider.getValue() - previousVol;
-            previousVol = volumeSlider.getValue();
-            mediaPlayer.setVolume(mediaPlayer.getVolume() + 10*diff);
+//            double diff = volumeSlider.getValue() - previousVol;
+//            previousVol = volumeSlider.getValue();
+            mediaPlayer.setVolume(volumeSlider.getValue() /100);
         });
     }
 
@@ -249,10 +253,15 @@ public class MediaPlayerAndControlsController implements Initializable {
             IncreaseLikeService increaseLikeService = new IncreaseLikeService(ownerName, channelName, videoPath.substring(videoPath.lastIndexOf('/')+1));
             increaseLikeService.start();
 
-            int likes = Integer.parseInt(likesLabel.getText().substring(6).trim());
-            likes++;
-            likesLabel.setText(likes+"");
-
+            try {
+                int likes = Integer.parseInt(likesLabel.getText().substring(6).trim());
+                likes++;
+                likesLabel.setText(likes + "");
+            }catch (Exception e){
+                int likes = Integer.parseInt(likesLabel.getText().trim());
+                likes++;
+                likesLabel.setText(likes + "");
+            }
             hasLiked = true;
             hasDisLiked = false;
         }
