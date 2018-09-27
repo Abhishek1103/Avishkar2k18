@@ -7,6 +7,8 @@ import com.recombee.api_client.bindings.RecommendationResponse;
 import com.recombee.api_client.exceptions.ApiException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
 
 public class GetRecommendation
 {
@@ -29,6 +31,8 @@ public class GetRecommendation
             for(Recommendation rec: recommendationResponse)
             {
                 String t = rec.getId();
+                //byte[] b64decoded = Base64.getDecoder().decode(t);
+                //result.add(new String(b64decoded));
                 result.add(t);
                 System.out.println(t);
             }

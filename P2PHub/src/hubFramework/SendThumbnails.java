@@ -26,6 +26,7 @@ public class SendThumbnails implements Runnable
         try {
             socket = new Socket(ip, 11234);
             thumbnail = new ObjectOutputStream(socket.getOutputStream());
+            //thumbnail object for writing and reading any value from peer
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             thumbnail.writeInt(videos.size());
         } catch (IOException e) {
@@ -53,6 +54,7 @@ public class SendThumbnails implements Runnable
         }
     }
 
+    // sendFile function
     private void sendFile(String path, ObjectOutputStream oos)
     {
 

@@ -38,6 +38,7 @@ public class InsertInTrendingController implements Runnable
         Long lastViewedTime = ZonedDateTime.now().toInstant().toEpochMilli();
         System.out.println("In insert in trending controller");
         try {
+            //TODO: use prepared statement
             updateQuery = "INSERT INTO trendingtable VALUES ('" + channelName + ":" + videoName
                     + "', 1, 1, " + lastViewedTime +
                     ", 10, '"+username+"');";//initial score is 10

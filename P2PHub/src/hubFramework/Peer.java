@@ -3,6 +3,7 @@ package hubFramework;
 import java.io.*;
 import java.net.Socket;
 
+// Peer type data type
 public class Peer {
     protected Socket peerSocket;
     protected DataInputStream dis;

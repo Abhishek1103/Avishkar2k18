@@ -7,6 +7,7 @@ import com.recombee.api_client.bindings.Recommendation;
 import com.recombee.api_client.exceptions.ApiException;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 
 public class AddDataToRecommder implements Runnable
@@ -40,6 +41,9 @@ public class AddDataToRecommder implements Runnable
             //client.send(new ResetDatabase()); //Clear everything from the database
 
             String videoName = video.ownerName+":"+video.channelName+":"+video.videoName;
+
+            //String b64encodedVideoName = Base64.getEncoder().encodeToString(videoName.getBytes());
+
             final SetItemValues req = new SetItemValues(videoName, //itemId
                     //values:
                     new HashMap<String, Object>() {{
@@ -53,7 +57,11 @@ public class AddDataToRecommder implements Runnable
 
             client.send(req); // Send catalog to the recommender system
 
-            AddPurchase reqForPurchase = new AddPurchase(usernameOfUserWhoClicked,videoName).setCascadeCreate(true); //use cascadeCreate to create the users
+
+
+            //AddPurchase reqForPurchase = new AddPurchase(usernameOfUserWhoClicked,videoName).setCascadeCreate(true); //use cascadeCreate to create the users
+
+            AddPurchase reqForPurchase = new AddPurchase(usernameOfUserWhoClicked,videoName).setCascadeCreate(true);
 
             client.send(reqForPurchase); // Send purchases to the recommender system
             System.out.println("Done purchase and added item");

@@ -49,6 +49,7 @@ public class ReceiveAndStoreData implements Runnable
 //            e.printStackTrace();
 //        }
         String videoName, channelName;
+        //Reception of data started
         for(int i = 0;i < n;i++)
         {
             System.out.println("i ="+i);
@@ -75,6 +76,7 @@ public class ReceiveAndStoreData implements Runnable
             e.printStackTrace();
         }
         System.out.println("Reception done now trying connrction with target");
+        //Reception of data finished now initiating sending data
         Socket socket = null;
         try {
             socket = new Socket(targetIP, 15001);
@@ -114,7 +116,9 @@ public class ReceiveAndStoreData implements Runnable
             e.printStackTrace();
         }
         System.out.println("GOing to spawn thread sendData with alternate path prefix"+alternatePathPrefix);
+        //sending data thread started
         new Thread(new SendData(targetIP,storagePath+"/", dis,dos)).start();
+        // continuing with house keeping stuff like wrapping up everything that's open
         File file = new File(System.getProperty("user.home") + "/Hub/Client/" + premiumUsername);
         ObjectInputStream readSerializedObject = null;
         try {
@@ -154,6 +158,7 @@ public class ReceiveAndStoreData implements Runnable
         }
     }
 
+    // function of reception of files
     private void receiveFile(SocketChannel sc, String path) throws IOException
     {
         FileChannel fc = new RandomAccessFile(path, "rw").getChannel();

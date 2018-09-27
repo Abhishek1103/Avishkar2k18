@@ -47,6 +47,14 @@ public class SendData implements Runnable
             }
             //ssc.close();
             System.out.println("Socket closed");
+            System.out.println("Deleting temp folder");
+            File[] listFiles = dir.listFiles();
+            for(File file : listFiles){
+                System.out.println("Deleting "+file.getName());
+                file.delete();
+            }
+            //now directory is empty, so we can delete it
+            System.out.println("Deleting Directory. Success = "+dir.delete());
         }
         catch (SocketException e) {
             //TODO: manage if connection is broken

@@ -3,6 +3,7 @@ package hubFramework;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//For each user this data type will contain the following information
 public class Channel implements Serializable
 {
     protected String channelName;

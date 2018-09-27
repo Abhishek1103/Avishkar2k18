@@ -28,7 +28,7 @@ public class Notification implements Runnable
         }
         return stm;
     }
-
+    // adding notification to subscribed users in the subscriber user list
     protected void addNotificationToUserObject() throws IOException, ClassNotFoundException, SQLException {
         ArrayList<String> subscriberList = ch.subscriberName;
         System.out.println("In notification adder thread");

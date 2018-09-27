@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
+//Main datatype for each and every user with the following attributes:
 public class User implements Serializable
 {
     protected String username;

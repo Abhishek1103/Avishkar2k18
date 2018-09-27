@@ -12,13 +12,15 @@ public class InitForRecombee
 
     public static void main(String args[])
     {
-        RecombeeClient client = new RecombeeClient(database, secretToken);
+        RecombeeClient client = new RecombeeClient(database, secretToken); // connection to api
 
         try {
             client.send(new ResetDatabase()); //Clear everything from the database
+            // adding properties to the database of items
             client.send(new AddItemProperty("likes", "int"));
             client.send(new AddItemProperty("comments", "int"));
             client.send(new AddItemProperty("views", "int"));
+            System.out.println("Database ready");
         } catch (ApiException e){
             e.printStackTrace();
         }

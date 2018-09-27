@@ -36,6 +36,10 @@ public class TrendSetter extends TimerTask
             r2.next();
             double maxTime = r2.getDouble(1);
             double alpha = 0.33;
+            /*
+                score = alpha * totalViews + (x/(MAX(viewsInTimeFrameColumn)*10*(y/(MAX(lastViewedTime)))*10))
+                for all i in db
+            */
             String scoreSetQuery = "update trendingtable set score=("+alpha+"*totalViews)+((viewsInOneFrame/"+maxView+")*10 * " +
                     "(lastViewedTime/"+maxTime+")*10);";
             String clearAllViewAndTime = "update trendingtable set viewsInOneFrame=0, lastViewedTime=0;";
